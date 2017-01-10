@@ -1,0 +1,630 @@
+---
+title: "Viewsheds and 'Shortest' Path"
+author:
+- Freie Universität Berlin -- M.Sc. Landschaftsarchäologie
+- Modellieren in der Landschaftsarchäologie
+- Dr. Daniel Knitter
+date: WS 2015/2016 -- 2016-02-11
+bibliography: VS_Modellierung_Literature.bib
+csl: harvard1.csl
+output:
+  ioslides_presentation:
+    toc: true
+    highlight: pygments
+    widescreen: true
+    smaller: true
+---
+
+# Prerequisites
+
+## setwd, library, data, cleaning
+
+```{r message=FALSE}
+setwd("/media/daniel/homebay/Teachings/WS_2015-2016/VS_Modellieren_Landschaftsarchaeologie")
+
+raw.data <-  read.table(file = "./data/Fundstellen_UTM.csv",
+                        header = TRUE,
+                        sep = ";",
+                        dec = ".",
+                        quote = "",
+                        stringsAsFactors = FALSE
+                        )
+
+## check for issues/problems
+## str(raw.data)
+## apply(X=raw.data[,4:20], MARGIN = 2, FUN=function(x){x[x>1]})
+raw.data$settlement[raw.data$settlement > 1] <- 1
+
+library(sp)
+sites <- raw.data[(raw.data$settlement == 1 & raw.data$iron.age == 1),]
+coordinates(sites) <- ~xUTM+yUTM
+proj4string(sites) <- CRS("+init=epsg:32634")
+```
+
+
+## Get data into R and than into GRASS
+
+Download SRTM, load SRTM into R, reproject to UTM, crop to sites, export as new file
+
+```{r message=FALSE}
+## library(raster)
+## srtm <- raster("./data/srtm_41_03.tif")
+## srtm <- projectRaster(srtm, res=90, crs=CRS("+init=epsg:32634"))
+## srtm <- crop(x = srtm, y = extent(sites)+20000)
+
+## writeRaster(x = srtm,
+##             filename = "./results/srtm.tif"
+##             )
+```
+
+# Viewshed Analysis using R and GRASS GIS
+
+## Initialize GRASS
+
+Be aware, for the following to work you need to have GRASS GIS installed on your system.
+
+Load library, initialize the GRASS environment with default values (everything is stored as temporary files; you can change this if you want to come back to earlier stages of your work)
+
+```{r init_grass, eval = TRUE, echo = TRUE}
+library(spgrass6)
+loc <-  initGRASS("/usr/local/grass-7.0.0svn/", home=tempdir() ,mapset = "PERMANENT", override = TRUE)
+execGRASS("g.proj", flags = c("c"), parameters = list(proj4="+init=epsg:32634"))
+```
+
+## Load SRTM into GRASS
+
+```{r message=FALSE}
+library(rgdal)
+srtm <- readGDAL("./results/srtm.tif")
+```
+
+```{r}
+writeRAST6(x = srtm,
+           vname="dem",
+           flags = c("overwrite")
+           )
+```
+
+## Load SRTM into GRASS
+
+Now, we need to adjust the region's resolution
+
+```{r}
+execGRASS("g.region",
+          parameters = list(raster = "dem",
+                            res = as.character(srtm@grid@cellsize[1])
+                            )
+          )
+```
+
+## Check Region characteristics
+
+```{r}
+execGRASS("g.region", flags = c("p"))
+```
+
+## Viewshed in GRASS
+
+Now we are ready to perform our viewshed analysis. First, display the possible commands of the respetive GRASS GIS module
+
+```{r eval = TRUE, echo = TRUE}
+parseGRASS("r.viewshed")
+```
+
+## Viewshed in GRASS - for one point
+
+```{r}
+execGRASS("r.viewshed", flags = c("overwrite","b"),
+          parameters = list(input = "dem",
+                            output = "viewshed.single",
+                            coordinates = sites@coords[1,]
+          )
+)
+
+single.viewshed <- readRAST6("viewshed.single")
+```
+
+## Viewshed in GRASS - for one point {.columns-2}
+
+What might be wrong with this result?
+
+```{r fig.height=5, fig.width=5}
+library(raster)
+plot(raster(single.viewshed))
+points(sites@coords[2,], pch = 19)
+```
+
+## Viewshed in GRASS - for one point
+
+```{r}
+execGRASS("r.viewshed", flags = c("overwrite","b"),
+          parameters = list(input = "dem",
+                            output = "viewshed.single",
+                            coordinates = sites@coords[1,],
+                            max_distance=50000
+                            
+          )
+)
+
+single.viewshed <- readRAST6("viewshed.single")
+```
+
+## Viewshed in GRASS - for one point {.columns-2}
+
+```{r fig.height=5, fig.width=5}
+plot(raster(single.viewshed))
+points(sites@coords[1,])
+```
+
+## Viewshed in GRASS - all points
+
+Again a loop.
+
+Procedure:
+
+- for all points
+- take i-th coordinate
+- calculate viewshed
+- save result in raster brick
+- optional: plot progress information
+
+## Viewshed in GRASS - all points
+
+```{r view_loop, eval=TRUE, warning = FALSE}
+cum.view.sites <- brick(raster(srtm))
+
+for (i in seq(1, length(sites@coords[,1]))) {
+    execGRASS("r.viewshed",
+              flags = c("overwrite","b"),
+              parameters = list(input = "dem",
+                                output = "view",
+                                coordinates = sites@coords[i,],
+                                max_distance=50000)
+              )
+    viewshed <- readRAST6("view")
+    cum.view.sites[[i]] <- raster(viewshed)
+    names(cum.view.sites[[i]]) <- as.character(sites@data$Nr.[i])
+    cat("iteration ", i, " of ", length(sites@coords[,1]),"\n")
+}
+```
+
+## Viewshed in GRASS - all points
+
+Plot a single viewshed from the brick object
+
+```{r}
+plot(cum.view.sites[[1]])
+```
+
+view.sum.sites <- sum(cum.view.sites)
+plot(view.sum.sites)
+
+## Viewshed in GRASS - all points
+
+Create a cumulative viewshed and plot it
+
+```{r}
+view.sum.sites <- sum(cum.view.sites)
+plot(view.sum.sites)
+```
+
+## Viewshed in GRASS - all points
+
+Reclassification might be interesting
+
+```{r}
+quantile(view.sum.sites)
+
+rcl.sites <- c(-Inf, quantile(view.sum.sites)[2],1,
+               quantile(view.sum.sites)[2],quantile(view.sum.sites)[3],2,
+               quantile(view.sum.sites)[3],quantile(view.sum.sites)[4],3,
+               quantile(view.sum.sites)[4],quantile(view.sum.sites)[5],4,
+               quantile(view.sum.sites)[5],+Inf,5
+               )
+rcl.sites <- matrix(rcl.sites, ncol = 3, byrow = TRUE)
+view.sum.sites2 <- reclassify(x = view.sum.sites, rcl = rcl.sites)
+```
+
+## Viewshed in GRASS - all points
+
+Reclassification might be interesting
+
+```{r}
+plot(view.sum.sites2)
+points(sites, pch=19, cex=.5)
+
+#library(rasterVis)
+#levelplot(view.sum.sites2)
+```
+
+# Shortest Path
+
+## Euclidean Distance
+
+The Euclidean distance between points i and j is the length of the line segment connecting them.
+
+$$
+\begin{aligned}
+d(i,j) = \sqrt{(x_i-x_j)^2 + (y_i-y_j)^2}
+\end{aligned}
+$$
+
+Manual calculation:
+
+```{r, eval=TRUE, echo=TRUE}
+sqrt((sites@coords[1,1]-sites@coords[2,1])^2 + (sites@coords[1,2]-sites@coords[2,2])^2)
+```
+
+## Euclidean Distance
+
+The Euclidean distance between points i and j is the length of the line segment connecting them.
+
+$$
+\begin{aligned}
+d(i,j) = \sqrt{(x_i-x_j)^2 + (y_i-y_j)^2}
+\end{aligned}
+$$
+
+With own function:
+
+```{r}
+e.d <- function(x, y) {
+    sqrt(sum((x[1] - y[1])^2 + (x[2] - y[2])^2))
+}
+e.d(sites@coords[1,],sites@coords[2,])
+```
+
+## Euclidean Distance
+
+The Euclidean distance between points i and j is the length of the line segment connecting them.
+
+$$
+\begin{aligned}
+d(i,j) = \sqrt{(x_i-x_j)^2 + (y_i-y_j)^2}
+\end{aligned}
+$$
+
+With own function - for all connections:
+
+```{r}
+x.comb <- combn(x = sites@coords[,1],
+                m = 2)
+y.comb <- combn(x = sites@coords[,2],
+                m = 2)
+
+ed.sites <- c()
+for (i in 1:length(x.comb)/2) {
+    ed.sites[i] <- e.d(cbind(x.comb[1,][i],y.comb[1,][i]), cbind(x.comb[2,][i],y.comb[2,][i]))
+    }
+ed.sites[1]
+```
+
+## Euclidean Distance
+
+The Euclidean distance between points i and j is the length of the line segment connecting them.
+
+$$
+\begin{aligned}
+d(i,j) = \sqrt{(x_i-x_j)^2 + (y_i-y_j)^2}
+\end{aligned}
+$$
+
+Using packages:
+
+```{r message=FALSE}
+library(fields)
+ed.sites2 <- rdist(x1 = sites@coords,
+                   x2 = sites@coords
+                   )
+ed.sites2[2]
+
+library(rgeos)
+ed.sites3 <- gDistance(sites, byid = TRUE)
+ed.sites3[2]
+```
+
+## Least Cost Distance
+
+First: define cost functions
+ 
+```{r, eval=TRUE, echo=TRUE}
+tobler1993a <- function(s){6 * exp(-3.5 * abs(s + 0.05))}      # km/h
+tobler1993b <- function(s){0.36 * exp(-3.5 * abs(s + 0.05))}   # m/min
+```
+
+## Least Cost Distance {.columns-2}
+
+```{r fig.height=5, fig.width=5}
+plot(tobler1993a,
+     xlim = c(-1,1),
+     main = "Slope-dependent cost function (Tobler)",
+     xaxt="n",yaxt="n",
+     xlab = "",ylab = "")
+
+mtext(side = 1, text = "slope", line = 2)
+mtext(side = 2, text = "speed (km/h)", line = 2)
+
+axis(2, mgp=c(3, .5, 0))
+axis(1, mgp=c(3, .5, 0))
+
+abline(v = 0, lty = 2)
+```
+```
+
+## Least Cost Distance
+
+We use the `gdistance` package ([link + nice vignette](https://cran.r-project.org/web/packages/gdistance/index.html))
+
+1. Auxilliary function (difference vector = slope)
+2. Transitional object (which cells are connected in which direction (4,8,16)?)
+3. Geocorrection (because a diagonal path is longer than a horizontal/vertical path)
+4. Adjacency matrix (check object, i.e. use only those cells that are adjacent; since matrix values for non-adjacent cells are 0 and division by zero leads to `Inf`)
+5. Apply cost function on adjacent cells (cell value = the difference in elevation from one to the other)
+
+## Least Cost Distance
+
+check this: transform cost to conductivity; conductivity=cost/dist; time=1/conductivity; we need the geocorection twice because
+
+```{r message=FALSE}
+library(raster)
+srtm <- raster(x = "./results/srtm.tif")
+
+library(gdistance) # 
+hdiff <- function(x){(x[2]-x[1])}
+
+hd <- transition(srtm,hdiff,8,symm=FALSE)
+slope <- geoCorrection(hd,scl=FALSE)
+adj <- adjacent(x=srtm, cells=1:ncell(srtm), direction=8)
+cost <- slope       
+cost[adj] <- tobler1993a(slope[adj])
+conduct <- geoCorrection(cost, scl=FALSE)                                        
+```
+
+## Least Cost Distance
+
+It's about time to calculate the shortest path
+
+```{r}
+tmp1 <- shortestPath(conduct,
+                     origin = sites@coords[1,],
+                     goal = sites@coords[2,],
+                     output="SpatialLines"
+                     )
+
+tmp2 <- shortestPath(conduct,
+                     origin = sites@coords[2,],
+                     goal = sites@coords[1,],
+                     output="SpatialLines"
+                     )
+```
+
+## Least Cost Distance
+
+and plot
+
+```{r eval=FALSE}
+plot(srtm,
+     main = "Least-cost path\nbased on Tobler's function for walking speed"
+     )
+
+lines(tmp1, col = "red")
+lines(tmp2, col = "blue")
+points(sites@coords[1,], pch = 19, cex = .5)
+points(sites@coords[2,], pch = 19, cex = .5)
+text(sites@coords[1,1], sites@coords[1,2] - 2500, "1st")
+text(sites@coords[2,1], sites@coords[2,2] + 2500, "2nd")
+
+legend("bottom",
+       c("1st - 2nd", "2nd - 1st"),
+       lty = c(1,1),
+       col = c("red", "blue", "black"),
+       bty = "n"
+       )
+```
+
+## Least Cost Distance
+
+```{r echo=FALSE}
+plot(srtm,
+     main = "Least-cost path\nbased on Tobler's function for walking speed"
+     )
+lines(tmp1, col = "red")
+lines(tmp2, col = "blue")
+points(sites@coords[1,], pch = 19, cex = .5)
+points(sites@coords[2,], pch = 19, cex = .5)
+text(sites@coords[1,1], sites@coords[1,2] - 2500, "1st")
+text(sites@coords[2,1], sites@coords[2,2] + 2500, "2nd")
+
+legend("bottom",
+       c("1st - 2nd", "2nd - 1st"),
+       lty = c(1,1),
+       col = c("red", "blue", "black"),
+       bty = "n"
+       )
+```
+
+## Least Cost Distance
+
+Let us have a look at the elevation profiles of the calculated paths and compare them to the euclidean path
+
+First, we need to create a spatial line between the 1st and 2nd point
+
+```{r}
+tmp1.euc <- SpatialLines(
+    list(
+        Lines(
+            Line(
+                coords = (rbind(sites@coords[1,],
+                                sites@coords[2,]
+                                )
+                )
+            ),
+            ID="1")
+    ),
+    proj4string = srtm@crs
+)
+```
+
+## Least Cost Distance
+
+Let us have a look at the elevation profiles of the calculated paths and compare them to the euclidean path
+
+Now, we can extract the raster values along the spatial lines
+
+```{r}
+p.tmp1.euc <- extract(x=srtm,
+                      y=tmp1.euc, along=TRUE
+                      )
+
+p.tmp1 <- extract(x=srtm,
+                  y=tmp1, along=TRUE
+                  )
+p.tmp2 <- extract(x=srtm,
+                  y=tmp2, along=TRUE
+                  )
+```
+
+## Least Cost Distance
+
+Let us have a look at the elevation profiles of the calculated paths and compare them to the euclidean path
+
+And now the plot
+
+```{r eval=FALSE}
+par(mfrow = c(3,1))
+plot(p.tmp1.euc[[1]], type="l",
+     main = "Elevation profile \nfrom 1st to 2nd site (euclidean)"
+     )
+plot(p.tmp1[[1]], type="l",
+     main = "Elevation profile \nfrom 1st to 2nd site (least cost)"
+     )
+plot(p.tmp2[[1]], type="l",
+     main = "Elevation profile \nfrom 2nd to 1st site (least cost)"
+     )
+```
+
+## Least Cost Distance
+
+Let us have a look at the elevation profiles of the calculated paths and compare them to the euclidean path
+
+And now the plot
+
+```{r echo=FALSE}
+par(mfrow = c(3,1))
+plot(p.tmp1.euc[[1]], type="l",
+     main = "Elevation profile \nfrom 1st to 2nd site (euclidean)"
+     )
+plot(p.tmp1[[1]], type="l",
+     main = "Elevation profile \nfrom 1st to 2nd site (least cost)"
+     )
+plot(p.tmp2[[1]], type="l",
+     main = "Elevation profile \nfrom 2nd to 1st site (least cost)"
+     )
+```
+
+## Least cost paths from all points to all points
+
+First we need a combination object that calculates all the possible connections (and optionally a name object in order to identify the paths afterwards)
+
+```{r}
+x <- sites@coords[,1][1:10] # at the moment only for 10 objects
+y <- sites@coords[,2][1:10] # at the moment only for 10 objects
+
+x.comb <- combn(x,2)
+y.comb <- combn(y,2)
+
+x.name <- data.frame(sites@data$Nr.[match(x.comb,sites@coords[,1])])
+
+```
+
+## Least cost paths from all points to all points
+
+This will be a rather long loop...
+
+- for all points
+- get odd and even numbers for directions, i.e. from odd to even and from even to odd
+- select the odd/even coordinates from the combination object and store in variable
+- calculate path from odd/even to even/odd
+- write an ID to be able to identify the resulting lines
+- in the first run of the loop: create the spatial data frame (sdf), i.e. every row is a calculated line
+- in the subsequent runs of the loop: append the new lines to the sdf
+- in the first run of the loop: create a dataframe (df) with columns "ID", "FROM", "TO"
+- in the subsequent runs of the loop: append the new data
+
+## Least cost paths from all points to all points
+
+```{r eval=TRUE}
+for(i in 1:(length(x.comb)/2)){
+    i1 <- i*2-1 # odd numbers
+    i2 <- i*2 # even numbers
+    s <- c(x.comb[i1],y.comb[i1])
+    z <- c(x.comb[i2],y.comb[i2])
+    sz <- shortestPath(conduct, s, z, output="SpatialLines") # calculate the shortest path
+    zs <- shortestPath(conduct, z, s, output="SpatialLines") # calculate the shortest path
+    sz@lines[[1]]@ID <- as.character(paste(x.name[i1,1],x.name[i2,1]))
+    zs@lines[[1]]@ID <- as.character(paste(x.name[i2,1],x.name[i1,1]))
+    
+    if(i==1){sdf <-rbind(sz,zs)}
+    if(i>1){sdf <- rbind(sdf,sz,zs,
+                         makeUniqueIDs = TRUE)
+    }
+
+    if(i==1){df <- cbind(ID = c(1,2),
+                         FROM = c(paste(x.name[i1,1]),paste(x.name[i2,1])),
+                         TO = c(paste(x.name[i2,1]),paste(x.name[i1,1]))
+                         )
+    }
+    if(i>1){df <- cbind(ID = c(df[,1],i1,i2),
+                        FROM = c(df[,2],paste(x.name[i1,1]),paste(x.name[i2,1])),
+                        TO = c(df[,3],paste(x.name[i2,1]),paste(x.name[i1,1]))
+                        )
+    }
+}
+```
+
+## Least cost paths from all points to all points
+
+Create a nice, all integrating SpatialLinesDataFrame object, calculate the length of the lines,  and write a shapefile
+
+```{r eval=TRUE}
+lcp_df <- as.data.frame(df)
+# colnames(lcp_df) <- c("ID","START","TARGET")
+
+lcp_sldf <- SpatialLinesDataFrame(sdf,
+                                  lcp_df,
+                                  match.ID = FALSE
+                                  )
+
+lcp_sldf@data$DIST <- SpatialLinesLengths(lcp_sldf)
+
+writeOGR(lcp_sldf,
+         "./results/",
+         "Least_cost_paths",
+         driver = "ESRI Shapefile",
+         overwrite_layer = TRUE
+         )
+```
+
+## and plot {.columns-2}
+
+```{r message=FALSE, fig.height=5, fig.width=5}
+library(magrittr); library(leaflet)
+
+sites.wgs84 <- spTransform(x = sites,
+                           CRSobj = "+init=epsg:4326"
+                           )
+lcp_sldf.wgs84 <- spTransform(x = lcp_sldf,
+                              CRSobj = "+init=epsg:4326"
+                              )
+
+m1 <- leaflet(lcp_sldf.wgs84) %>%
+    addPolylines() %>%
+    addProviderTiles("Thunderforest.Landscape") %>%
+        addMarkers(lng=sites.wgs84@coords[,1],
+                   lat=sites.wgs84@coords[,2],
+                   popup = sites@data$Site.Name.
+                   )
+m1
+```
+
+# That's it. Thank you.

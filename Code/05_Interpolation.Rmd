@@ -1,0 +1,247 @@
+---
+title: "Interpolation"
+author:
+  Modellieren in der Landschaftsarchäologie
+  Daniel Knitter
+date: 2016-02-11
+bibliography: VS_Modellierung_Literature.bib
+csl: harvard1.csl
+output:
+  ioslides_presentation:
+    toc: true
+    highlight: pygments
+    widescreen: true
+    smaller: true
+---
+
+# Prerequisites
+
+## setwd, library, data, cleaning
+
+```{r message=FALSE}
+setwd("/media/daniel/homebay/Teachings/WS_2015-2016/VS_Modellieren_Landschaftsarchaeologie")
+
+raw.data <-  read.table(file = "./data/Fundstellen_UTM.csv",
+                        header = TRUE,
+                        sep = ";",
+                        dec = ".",
+                        quote = "",
+                        stringsAsFactors = FALSE
+                        )
+
+## check for issues/problems
+## str(raw.data)
+## apply(X=raw.data[,4:20], MARGIN = 2, FUN=function(x){x[x>1]})
+raw.data$settlement[raw.data$settlement > 1] <- 1
+
+library(sp)
+sites <- raw.data[(raw.data$settlement == 1 & raw.data$iron.age == 1),]
+coordinates(sites) <- ~xUTM+yUTM
+proj4string(sites) <- CRS("+init=epsg:32634")
+```
+
+## Create Point Pattern dataset
+
+```{r message=FALSE}
+library(spatstat)
+                                                    
+sites.pp <- ppp(x = sites@coords[,1],
+                y = sites@coords[,2],
+                window = owin(xrange = c(min(sites@coords[,1]),
+                                         max(sites@coords[,1])
+                                         ),
+                              yrange = c(min(sites@coords[,2]),
+                                         max(sites@coords[,2])
+                                         )
+                              )
+                )
+unitname(sites.pp) <- c("meter", "meters")
+
+anyDuplicated(sites.pp)
+sites.pp <- sites.pp[duplicated(sites.pp)==FALSE]
+anyDuplicated(sites.pp)
+#plot(sites.pp)
+```
+
+## Caluclate density using graph methods
+
+Distance based density using "largest empty circle"
+
+Idea: calculate the centres of the largest empty circles -- corresponds to the edges of the Voronoi graph
+
+```{r}
+library(tripack)
+
+sites.vor <- voronoi.mosaic(x = sites.pp$x,
+                      y = sites.pp$y,
+                      duplicate = "remove"
+                      ) 
+rad <- sites.vor$radius
+lec <- SpatialPointsDataFrame(coords = cbind(sites.vor$x, sites.vor$y),
+                              data = as.data.frame(rad), # length of edge
+                              proj4string=CRS("+init=epsg:32634")
+                              )
+```
+
+## Caluclate density using graph methods
+
+```{r}
+plot(sites.pp)
+plot(sites.vor, col = "red", add=TRUE)
+```
+
+## Caluclate density using graph methods {.columns-2}
+
+```{r message=FALSE, fig.height=5, fig.width=5}
+plot(sites.pp, pch = 19)
+points(lec, col="red")
+
+library(plotrix)
+draw.circle(x = lec@coords[,1],
+            y = lec@coords[,2],
+            radius = sites.vor$radius,
+            border = "gray")
+```
+
+## Interpolation
+
+We're lazy...instead of creating a raster we use one that is "already there":
+load SRTM scene, reproject, crop, change to SpatialGridDataFrame
+
+```{r message=FALSE}
+library(raster)
+srtm <- raster("./data/srtm_41_03.tif")
+srtm <- projectRaster(srtm, res=90, crs=CRS("+init=epsg:32634"))
+srtm <- crop(x = srtm, y = extent(sites)+20000)
+library(maptools)
+srtm <- as(object = srtm,
+           Class = "SpatialGridDataFrame"
+           )
+str(srtm)
+##image(srtm)
+##points(sites, pch=19, cex=.5)
+```
+
+## Interpolation - Inverse Distance Weighting
+
+```{r message=FALSE}
+library(gstat)
+
+lec.gstat.p2 <- gstat(formula = lec@data$rad ~ 1,
+                   locations = lec,
+                   set = list(idp = 2)
+                   )
+lec.gstat.p05 <- gstat(formula = lec@data$rad ~ 1,
+                   locations = lec,
+                   set = list(idp = .5)
+                   )
+lec.idw2 <- predict(object = lec.gstat.p2,
+                    newdata = srtm)
+lec.idw05 <- predict(object = lec.gstat.p05,
+                    newdata = srtm)
+```
+
+## Interpolation - Inverse Distance Weighting {.columns-2}
+
+```{r fig.height=5, fig.width=5, echo=FALSE}
+plot(raster(lec.idw05))
+points(sites.pp)
+
+plot(raster(lec.idw2))
+points(sites.pp) 
+```
+
+## Interpolation - Kriging
+
+**very** superficial
+
+```{r}
+library(gstat)
+
+plot(variogram(lec$rad ~ 1, lec, cloud = TRUE))
+```
+
+## Interpolation - Kriging
+
+**very** superficial
+
+```{r}
+library(gstat)
+
+plot(variogram(lec$rad ~ 1, lec))
+```
+
+## Interpolation - Kriging
+
+**very** superficial
+
+```{r}
+library(gstat)
+
+plot(variogram(lec$rad ~ 1, lec, alpha = c(0,45,90,135)))
+```
+
+## Interpolation - Kriging {.columns-2}
+
+**very** superficial
+
+```{r fig.height=5, fig.width=5, echo=FALSE}
+#vt <- variogram(lec$rad ~ 1, lec)
+plot(variogram(lec$rad ~ 1, lec))
+show.vgms()
+```
+
+## Interpolation - Kriging
+
+**very** superficial
+
+```{r}
+vt <- variogram(lec$rad ~ 1, lec)
+v.fit <- fit.variogram(vt,
+                       vgm(nugget = 3e+07,
+                           model = "Gau",
+                           psill = 3e+08, #355572513
+                           range = 180000)
+                       )
+```
+
+## Interpolation - Kriging
+
+**very** superficial
+
+```{r}
+plot(vt,v.fit)
+```
+
+## Interpolation - Kriging
+
+**very** superficial
+
+```{r}
+lec.kri <- krige(formula = lec$rad ~ 1,
+                 location = lec,
+                 newdata = srtm,
+                 model = v.fit
+                 )
+```
+
+## Interpolation - Kriging
+
+**very** superficial
+
+```{r}
+plot(raster(lec.kri),
+     main="Kriging using Gaussian fit"
+     )
+points(sites,pch=20,cex=.4)
+```
+
+## Interpolation - Inverse Distance Weighting vs. Kriging {.columns-2}
+
+```{r fig.height=5, fig.width=5, echo=FALSE}
+plot(raster(lec.idw05))
+points(sites.pp)
+
+plot(raster(lec.kri))
+points(sites.pp) 
+```

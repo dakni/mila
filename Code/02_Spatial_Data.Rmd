@@ -1,0 +1,221 @@
+---
+title: "Spatial Data"
+author:
+  Modellieren in der Landschaftsarchäologie
+  Daniel Knitter
+date: 2015-12-17
+bibliography: VS_Modellierung_Literature.bib
+csl: harvard1.csl
+output:
+  ioslides_presentation:
+    toc: true
+    highlight: pygments
+    widescreen: true
+    smaller: true
+---
+
+# Prerequisites
+
+## setwd, library, data {.build}
+
+```{r message=FALSE}
+setwd("/media/daniel/homebay/Teachings/WS_2015-2016/VS_Modellieren_Landschaftsarchaeologie")
+```
+
+```{r message=FALSE}
+library(gdata) # for Excel files
+```
+
+```{r message=FALSE}
+raw.data <- read.xls(xls = "./data/Fundstellen_UTM.xlsx", sheet = 1)
+```
+
+## 4a. Check data structure ## {.build}
+
+Do you remember the "4" issue from the previous session?! Let's check it again and solve the problem. I use a `(s)apply` way. You can chose the method you prefer.
+
+First, let's check which columns have problems
+
+```{r message=FALSE}
+#str(raw.data)
+#sapply(raw.data[,4:20], function(x){x[x>1]})
+apply(X=raw.data[,4:20], MARGIN = 2, FUN=function(x){x[x>1]})
+```
+
+## 4a. Check data structure ## {.build}
+
+Now, let's solve the problem and check again
+
+```{r message=FALSE}
+raw.data$settlement[raw.data$settlement > 1] <- 1
+
+sapply(raw.data[,4:20], function(x){x[x>1]})
+```
+
+## 4b. Check data structure ## {.build}
+
+So, now it's time to have a look at the coordinates...
+
+```{r message=FALSE}
+#str(raw.data)
+raw.data[c(1:6),c(2,35,36)]
+```
+
+**Question:** Is there another way to create this overview?
+
+## 4b. Check data structure
+
+Yes.
+
+```{r message=FALSE}
+#str(raw.data)
+head(raw.data[,c(2,35,36)])
+```
+
+# Create a spatial object #
+
+## Some useful references ##
+
+> - THE book that covers a broad range of topics:
+    + Bivand, Roger S., Edzer J. Pebesma, and Virgilio Gómez-Rubio. 2008. Applied Spatial Data Analysis with R. New York: Springer.
+> - Useful tutorial-like introduction in the handling and plotting of spatial data
+    + Lovelace, Robin, and James Cheshire. 2015. “Introduction to Visualising Spatial Data in R.” [link](https://github.com/Robinlovelace/Creating-maps-in-R/raw/master/intro-spatial-rl.pdf).
+
+## Spatial data libraries ## 
+
+```{r message=FALSE}
+library(sp)
+library(rgdal)
+```
+
+> - sp: Classes and Methods for Spatial Data
+    + https://cran.r-project.org/web/packages/sp/index.html
+> - rgdal: Bindings for the Geospatial Data Abstraction Library
+    + based on GDAL "Swiss Army Knife for Geospatial Data" -> https://gdal.org
+    + https://cran.r-project.org/web/packages/rgdal/index.html
+
+
+## Create spatial object ##
+
+As always there are numerous ways to accomplish this. See https://cran.r-project.org/web/packages/sp/vignettes/intro_sp.pdf
+
+There are some things we need to know in advance:
+
+> 1. What kind of spatial data do we have?
+> 2. What are the coordinates?
+> 3. What is the reference system?
+    + Your best friend: https://www.epsg.io
+
+## Create spatial data ##
+
+```{r}
+sites <- SpatialPointsDataFrame(coords = cbind(raw.data$xUTM,raw.data$yUTM),
+                                data = data.frame(raw.data[,2]),
+                                proj4string = CRS("+init=epsg:32634")
+                                )
+class(sites)
+```
+
+**Exercise:** Find other ways to create a spatial data object.
+
+## Create spatial data ## {.build}
+
+```{r}
+sites <- raw.data
+coordinates(sites) <- ~xUTM+yUTM
+class(sites)
+```
+
+**Exercise:** Check the `str`ucture of the `sites` object. What is missing?
+
+```{r}
+is.projected(sites)
+```
+
+```{r}
+proj4string(sites) <- CRS("+init=epsg:32634")
+is.projected(sites)
+```
+
+## Plot it
+
+```{r fig.height=3, fig.width=5}
+plot(sites)
+```
+
+Find further ways to plot the points.
+
+A collection of examples: https://pakillo.github.io/R-GIS-tutorial/
+
+## Plot it 2.0  {.columns-2 .build}
+
+It's all about interaction, isn't it?
+
+```{r fig.height=5, fig.width=5}
+library(magrittr)
+library(leaflet)
+
+sites <- spTransform(sites, "+init=epsg:4326")
+
+m1 <- leaflet() %>%
+    addProviderTiles("Thunderforest.Landscape") %>%
+        addMarkers(lng=sites@coords[,1],
+                   lat=sites@coords[,2],
+                   popup = sites@data$Site.Name.
+                   )
+m1
+```
+
+## Plot it 2.0  {.columns-2 .build}
+
+You can also change the map tile provider for a wide range of different maps. An overview can be found here: http://leaflet-extras.github.io/leaflet-providers/preview/index.html
+
+```{r fig.height=5, fig.width=5}
+library(magrittr)
+library(leaflet)
+
+sites <- spTransform(sites, "+init=epsg:4326")
+
+m2 <- leaflet() %>%
+    addProviderTiles("OpenStreetMap.HOT") %>%
+        addMarkers(lng=sites@coords[,1],
+                   lat=sites@coords[,2],
+                   popup = sites@data$Site.Name.
+                   )
+m2
+```
+
+## Plot it 2.0
+
+Another great package for interactive visualization: [mapview](http://environmentalinformatics-marburg.github.io/web-presentations/20150723_mapView.html)
+
+**Question:** What is the drawback of these interactive mapping approaches?
+
+## Export to Shapefile
+
+```{r}
+writeOGR(obj = sites,
+         dsn = "./data",
+         layer = "Archaeological_Sites",
+         driver = "ESRI Shapefile",
+         overwrite_layer = TRUE
+         )
+
+list.files("./data")
+```
+
+## Export to graphics file
+
+not very useful; just to show how easy it is
+```{r, eval=FALSE}
+png("./data/Archaeological_Sites.png")
+plot(sites)
+dev.off()
+
+
+## pdf, svg, postscript
+?grDevices
+
+?cairo
+```
+

@@ -1,0 +1,218 @@
+---
+title: Modellieren in der Landschaftsarchäologie
+author:
+- Freie Universität Berlin
+- M.Sc. Landschaftsarchäologie
+- Dr. Daniel Knitter
+date: WS 2015/106
+email: daniel.knitter@fu-berlin.de
+bibliography: VS_Modellierung_Literature.bib
+csl: harvard1.csl
+output:
+  html_document:
+    toc: true
+    theme: united
+    pandoc_args: [
+      "+RTS", "-K64m",
+      "-RTS"
+    ]
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+    pandoc_args: [
+      "+RTS", "-K64m",
+      "-RTS"
+    ]
+highlight: pygments
+---
+
+\pagebreak
+
+# Introduction #
+
+We are going to use the open-source software `R` (https://www.r-project.org/ and http://cran.r-project.org/). The reason: You do not need to learn many different software tools. If you are able to use `R` you can do *every* GIS and geostatistic related task.
+
+Here is a not exhaustive list of useful literature about spatial data analyses, (geo-)statistics, and machine learing. 
+
+- @diggle2013
+- @fortin2005
+- @friedman2001
+- @gaetan2010
+- @gelfand2010
+- @glenberg2008
+- @haining2003
+- @hengl2009
+- @illian2008
+- @james2013
+- @legendre2012
+- a very good and not too technical introduction: @osullivan2010 
+- @osullivan2013
+- @pilz2009
+- @ripley2004 - one of the fundamentals
+- @schabenberger2005
+- @wiegand2013
+
+# Getting started with R #
+
+## What is `R` ##
+
+`R` is a high-level computer/programming language and environment for data analysis and graphics [@crawley2012]. 
+What can `R` do for you? "R can do anything you can imagine" [@zuur2009, p.1]. You can write functions, do calculations, apply hundreds of statistical and geostatistical techniques, create complex graphs, and adapt it to your needs by writing your own library functions. `R` is supported by a huge user group, so besides continuous development of the software, you will always find experts able to help you with  `R` related questions; e.g. using mailing lists (general: https://www.r-project.org/mail.html or specific: https://stat.ethz.ch/mailman/listinfo/R-SIG-Geo/), at SO (http://stackoverflow.com/questions/tagged/r), using vignettes that are available for a lot of packages, functions, and problems (https://stat.ethz.ch/R-manual/R-devel/library/utils/html/vignette.html), and finally via google search to the rest of the world not listed here. Ways to find help in `R` are nicely summarised in the SO answer: http://stackoverflow.com/questions/15289995/how-to-get-help-in-r.
+
+A rising number of research institutes, companies, and universities have migrated to `R`, what gets obvious by looking at the number of scientific articles (see http://r4stats.com/articles/popularity/) as well as by the large amount of books published about R and topics related to (geo-)statistics. A non-exhaustive collection:
+
+- @baddeley2005
+- @baddeley2008
+- @bivand2008
+- @borcard2011
+- @crawley2012
+- @everitt2006
+- @maindonald2003
+- @radziwill2015
+- @schumacker2013
+- @soetaert2012
+- @stevens2010
+- @wickham2009
+- @zhao2012
+- @zuur2009
+
+By the way: *R is available free of charge* --- for everyone, everywhere, any time. R is free software. If you want to learn more about this fundamental and important aspects have a look at https://www.fsf.org/ as well as https://www.gnu.org/.
+
+Having said this, there are a lot of different ways to use `R`. Besides `R`s own GUI, my personal favourite is [ESS](http://ess.r-project.org/), what stands for *Emacs Speaks Statistics*, an add-on for the famous [GNU emacs](http://www.gnu.org/software/emacs/) text editor (more information at http://ess.r-project.org/). Nevertheless, since learning emacs demands a course on its we are going to use [R-Studio](https://www.rstudio.com/products/RStudio/#Desktop), probably the most accessible and popular GUI for R at the moment (more information at https://www.rstudio.com/; a collection of GUIs for `R` at [wikipedia](https://en.wikipedia.org/wiki/R_(programming_language)#Interfaces).
+
+Video lectures (like [An Introduction to Quantitative Inference and Thinking](http://mbjoseph.github.io/r/2015/08/28/iquit.html)); YouTube in general is a great resource to find help about R, statistics, etc. A complete lecture series on Geographical Analysis at University Utah by Dr. Steven Farber can be found [here](https://youtu.be/KUzVtAeHPis?list=PLas_mS2V1XIRsJZ9yACVeg8cvZucNnhvI)
+
+Massive Open Online Courses ([MOOC](https://en.wikipedia.org/wiki/Massive_open_online_course)) on R e.g. at [edX](https://www.edx.org/course/explore-statistics-r-kix-kiexplorx-0) or at [Coursera](https://www.coursera.org/course/rprog)
+
+Interactive, online "Introduction to R": https://www.datacamp.com/courses/free-introduction-to-r
+
+Another good introduction to `R`: https://ramnathv.github.io/pycon2014-r/
+
+Stay updated: http://www.r-bloggers.com/
+
+## R as a calculator ##
+
+In the simplest case `R` can be used directly from the console. Let's try it by using `R` as a calculator. Just type the following in and hit enter after each line:
+
+```{r}
+1+1
+10-1
+3*5
+12/3
+16%/%3
+16%%3
+12^2
+sqrt(16)
+log(1)
+log10(100)
+exp(0)
+```
+
+What is `%%` and `%/%`? Let's find out:
+
+```[r}
+help(%%)
+```
+
+Anything more that you do not understand? Search the help for it! There are [many different possibilities](http://stackoverflow.com/questions/15289995/how-to-get-help-in-r) to do it...
+
+Another resource for beginners is the official ["An Introduction to R"](https://cran.r-project.org/doc/manuals/R-intro.html)-documentation.
+
+## Learning using `swirl` package ##
+
+If you want to learn more about `R` you can use the interactive tutorial from the `swirl` package to get started on your own. "The swirl R package makes it fun and easy to learn R programming and data science. If you are new to R, have no fear." (http://swirlstats.com/students.html)
+
+To install and use swirl type the following code in your `R` console.
+
+``` {r eval=FALSE}
+install.packages("swirl", dependencies = TRUE)
+library(swirl)
+swirl()
+```
+
+> **Excercise**
+>
+> 1. play around and get familiar with `R` and RStudio
+> 2. install the `swirl` package and do the first unit ("R Programming: The basics of programming in R").
+
+## Scripts ##
+
+"A `R` script (basically any script) is simply a text file containing (almost) the same commands that you would enter on the command line of `R`" (https://cran.r-project.org/doc/contrib/Lemon-kickstart/kr_scrpt.html).
+
+This is a great feature since while writing a script you automatically have a documentation of your work, hence it is possible for you (and others) to reconstruct how you produced your results. Besides, you can share your script with other researchers in order to debug it, enhance it, get feedback on it, help others with it, ...
+
+Think of a script like a publication and follow some basic rules to get the most of it. Give a title, mention the purpose, give references, set the license,...:
+
+```{r echo=TRUE}
+################################################################################ 
+## An example of how to write the header of a R Script 
+## ============================================================================= 
+## Project: Modellieren in der Landschaftsarchäologie
+## Author: Daniel Knitter 
+## Version: 01 
+## Date of last changes: Di 17. Nov 10:03:44 CET 2015
+##
+## Data: 
+## Author of data: 
+## Purpose: just an example 
+## Content: nothing yet 
+## Licence data: -
+## Licence Script: GPL
+## 
+## how to cite a package? citation(package="PACKAGE-NAME")
+################################################################################ 
+```
+
+Please recognise the `#` symbol. It defines the rest of the line as a comment and is not interpreted by `R`. Hence, everywhere in your script where you want to make a remark you can just do it using a comment.
+
+```{r echo=TRUE}
+sqrt(12) # sqrt() means square root of something in the brackets
+```
+
+Before we you will fill your script with commands we have to define a style guide. There are some
+style guides available, for instance:
+
+- http://google-styleguide.googlecode.com/svn/trunk/google-r-style.html
+- http://stat405.had.co.nz/r-style.html
+- http://www.r-bloggers.com/r-style-guide/
+
+It does not matter which style guide you use, but be consistent. Here are some examples for points in a style guide:
+
+- Use short meaningful names
+- For combining parts of the name you can use points, hyphens or underscores. It does not matter which symbol you use but use every time the same symbol
+- Limit the line length to 80 characters
+- Use spaces before and after operators like +, =, >
+- Try to align similar parts in different rows. You can insert as many spaces as you like
+- Curly braces do never start in an own line but end in an own line
+- Use four spaces for indentation
+- Use <- for assignment
+- Use comments in a consistent way
+
+
+# Spatial Data - some necessary basics #
+
+[The following is to a large extent taken from Knitter & Nakoinz (submitted): "Point Pattern Analysis as Tool for Digital Geoarchaeology -- A Case Study of Megalithic Graves in Schleswig-Holstein, Germany"]
+
+Statistics is a very large, sometimes overwhelmingly large, subject. Nevertheless, there are good news: in focusing on "Geostatistics and GIS" we already defined the focus of our statistical analyses: everything we are investigating is concerned with *space* and hence *spatial data*. 
+
+## Spatial Data are Special ##
+
+In contrast to normal everyday statistical data, spatial data are special because they do not fulfil one of the most common prerequisites of conventional statistical analyses: they are not random, i.e.\ stochastically independent. This causes the specificity of spatial data [collection after @osullivan2010, 34]:
+
+- **Spatial autocorrelation** is a measure of the importance of a location. It measures to which degree the characteristics at a certain location---or in the study area as a whole---are indicative for other locations in the area. The concept is closely related to Tobler's first law of geography (at least for positive autocorrelation): "...everything is related to everything else, but near things are more related than distant things" [@tobler1970,236]. This means that it is more likely that points next to each other have similar or comparable characteristics of e.g. elevation than points that are distant. Local similarities are used to describe and differentiate space. For instance, an area of high concentration of people may be called settlement; a wetland area of low pH-values, dense vegetation and high organic carbon content may be called swamp, etc. The *law* also indicates that this holds true for all spatial data. If spatial phenomena would vary randomly through space spatial data would be meaningless [@osullivan2010,35]. There are different techniques that allow to assess the importance of a location---hence spatial autocorrelation---in an analyses, i.e. *Moran's I* as well as *Geary's C* [e.g. @lloyd2011, 80-82].
+- The **modifiable areal unit problem** arises when spatial data are compiled or acquired on a certain level of detail but are analysed in aggregated, areal-modified form [@osullivan2010,36-38]. For instance, humans are individuals but their distribution is reported in census data as sum per district. Districts are a modifiable areal unit that is *arbitrary* in terms of the investigated object. This can lead to problems in subsequent analyses because the unit of aggregation, i.e. the size of the district, influences the outcome of the analysis. The comprehensive discussion of this issue by [@openshaw1984, 4-5, 10-11] shows that different aggregation schemes---e.g. different grid cell sizes or shapes---have a very strong effect on correlation measures.
+- The common statistical problem of **ecological fallacy** is often related to modifiable areal units. It occurs when a statistical relationship at one level of aggregation is assumed to be present because it is present at another [@osullivan2010, 39]. Thinking of some settlements that might occur more frequently at higher elevated locations, this observation does not allow us to conclude that those sites are located there because these locations seek higher visibility or better climate. Hence, data on occurrence of settlements in different altitudes can only support the conclusion that these are often more elevated in relation to their surroundings.
+- Before the start of a spatial analyses it is necessary to decide on which geographic **scale** the analysis will be conducted because this affects what we are able observe. The data we are using here is on a scale of 1:250000 and the settlements are represented as points. This already implies that this scale is too small to, for instance, investigate the shape of settlements. Furthermore, investigating the characteristics of settlements  as points, only gives one measure---e.g. their altitude---although they cover a certain area, i.e. a certain range of altitudes.
+- **Space is not uniform**; accordingly, processes measured in space can be heterogeneous although their characteristics do not change. This is an induced spatial dependence [@borcard2011, 229].
+- **Edge effects** are related to the issue of non-uniformity and arise when an artificial boundary is imposed on a study area [@diggle2013, 9]. 
+
+Many of these points may sound trivial. Nevertheless, it is important to be aware of them since they directly influence the results. Spatial data are the result of processes. In analysing them it is possible to detect functional relationships. But these do not infer causality [see @ahnert2003, 19-20]. Hence, it needs to be discussed continuously, whether these processes are the actual reason of the configuration of spatial data or just an artefact of the analytical approach.
+
+# Spatial data in R #
+
+An overview of the different spatial analytical tools and packages (135 are listed on August 31 2015) available for `R` you can find at https://cran.r-project.org/web/views/Spatial.html A great introduction into the handling of spatial data is given by @lovelace2015 and can be downloaded from Lovelace's [github account](https://github.com/Robinlovelace/Creating-maps-in-R/raw/master/intro-spatial-rl.pdf).
+
+# References #
+
+

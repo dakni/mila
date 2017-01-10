@@ -1,0 +1,635 @@
+---
+title: "Point patterns"
+author:
+  Modellieren in der Landschaftsarchäologie
+  Daniel Knitter
+date: 2016-02-04
+bibliography: VS_Modellierung_Literature.bib
+csl: harvard1.csl
+output:
+  ioslides_presentation:
+    toc: true
+    highlight: pygments
+    widescreen: true
+    smaller: true
+---
+
+# Prerequisites
+
+## setwd, library, data, cleaning
+
+```{r message=FALSE}
+setwd("/media/daniel/homebay/Teachings/WS_2015-2016/VS_Modellieren_Landschaftsarchaeologie")
+
+raw.data <-  read.table(file = "./data/Fundstellen_UTM.csv",
+                        header = TRUE,
+                        sep = ";",
+                        dec = ".",
+                        quote = "",
+                        stringsAsFactors = FALSE
+                        )
+
+## check for issues/problems
+## str(raw.data)
+## apply(X=raw.data[,4:20], MARGIN = 2, FUN=function(x){x[x>1]})
+raw.data$settlement[raw.data$settlement > 1] <- 1
+```
+
+# Create a spatial object #
+
+## Libraries and creation of sp object
+
+Version 1
+
+```{r message=FALSE}
+library(sp)
+library(rgdal)
+
+sites <- SpatialPointsDataFrame(coords = cbind(raw.data$xUTM,raw.data$yUTM),
+                                data = data.frame(raw.data[,2]),
+                                proj4string = CRS("+init=epsg:32634")
+                                )
+class(sites)
+```
+
+## Libraries and creation of sp object
+
+Version 2
+
+```{r}
+sites <- raw.data
+coordinates(sites) <- ~xUTM+yUTM
+proj4string(sites) <- CRS("+init=epsg:32634")
+```
+
+## Plot it 2.0 {.build}
+
+Let's plot with `leaflet`. Since OpenStreetMap, google maps, etc. are global, we need a geographic coordinate system like WGS84
+
+```{r}
+is.projected(sites)
+sites.wgs84 <- spTransform(sites, "+init=epsg:4326")
+is.projected(sites.wgs84)
+```
+
+What's this?!
+
+## Plot it 2.0  {.columns-2}
+
+```{r fig.height=5, fig.width=5}
+library(magrittr)
+library(leaflet)
+
+m1 <- leaflet() %>%
+    addProviderTiles("Thunderforest.Landscape") %>%
+        addMarkers(lng=sites.wgs84@coords[,1],
+                   lat=sites.wgs84@coords[,2],
+                   popup = sites.wgs84@data$Site.Name
+                   )
+m1
+```
+
+## Export to Shapefile
+
+```{r}
+writeOGR(obj = sites,
+         dsn = "./data",
+         layer = "Archaeological_Sites",
+         driver = "ESRI Shapefile",
+         overwrite_layer = TRUE
+         )
+
+list.files("./data")
+```
+
+# Spatial Point Patterns
+
+## Infos
+
+_THE_ references for this subject are:
+
+- [@bivand2008]
+- [@baddeley2008]
+- [@diggle2013]
+
+And the best thing is: the authors are active developers of `R`. The package we will use in this topic very often is `spatstat`. A package that powerful that the manual alone has over 1589 pages (as of 2016-02-03).
+
+If you use the package in your research, do not forget to cite it (this holds true for every package used, including the base software `R`):
+
+```{r}
+library(spatstat)
+citation(package = "spatstat")
+```
+
+## Infos 2 {.columns-2}
+
+Some resources for `spatstat` package:
+
+- http://spatstat.github.io/
+- https://cran.r-project.org/web/packages/spatstat/
+- [manual](https://cran.r-project.org/web/packages/spatstat/spatstat.pdf)
+
+![](https://images.tandf.co.uk/common/jackets/amazon/978148221/9781482210200.jpg)
+
+
+## Create ppp object
+
+```{r message = FALSE}
+library(spatstat)
+```
+
+```{r}
+sites.window <- owin(xrange = c(min(sites@coords[,1]),max(sites@coords[,1])),
+               yrange = c(min(sites@coords[,2]),max(sites@coords[,2]))
+               )
+                                                    
+sites.pp <- ppp(x = sites@coords[,1],
+                y = sites@coords[,2],
+                window = sites.window
+                )
+unitname(sites.pp) <- c("meter", "meters")
+```
+
+## inspect and plot {.columns-2}
+
+```{r fig.height=5, fig.width=5}
+str(sites.pp)
+plot(sites.pp)
+```
+
+## Measures of Central tendency
+
+Mean center (`mc`) and standard distance (`stdist`)
+
+```{r}
+mc <- cbind(sum(sites@coords[,1])/length(sites@coords[,1]),
+            sum(sites@coords[,2])/length(sites@coords[,2])
+            )
+
+stdist <- sqrt(sum((sites@coords[,1]-mean(sites@coords[,1]))^2 +
+                   (sites@coords[,2]-mean(sites@coords[,2]))^2) /
+               length(sites@coords[,1])
+               )
+```
+
+## Measures of Central tendency {.columns-2}
+
+```{r fig.height=5, fig.width=5}
+plot(sites)
+
+points(mc, col ="red")
+
+library(plotrix)
+draw.circle(x = mc[1],
+            y = mc[2],
+            radius = stdist,
+            border = "red"
+            )
+```
+
+# First-order effects
+
+## Global intensity
+
+Global intensity = Number of points per area
+
+```{r}
+## A = a * b
+area.sqm <- diff(sites.pp$window$xrange) * diff(sites.pp$window$yrange)
+area.sqkm <- area.sqm*10^-6
+# area <- area/1000000
+area.sqkm
+
+## calculate intensity
+intensity <- sites.pp$n/area.sqkm
+intensity
+```
+
+## Local intensity {.colmuns-2}
+
+```{r qc}
+qc.sites <- quadratcount(X = sites.pp)
+
+plot(qc.sites)
+points(sites.pp, pch = 20, cex = .5, col = rgb(.2,.2,.2,.5))
+```
+
+## Local intensity
+
+The question is: does the quadratcount indicates CSR? To check we use a $\chi^2$ test approach (remember: Relation between observed (i.e. empirical) and expected (i.e. theoretical, here CSR) amounts of points in quadrants)
+
+```{r}
+qt.sites <- quadrat.test(X = sites.pp)
+qt.sites
+```
+
+## Local intensity
+
+observed (lop left) | expected (top right) | Pearson residual (bottom)
+
++/- 2 = unusual; > +/- 2 = gross departure from fitted model
+
+```{r}
+plot(qt.sites)
+```
+
+## Density calculation - 1st approach
+
+**Amount of events within pixel**...in imprecise language: a histogram in space. This is a step by step example but the code is rather inefficient. 
+
+Step 1 - data preparation
+
+```{r density1}
+cs <- 10000    # cellsize
+# enlarge the study area by ONE pixel (in E-W and N-S direction)
+xmin <- sites.pp$window$xrange[1] - cs/2
+xmax <- sites.pp$window$xrange[2] + cs/2
+ymin <- sites.pp$window$yrange[1] - cs/2
+ymax <- sites.pp$window$yrange[2] + cs/2
+## calculate the number of rows/columns (add 1 just because a pixl might get lost through the rounding operation)
+rows  <- round((ymax-ymin)/cs, 0) + 1 
+columns <- round((xmax-xmin)/cs, 0) + 1
+
+z <- cbind(1:(columns*rows)) # create a vector with all grid cells
+df <- data.frame(z) # create a data.frame of it
+```
+
+## Density calculation - 1st approach
+
+Step 2 - create grid topology
+
+```{r density1a}
+# create a topological description of a grid
+gt <- GridTopology(c(sites.pp$window$xrange[1] - cs/2,
+                     sites.pp$window$yrange[1] - cs/2),
+                   c(cs,cs),
+                   c(columns,rows)) 
+gt
+```
+
+## Density calculation - 1st approach
+
+Step 3 - create grid
+
+```{r density1b}
+sgdf <- SpatialGridDataFrame(grid = gt,
+                             data = df,
+                             proj4string = CRS("+init=epsg:32634")
+                             )
+```
+
+## Density calculation - 1st approach {.columns-2}
+
+Step 4 - calculate density
+
+```{r density1c, message=FALSE, fig.height=5, fig.width=5}
+for (i in seq(along=coordinates(gt)[,1])){
+    ## because the coordinate is defined for the
+    ## center of the cell, the half cellsize
+    ## is substracted
+    x <- coordinates(gt)[i,1] - cs/2
+    y <- coordinates(gt)[i,2] - cs/2
+
+    ## which events lie within the x/y direction?
+    xi <- which(sites.pp$x>x & sites.pp$x<x+cs)
+    yi <- which(sites.pp$y>y & sites.pp$y<y+cs)
+
+    ## how many objects in x and y direction intersect?
+    pz <- length(intersect(xi,yi))
+
+    ## divide the number of points by the area
+    sgdf@data$z[i]<- pz / (cs/1000)^2 
+}
+
+library(raster)
+plot(raster(sgdf))
+points(sites.pp$x, sites.pp$y, pch=16, cex=0.4)  
+```
+
+
+## Density calculation - 2nd approach
+
+**Kernel density estimation**; again here performed step by step and rather inefficiently/partially incorrect coded. Use it to understand the concept.
+
+- for all cells
+- get cell center
+    - for all points
+    - calculate distance to cell center; Euclidean distance -> $\sqrt{(x_i-x)^2+(y_i-y)^2}$
+    - weight the distance according to kernel function
+- write value in pixel
+
+## Density calculation - 2nd approach {.columns-2}
+
+```{r density2, message=FALSE, fig.height=5, fig.width=5}
+sgdf_kde <- sgdf
+## kernel bandwidth
+sd <- 50000
+
+for (i in seq(along=coordinates(gt)[,1])){
+    x <- coordinates(gt)[i,1]
+    y <- coordinates(gt)[i,2]
+    g2 <- 0
+    for (j in seq(along=sites.pp$x)){
+        distance <- sqrt((sites.pp$x[j] - x)^2 +
+                         (sites.pp$y[j] - y)^2
+                         )
+        g1 <- dnorm(distance, mean=0, sd=sd)
+        g2 <- g2 + g1
+    }
+    sgdf_kde@data$z[i]<- g2     
+}
+library(raster)
+plot(raster(sgdf_kde))
+points(sites.pp$x, sites.pp$y, pch=16, cex=0.4)
+```
+
+## Density calculation - 3rd approach {.columns-2}
+
+**Kernel density estimation** using the built in function of `spatstat`. Since the package is great, it is perfectly coded and fast.
+
+```{r density3, message=FALSE, fig.height=5, fig.width=5}
+cs <- 10000 
+sd <- 50000
+
+sites.dens <- density(x = sites.pp,
+                      bw = sd,
+                      eps=cs,
+                      edge=FALSE,
+                      at="pixels"
+                      )
+
+plot(sites.dens, col = grey(seq(0.2,1,.1)))
+contour(sites.dens, add=T)    
+points(sites.pp$x, sites.pp$y, pch=16, cex=0.4)  
+```
+
+## Density calculation - 3rd approach {.columns-2}
+
+Use another measure for `sd` - in this case three times the mean nearest neighbor distance.
+
+```{r density3a, message=FALSE, fig.height=5, fig.width=5}
+sdev <- 3*mean(nndist(sites.pp))
+
+sites.dens2 <- density(x = sites.pp,
+                       bw = sdev,
+                       eps=cs,
+                       edge=TRUE,
+                       at="pixels"
+                       )
+
+plot(sites.dens2, col = grey(seq(0.2,1,.1)))
+contour(sites.dens2, add=T)
+points(sites.pp$x, sites.pp$y, pch=16, cex=0.4)
+```
+
+# Second-order effects
+
+
+## Nearest-neighbor distance {.build .columns-2}
+
+```{r fig.height=5, fig.width=5}
+sites.nn <- nndist(X = sites.pp)
+
+str(sites.nn)
+
+mean(sites.nn)
+
+hist(sites.nn)
+abline(v=mean(sites.nn))
+abline(v=median(sites.nn), lty=2)
+
+```
+
+## Nearest neighbor Distance -- Clark and Evans’ R
+
+$R = \bar{d_{min}} / \frac{1}{2\sqrt{\lambda}}$
+
+"An $R$ value of less than 1 indicates of a tendency toward clustering, since it shows that observed nearest neighbor distances are shorter than expected. An R value of more than 1 indicatives of a tendency toward evenly spaced events" (O'Sullivan & Unwin 2010, 144) 
+
+```{r clarkevans}
+nnE <- 1/(2*sqrt((sites.pp$n/area.sqm)))
+nnE
+
+R.sites <- mean(sites.nn)/nnE
+R.sites
+```
+
+## G function {.columns-2}
+
+First approach based on theoretical assumptions, i.e. CSR
+
+```{r fig.height=5, fig.width=5}
+sites.g <- Gest(sites.pp)
+plot(sites.g)
+```
+
+## G function {.columns-2}
+
+Second approach based on simulations of a theortical process, i.e. CSR
+
+```{r fig.height=5, fig.width=5}
+sites.g.env <- envelope(sites.pp,
+                        fun = Gest,
+                        nsim = 10)
+
+plot(sites.g.env)
+```
+
+## F function {.columns-2}
+
+First approach based on theoretical assumptions, i.e. CSR
+
+```{r fig.height=5, fig.width=5}
+sites.f <- Fest(sites.pp)
+plot(sites.f)
+```
+
+## F function {.columns-2}
+
+Second approach based on simulations of a theortical process, i.e. CSR
+
+```{r fig.height=5, fig.width=5}
+sites.f.env <- envelope(sites.pp,
+                        fun = Fest,
+                        nsim = 10)
+
+plot(sites.f.env)
+```
+
+## K function {.columns-2}
+
+First approach based on theoretical assumptions, i.e. CSR
+
+```{r fig.height=5, fig.width=5}
+sites.k <- Kest(sites.pp)
+plot(sites.k)
+```
+
+## K function {.columns-2}
+
+Second approach based on simulations of a theortical process, i.e. CSR
+
+```{r fig.height=5, fig.width=5}
+sites.k.env <- envelope(sites.pp,
+                        fun = Kest,
+                        nsim = 10)
+
+plot(sites.k.env)
+```
+
+## L function {.columns-2}
+
+First approach based on theoretical assumptions, i.e. CSR
+
+```{r fig.height=5, fig.width=5}
+sites.l <- Lest(sites.pp)
+plot(sites.l)
+```
+
+## L function {.columns-2}
+
+Second approach based on simulations of a theortical process, i.e. CSR
+
+```{r fig.height=5, fig.width=5}
+sites.l.env <- envelope(sites.pp,
+                        fun = Lest,
+                        nsim = 10)
+
+plot(sites.l.env)
+```
+
+# When ideas are integrated...
+
+## G and moving window {.build}
+
+**Where** are the points clustered/ordered/...
+
+Procedure
+
+- take a raster
+- choose a moving window
+- define sample radius for G-function
+- check [cell by cell] characteristics of G
+
+Preparation
+
+```{r}
+sgdf.g <- sgdf # grid
+#sites.nn # nearest neighbors
+#sites.window # window
+radius <- 25000   # Radius of moving window
+r <- seq(0, radius, 50) # Disctance vector for G; it is not advised to use it!
+```
+
+## G and moving window
+
+```{r}
+for (i in seq(along=sgdf.g@data$z))  {
+    xr <- coordinates(sgdf.g)[i,1]
+    yr <- coordinates(sgdf.g)[i,2]
+    distances <- sqrt((sites.pp$x -xr)^2 + (sites.pp$y -yr)^2)
+    ## Which points are within the moving window?
+    index <- which(distances<radius)
+
+    ## at least three points need to be in the moving window
+    if (length(index) > 2 ) {             
+        x <- sites.pp$x[index]
+        y <- sites.pp$y[index]
+        name <- sites$Site.Name[index]
+        sites2 <- SpatialPointsDataFrame(cbind(x, y),
+                                         as.data.frame(name),
+                                         proj4string= CRS("+init=epsg:32634")
+                                         )
+        ## Point pattern from points in moving window
+        sites.ppt <- ppp(sites2@coords[,1],sites2@coords[,2],window=sites.window)
+        g <- Gest(sites.ppt, r=r)
+        ## mean differnce "theoretical - empirical"; positiv = orered
+        meandiff <-  mean(g$theo-g$km)
+        sgdf.g@data$z[i] <- meandiff
+    }
+    else {sgdf.g@data$z[i] <-NA}
+}
+```
+
+## G and moving window {.columns-2}
+
+```{r fig.height=5, fig.width=5}
+library(raster)
+plot(raster(sgdf.g))
+points(sites, cex = .2, pch = 19)
+```
+
+
+## F and moving window {.build}
+
+**Where** are the points clustered/ordered/...
+
+Procedure
+
+- take a raster
+- choose a moving window
+- define sample radius for G-function
+- check [cell by cell] characteristics of F
+
+Preparation
+
+```{r}
+sgdf.f <- sgdf # grid
+#sites.nn # nearest neighbors
+#sites.window # window
+radius <- 25000   # Radius of moving window
+r <- seq(0, radius, 50) # Disctance vector for G; it is not advised to use it!
+```
+
+## F and moving window
+
+```{r}
+for (i in seq(along=sgdf.f@data$z))  {
+    xr <- coordinates(sgdf.f)[i,1]
+    yr <- coordinates(sgdf.f)[i,2]
+    distances <- sqrt((sites.pp$x -xr)^2 + (sites.pp$y -yr)^2)
+    ## Which points are within the moving window?
+    index <- which(distances<radius)
+
+    ## at least three points need to be in the moving window
+    if (length(index) > 2 ) {             
+        x <- sites.pp$x[index]
+        y <- sites.pp$y[index]
+        name <- sites$Site.Name[index]
+        sites2 <- SpatialPointsDataFrame(cbind(x, y),
+                                         as.data.frame(name),
+                                         proj4string= CRS("+init=epsg:32634")
+                                         )
+        ## Point pattern from points in moving window
+        sites.ppt <- ppp(sites2@coords[,1],sites2@coords[,2],window=sites.window)
+        f <- Fest(sites.ppt, r=r)
+        ## mean differnce "theoretical - empirical"; positiv = orered
+        meandiff <-  mean(f$theo-f$km)
+        sgdf.f@data$z[i] <- meandiff
+    }
+    else {sgdf.f@data$z[i] <-NA}
+}
+```
+
+## f and moving window {.columns-2}
+
+```{r fig.height=5, fig.width=5}
+library(raster)
+plot(raster(sgdf.f))
+points(sites, cex = .2, pch = 19)
+```
+
+## g and f moving window {.columns-2}
+
+```{r fig.height=5, fig.width=5, echo=FALSE}
+library(raster)
+plot(raster(sgdf.g))
+points(sites, cex = .2, pch = 19)
+plot(raster(sgdf.f))
+points(sites, cex = .2, pch = 19)
+```
+
+# References
+
+##
+
