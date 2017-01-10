@@ -3,7 +3,7 @@ title: "Spatial Data"
 author:
   Modellieren in der Landschaftsarchäologie
   Daniel Knitter
-date: 2015-12-17
+date: WS 2016/17
 bibliography: VS_Modellierung_Literature.bib
 csl: harvard1.csl
 output:

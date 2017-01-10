@@ -4,7 +4,7 @@ author:
 - Freie Universität Berlin -- M.Sc. Landschaftsarchäologie
 - Modellieren in der Landschaftsarchäologie
 - Dr. Daniel Knitter
-date: WS 2015/2016 -- 2016-02-11
+date: WS 2016/17
 bibliography: VS_Modellierung_Literature.bib
 csl: harvard1.csl
 output:
