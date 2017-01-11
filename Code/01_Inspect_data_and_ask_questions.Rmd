@@ -1,70 +1,88 @@
 ---
 title: Inspect data and ask questions
-author:
-- Freie Universität Berlin -- M.Sc. Landschaftsarchäologie
-- Modellieren in der Landschaftsarchäologie
-- Dr. Daniel Knitter
-date: WS 2016/17
+author: Freie Universität Berlin -- M.Sc. Landschaftsarchäologie <br> Modellieren in der Landschaftsarchäologie <br> Dr. Daniel Knitter <br>
+date: WS 2016/2017
 email: daniel.knitter@fu-berlin.de
 bibliography: VS_Modellierung_Literature.bib
 csl: harvard1.csl
 output:
-  html_document:
+  ioslides_presentation:
     toc: true
-    number_sections: true
-    theme: default
-    pandoc_args: [
-      "+RTS", "-K64m",
-      "-RTS"
-    ]
-highlight: pygments
+    highlight: pygments
+    widescreen: true
+    smaller: true
 ---
+
+# Inspect data and ask questions
 
 # Prerequisites #
 
-**Set working directory**
+## Set working directory ## {.build}
 
-```{r}
-setwd("/media/daniel/homebay/Teachings/WS_2015-2016/VS_Modellieren_Landschaftsarchaeologie/")
+```{r echo=FALSE}
+## this is here, so that knitr allows to change the working directory
+knitr::opts_knit$set(root.dir = "..")
+```
+
+```{r eval=FALSE}
+setwd("YOUR-PATH")
 ```	
+The working directory should be at the top of your project directory structure. 
 
-**Load data**
 
-Get the data from xls(x) files -- load required package
+## Load data ## {.build}
+
+Get the data from xls(x) files -- load required package [always troublesome on windows due to missing perl]
 
 Steps:
 
 - get help
 - load required package
 
-```{r message=FALSE}
+```{r message=FALSE, eval=FALSE}
 ##??xls
 library(gdata)
-raw.data <- read.xls(xls = "./data/Fundstellen_UTM.xlsx", sheet = 1)
+raw_data <- read.xls(xls = "./data/Fundstellen_UTM.xlsx", sheet = 1)
+```
+
+A nice tutorial on loading table (including xls) data to `R` is [on datacamp](https://www.datacamp.com/community/tutorials/r-tutorial-read-excel-into-r#gs.5cgO=As)
+
+## Load data ## {.build}
+
+A better way: use text files. **Question: Why?** 
+
+```{r load-data}
+raw_data <- read.table(file = "data/FS_UTM.csv",
+                       header = TRUE,
+                       sep = ";",
+                       stringsAsFactors = FALSE,
+                       quote = "")
 ```
 
 # Play with the data #
 
-Check structure and content
+## Check structure and content ## {.build}
 
 ```{r}
-str(raw.data)
+str(raw_data)
 ```
 
-## Ask questions ##
+## Ask questions ## {.build}
 
-### How many archaeological sites are in the data set? ###
+How many archaeological sites are in the data set?
    
 ```{r}
-length(raw.data$Nr.)
+length(raw_data$Nr.)
 ```
 
 **Exercise:** Show another way how to answer the question?
 
-### How many settlements? ###
+## Ask questions ## {.build}
+
+How many settlements?
 
 ```{r}
-sum(raw.data$settlement)
+sum(raw_data$settlement)
 ```
 
 **Question:**
@@ -75,7 +93,7 @@ sum(raw.data$settlement)
 
 # Create a dataset for further analyses #
 
-## Clean data ##
+## Clean data ## {.build}
 
 **Some mandatory things: **
 
@@ -88,47 +106,59 @@ sum(raw.data$settlement)
 The easiest but sometimes quite verbose way to check:
 
 ```{r}
-str(raw.data)
+str(raw_data)
 ```
+
+## Check data structure 2 ##
 
 Examples of more controlled queries:
 
 ```{r}
-head(names(raw.data))
-head(sapply(raw.data, class))
-head(levels(raw.data$Epoch..site.))
-tail(levels(raw.data$Site.type.), 10)
+head(names(raw_data))
+head(sapply(raw_data, class))
 ```
 
-The "Epoch..site." variable as well as the "Site.type." variable are a mess. Fortunately, we do not need to use them, since there are already separated and precoded into binary variables.
+## Check data structure 2a ##
+
+Examples of more controlled queries:
+
+```{r}
+sample(raw_data$Epoch..site., 3)
+tail(raw_data$Site.type, 3)
+```
+
+The structure of the "Epoch..site." column is a little complicated to
+use for further analyses. Fortunately, we do not need to use them,
+since there are already separated and precoded into binary variables.
 
 **Questions: **
 
-1. What does "binary variable" mean? 
-2. Why is it useful? 
-3. Are there other ways to code a variable?
+1. What is the problem with column?
+2. What does "binary variable" mean? 
+3. Why is it useful? 
+4. Are there other ways to code a variable?
 
-**Exercise [for the rest of the semester...] **
+## Check data structure 2a ##
 
-Clean the messed variables yourself!
+**Exercise [for the rest of the course-week...] **
+
+Clean the messed variables of the table yourself!
 
 - Hint 1: try `?gsub`
 - Hint 2:
 
-```{r}
-grep(pattern = "Bronze Age", x = raw.data$Epoch..site.)
+```{r, eval=FALSE}
+grep(pattern = "Bronze Age", x = raw_data$Epoch..site.)
 ```
 
-**Question:** What do the warnings mean?
+## Further questions 1 ##
 
-***
+**What is the proportion of the different settlement types?**
 
-## What is the proportion of the different settlement types? ##
-
-One ordinary way
+One ordinary way (by the way, giving variable names "a","b", etc. is really **bad** style!)
 
 ```{r}
-a <- raw.data[,4:7]
+a <- raw_data[,4:7]
 b <- cbind(sum(a[,1]),sum(a[,2]),sum(a[,3]),sum(a[,4]))
 colnames(b) <- c("settlement","open.settlement","cave.settlement","tell.settlement")
 b
@@ -136,26 +166,33 @@ c <- b/b[1]*100
 c
 ```
 
+## Further questions 2 ##
+
+**What is the proportion of the different settlement types?**
+
 One of the *apply ways
 
 ```{r}
-a <- data.frame(settlement = raw.data$settlement[raw.data$settlement==1],
-                open.settlement = raw.data$open.settlement[raw.data$settlement==1],
-                cave.settlement = raw.data$cave.settlement[raw.data$settlement==1],
-                tell.settlement = raw.data$tell.settlement[raw.data$settlement==1]
+a <- data.frame(settlement = raw_data$settlement[raw_data$settlement==1],
+                open.settlement = raw_data$open.settlement[raw_data$settlement==1],
+                cave.settlement = raw_data$cave.settlement[raw_data$settlement==1],
+                tell.settlement = raw_data$tell.settlement[raw_data$settlement==1]
                 )
 sapply(a, sum)
 sapply(a, function(x){sum(x)/length(x)*100})
 ```
 
-The [magrittr](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html) and [dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) way:
+## Further questions 3 ##
+
+**What is the proportion of the different settlement types?**
+
+The [magrittr](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html) and [dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) way (Version 1):
 
 ```{r message=FALSE}
 library(magrittr)
 library(dplyr)
 
-## Version 1
-raw.data %>%
+raw_data %>%
     filter(settlement==1) %>%
     select(settlement, open.settlement, cave.settlement, tell.settlement) %>%
     summarise(settlement=sum(.[,1])/n()*100,
@@ -163,9 +200,19 @@ raw.data %>%
               cave.settlement=sum(.[,3])/n()*100,
               tell.settlement=sum(.[,4])/n()*100
               )
+```
 
-## Version 2a
-raw.data %>%
+## Further questions 3a ##
+
+**What is the proportion of the different settlement types?**
+
+The [magrittr](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html) and [dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) way (Version 2):
+
+```{r message=FALSE}
+library(magrittr)
+library(dplyr)
+
+raw_data %>%
     filter(settlement==1) %>%
     select(settlement, open.settlement, cave.settlement, tell.settlement) %>%
     summarise(settlements = sum(settlement),
@@ -173,9 +220,18 @@ raw.data %>%
               cave.settlement = sum(cave.settlement),
               tell.settlement = sum(tell.settlement)
               )
+```
 
-## Version 2b
-raw.data %>%
+## Further questions 3b ##
+
+**What is the proportion of the different settlement types?**
+
+The [magrittr](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html) and [dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) way (Version 2a):
+
+```{r message=FALSE}
+library(magrittr)
+library(dplyr)
+raw_data %>%
     filter(settlement==1) %>%
     select(settlement, open.settlement, cave.settlement, tell.settlement) %>%
     summarise(settlements = sum(settlement)/n()*100,
@@ -183,92 +239,125 @@ raw.data %>%
               cave.settlement = sum(cave.settlement)/n()*100,
               tell.settlement = sum(tell.settlement)/n()*100
               )
-
 ```
 
 **Excercise:**
 
 1. Find other ways to answer the question.
-2. Discuss the different advantages of your approach(es) and those presented above
+2. Discuss the different advantages of your approach(es) and those presented above.
 
-***
+## Clean data continued ##
 
 Ok, let's continue. First, get rid of all the unnecessary variables. Again, there are many different possibilities to do this.
 
 Here is a "classic" way:
 
 ```{r}
-selected.data <- raw.data[,c(2,4:20,22:31,35:36)]
-#knitr::kable(head(selected.data))
-str(selected.data)
+selected_data <- raw_data[,c(2,4:20,22:31,35:36)]
+names(selected_data)
+#knitr::kable(head(selected_data))
+#str(selected_data)
 ```
+
+## Clean data continued ##
+
+Ok, let's continue. First, get rid of all the unnecessary variables. Again, there are many different possibilities to do this.
 
 And here a more modern way:
 
 ```{r}
 library(dplyr)
-selected.data <- select(.data = raw.data,
+selected_data <- select(.data = raw_data,
                         -Nr.,
                         -starts_with("Site.ty"),
                         -starts_with("Ep"),
                         -starts_with("Code")
                         )
-str(selected.data)
+names(selected_data)
+#str(selected_data)
 ```
 
 **Question:** Which way do you prefer? And besides your opinion, which is more suitable/robust [if any]?
 
-## Create chronologically separated dataset ##
+## Create chronologically separated dataset 1 ## 
 
 Now, we will create site data sets for different chronological periods. Again there are different ways to achieve this:
 
 classic
+[1. select relevant data, 2. check whether everything is fine, 3. drop unnecessary columns]
 
 ```{r}
-prehist <- selected.data[selected.data$prehistoric==1,]
-table(selected.data$prehistoric)[2]==length(prehist$prehistoric)
+prehist <- selected_data[selected_data$prehistoric==1,]
+
+table(selected_data$prehistoric)[2]==length(prehist$prehistoric)
+
+prehist <- prehist[,-c(19,25:28)]
+#str(prehist)
 ```
+
+**Question:** What does the line beginning with "table(..." mean? 
+
+## Create chronologically separated dataset 2 ##
+
+Now, we will create site data sets for different chronological periods. Again there are different ways to achieve this:
 
 modern
 
 ```{r}
 library(dplyr)
-prehist <- prehist %>%
+prehist <- selected_data %>%
     filter(prehistoric == 1) %>%
+    select(-contains("preh")) %>%
     select(-contains("roman")) %>%
     select(-contains("medie")) %>%
     select(-contains("modern"))
 
-str(prehist)
-table(selected.data$prehistoric)[2]==length(prehist$prehistoric)
+#str(prehist)
+table(selected_data$prehistoric)[2]==length(prehist$prehistoric)
 ```
 
-**Question:** What does the line beginning with "table(..." mean?
+**Question:** Why is the "table(..." line now FALSE?
+
+## at last: something to see {.columns-2 .build}
 
 Now that we have a clean dataset, let's plot some of its characteristics. As always we are going to use the standard and a modern approach.
 
-
 The standard plotting way.
 
-```{r}
-barplot(cbind(paleolithic = sum(prehist$palaeolithic),
-              neolithic = sum(prehist$neolithic),
-              copper_age = sum(prehist$copper.age),
-              bronze_age = sum(prehist$bronze.age),
-              iron_age = sum(prehist$iron.age)
-              ),
-        main = "Number of sites from prehistoric periods"
-        )
+```{r fig.height=5, fig.width=5}
+barplot(cbind(
+    paleolithic = sum(prehist$palaeolithic),
+    neolithic = sum(prehist$neolithic),
+    copper_age = sum(prehist$copper.age),
+    bronze_age = sum(prehist$bronze.age),
+    iron_age = sum(prehist$iron.age)
+),
+main = "Number of sites from prehistoric periods"
+)
 ```
 
-And so forth...
+## at last: something to see
 
 **Exercise:**
 
 1. Plot the different numbers of site types.
 2. Which way do you chose? Why? What other possibilities are there?
 
-For the modern way we need to transform the data first from the a wide to a long format. Infos can be found e.g., [here](http://seananderson.ca/2013/10/19/reshape.html) or @wickham2007. In the case of wide data there is a column for each variable. 
+```{r fig.height=4, fig.width=10, echo=FALSE}
+barplot(cbind(
+    paleolithic = sum(prehist$palaeolithic[prehist$cave.settlement==1]),
+    neolithic = sum(prehist$neolithic[prehist$cave.settlement==1]),
+    copper_age = sum(prehist$copper.age[prehist$cave.settlement==1]),
+    bronze_age = sum(prehist$bronze.age[prehist$cave.settlement==1]),
+    iron_age = sum(prehist$iron.age[prehist$cave.settlement==1])
+),
+main = "Number of cave.settlements in prehistoric periods"
+)
+```
+
+## at last: something to see -- GGPLOT2
+
+For the modern way we need to transform the data first from the a wide to a long format. Infos can be found e.g., [here](http://seananderson.ca/2013/10/19/reshape.html) or @wickham2007 or @wickham2014. In the case of wide data there is a column for each variable. 
 
 Let's first take care of the data structure. We want to investigate the amount of different sity types per period.
 
@@ -281,13 +370,19 @@ types.per.period <- data.frame(palaeolithic = 0,
                                      )
 
 names(prehist)
+```
 
+## at last: something to see -- GGPLOT2
+
+Data crunching
+
+```{r}
 library(magrittr); library(dplyr)
 for (i in 3:18) {
     j <- i-2
     types.per.period[j,] <- prehist %>%
         filter(.[i] == 1) %>%
-        summarise(paleolithic = sum(palaeolithic)/length(.),
+        summarise(paleolithic = sum(palaeolithic),
                   neolithic = sum(neolithic),
                   copper.age = sum(copper.age),
                   bronze.age = sum(bronze.age),
@@ -295,10 +390,12 @@ for (i in 3:18) {
                   )
 }
 
-str(types.per.period)
+#str(types.per.period)
 types.per.period$type <- names(prehist)[3:18]
 types.per.period
 ```
+
+## at last: something to see -- GGPLOT2
 
 This was again just data crunching/selection. Now, we change the data from wide to long format using the `reshape2` package.
 
@@ -311,7 +408,15 @@ head(types2)
 
 **Question:** Do you see the difference? Describe the data new structure. 
 
-From this point on it is very easy and effortless to produce informative plots. We use the `ggplot2` package for this. Examples and documentation can be found at http://docs.ggplot2.org/current/ or in the [manual](https://cran.r-project.org/web/packages/ggplot2/ggplot2.pdf) or in @wickham2009 as well as @zuur2009 (for the last on check this [link](http://www.cookbook-r.com/Graphs/)). `ggplot2` package is build on the ideas of "Grammar of graphics". More information about this broad topic can be found HERE and in @wilkinson2005.
+## at last: something to see -- GGPLOT2
+
+From this point on it is very easy and effortless to produce informative plots. We use the `ggplot2` package for this. Examples and documentation can be found at http://docs.ggplot2.org/current/ or in the [manual](https://cran.r-project.org/web/packages/ggplot2/ggplot2.pdf) or in @wickham2009 as well as @zuur2009 (for the last on check this [link](http://www.cookbook-r.com/Graphs/)).
+
+`ggplot2` package is build on the ideas of "Grammar of graphics". More information about this broad topic can be found in @wilkinson2005.
+
+`ggplot2` expects "tidy" data. To get to know what this exactly is, look at @wickham2014.
+
+## at last: something to see -- GGPLOT2
 
 ```{r}
 library(ggplot2)
@@ -320,6 +425,8 @@ ggplot(types2, aes(x=type,y=value, fill=variable)) +
 
 ```
 
+## at last: something to see -- GGPLOT2
+
 **Exercises**
 
 1. Check the help of ggplot and reference pages on the internet to:
@@ -327,10 +434,12 @@ ggplot(types2, aes(x=type,y=value, fill=variable)) +
    - reorder the x-axis.
    - give a title
    - change the direction of x-labels to make them readable
+   
 2. Create a facet plot differentiated by period.
 
-In the end it might look like this and this
+In the end it might look like this and this...
 
+## at last: something to see -- GGPLOT2
 
 ```{r, echo = FALSE}
 ## https://rstudio-pubs-static.s3.amazonaws.com/7433_4537ea5073dc4162950abb715f513469.html
@@ -345,7 +454,11 @@ ggplot(types2, aes(x=type,y=value, fill=variable)) +
               x = "Type of archaeological site",
               y = "Absolute number of finds")
          )
+```
 
+## at last: something to see -- GGPLOT2
+
+```{r, echo = FALSE}   
 ggplot(types2, aes(x=type,y=value/sum(value), fill=variable)) +
     geom_bar(stat="identity") +
     theme_bw(base_family = "Open Sans Light") +
@@ -354,8 +467,11 @@ ggplot(types2, aes(x=type,y=value/sum(value), fill=variable)) +
               x = "Type of archaeological site",
               y = "Relative number of finds")
          )
+```
 
+## at last: something to see -- GGPLOT2
 
+```{r, echo = FALSE}   
 ggplot(types2, aes(x=type,y=value)) +
     geom_bar(stat="identity") +
     facet_grid(variable~.) +
@@ -367,29 +483,35 @@ ggplot(types2, aes(x=type,y=value)) +
               x = "Type of archaeological site",
               y = "Absolute number of finds")
          )
+```
 
+## at last: something to see -- GGPLOT2
+
+```{r, echo = FALSE}   
 ggplot(types2, aes(x=variable,y=value, fill=type)) +
     geom_bar(stat="identity") + 
     theme_bw(base_family = "Open Sans Light") +
     theme(axis.text.x = element_text(angle = 90)) +
     labs(list(title = "Site types per period",
-              y = "Relative amount of types of archaeological sites",
+              y = "# of types of archaeological sites",
               x = "Period")
          )
+```
 
+## at last: something to see -- GGPLOT2
+
+```{r, echo = FALSE}   
 ggplot(types2, aes(x=variable,y=value, fill=type)) +
     geom_bar(stat="identity", position = "fill") +
     theme_bw(base_family = "Open Sans Light") +
     theme(axis.text.x = element_text(angle = 90)) +
     labs(list(title = "Site types per period",
-              y = "Relative amount of types of archaeological sites",
+              y = "Relative # of types of archaeological sites",
               x = "Period")
          )
 
 ```
 
-
-
-***
-
 # References #
+
+## 

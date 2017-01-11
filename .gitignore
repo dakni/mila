@@ -34,3 +34,6 @@ vignettes/*.pdf
 
 # emacs backups
 *~
+
+# omit the data folder
+data/*
