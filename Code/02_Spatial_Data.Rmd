@@ -1,9 +1,7 @@
 ---
 title: "Spatial Data"
-author:
-  Modellieren in der Landschaftsarchäologie
-  Daniel Knitter
-date: WS 2016/17
+author: Freie Universität Berlin -- M.Sc. Landschaftsarchäologie <br> Modellieren in der Landschaftsarchäologie <br> Dr. Daniel Knitter (CAU Kiel) <br>
+date: WS 2016/2017
 bibliography: VS_Modellierung_Literature.bib
 csl: harvard1.csl
 output:
@@ -18,16 +16,21 @@ output:
 
 ## setwd, library, data {.build}
 
-```{r message=FALSE}
-setwd("/media/daniel/homebay/Teachings/WS_2015-2016/VS_Modellieren_Landschaftsarchaeologie")
+```{r echo=FALSE}
+## this is here, so that knitr allows to change the working directory
+knitr::opts_knit$set(root.dir = "..")
 ```
 
-```{r message=FALSE}
-library(gdata) # for Excel files
-```
+```{r eval=FALSE}
+setwd("YOUR-PATH")
+```	
 
-```{r message=FALSE}
-raw.data <- read.xls(xls = "./data/Fundstellen_UTM.xlsx", sheet = 1)
+```{r load-data}
+raw_data <- read.table(file = "data/FS_UTM.csv",
+                       header = TRUE,
+                       sep = ";",
+                       stringsAsFactors = FALSE,
+                       quote = "")
 ```
 
 ## 4a. Check data structure ## {.build}
@@ -37,9 +40,9 @@ Do you remember the "4" issue from the previous session?! Let's check it again a
 First, let's check which columns have problems
 
 ```{r message=FALSE}
-#str(raw.data)
-#sapply(raw.data[,4:20], function(x){x[x>1]})
-apply(X=raw.data[,4:20], MARGIN = 2, FUN=function(x){x[x>1]})
+#str(raw_data)
+#sapply(raw_data[,4:20], function(x){x[x>1]})
+apply(X=raw_data[,4:20], MARGIN = 2, FUN=function(x){x[x>1]})
 ```
 
 ## 4a. Check data structure ## {.build}
@@ -47,9 +50,9 @@ apply(X=raw.data[,4:20], MARGIN = 2, FUN=function(x){x[x>1]})
 Now, let's solve the problem and check again
 
 ```{r message=FALSE}
-raw.data$settlement[raw.data$settlement > 1] <- 1
+raw_data$settlement[raw_data$settlement > 1] <- 1
 
-sapply(raw.data[,4:20], function(x){x[x>1]})
+sapply(raw_data[,4:20], function(x){x[x>1]})
 ```
 
 ## 4b. Check data structure ## {.build}
@@ -57,8 +60,8 @@ sapply(raw.data[,4:20], function(x){x[x>1]})
 So, now it's time to have a look at the coordinates...
 
 ```{r message=FALSE}
-#str(raw.data)
-raw.data[c(1:6),c(2,35,36)]
+#str(raw_data)
+raw_data[c(1:6),c(2,35,36)]
 ```
 
 **Question:** Is there another way to create this overview?
@@ -68,8 +71,8 @@ raw.data[c(1:6),c(2,35,36)]
 Yes.
 
 ```{r message=FALSE}
-#str(raw.data)
-head(raw.data[,c(2,35,36)])
+#str(raw_data)
+head(raw_data[,c(2,35,36)])
 ```
 
 # Create a spatial object #
@@ -109,8 +112,8 @@ There are some things we need to know in advance:
 ## Create spatial data ##
 
 ```{r}
-sites <- SpatialPointsDataFrame(coords = cbind(raw.data$xUTM,raw.data$yUTM),
-                                data = data.frame(raw.data[,2]),
+sites <- SpatialPointsDataFrame(coords = cbind(raw_data$xUTM,raw_data$yUTM),
+                                data = data.frame(raw_data[,2]),
                                 proj4string = CRS("+init=epsg:32634")
                                 )
 class(sites)
@@ -121,7 +124,7 @@ class(sites)
 ## Create spatial data ## {.build}
 
 ```{r}
-sites <- raw.data
+sites <- raw_data
 coordinates(sites) <- ~xUTM+yUTM
 class(sites)
 ```
@@ -161,7 +164,7 @@ m1 <- leaflet() %>%
     addProviderTiles("Thunderforest.Landscape") %>%
         addMarkers(lng=sites@coords[,1],
                    lat=sites@coords[,2],
-                   popup = sites@data$Site.Name.
+                   popup = sites@data$Site.Name
                    )
 m1
 ```
@@ -180,7 +183,7 @@ m2 <- leaflet() %>%
     addProviderTiles("OpenStreetMap.HOT") %>%
         addMarkers(lng=sites@coords[,1],
                    lat=sites@coords[,2],
-                   popup = sites@data$Site.Name.
+                   popup = sites@data$Site.Name
                    )
 m2
 ```
@@ -193,7 +196,7 @@ Another great package for interactive visualization: [mapview](http://environmen
 
 ## Export to Shapefile
 
-```{r}
+```{r eval=FALSE}
 writeOGR(obj = sites,
          dsn = "./data",
          layer = "Archaeological_Sites",
@@ -207,11 +210,11 @@ list.files("./data")
 ## Export to graphics file
 
 not very useful; just to show how easy it is
+
 ```{r, eval=FALSE}
 png("./data/Archaeological_Sites.png")
 plot(sites)
 dev.off()
-
 
 ## pdf, svg, postscript
 ?grDevices

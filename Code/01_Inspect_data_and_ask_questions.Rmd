@@ -1,6 +1,6 @@
 ---
 title: Inspect data and ask questions
-author: Freie Universität Berlin -- M.Sc. Landschaftsarchäologie <br> Modellieren in der Landschaftsarchäologie <br> Dr. Daniel Knitter <br>
+author: Freie Universität Berlin -- M.Sc. Landschaftsarchäologie <br> Modellieren in der Landschaftsarchäologie <br> Dr. Daniel Knitter (CAU Kiel) <br>
 date: WS 2016/2017
 email: daniel.knitter@fu-berlin.de
 bibliography: VS_Modellierung_Literature.bib
