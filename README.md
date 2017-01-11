@@ -14,7 +14,7 @@ What is covered in the course aka what will you find here?
 
 For more detailed information about "Modeling in Landscape Archaeology" you can also have a look at the github repository of the book from Oliver Nakoinz and me: 
 
-- [https://dakni.github.io/mhbil/](https://dakni.github.io/mhbil/)
+- [http://dakni.github.io/mhbil/](http://dakni.github.io/mhbil/)
 - or directly [https://github.com/dakni/mhbil](https://github.com/dakni/mhbil)
 
 In order to make sense of the code that you find there: read the book ;) 
