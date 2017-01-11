@@ -13,3 +13,14 @@ What is covered in the course aka what will you find here?
 - [a very short intro to interpolation](html/05_Interpolation.html)
 - [an application of viewsheds and least-cost paths](html/06_Viewshed_ShortestPath.html)
 
+For more detailed information about "Modeling in Landscape Archaeology" you can also have a look at the github repository of the book from Oliver Nakoinz and me: 
+
+- [https://dakni.github.io/mhbil/](https://dakni.github.io/mhbil/)
+- or directly [https://github.com/dakni/mhbil](https://github.com/dakni/mhbil)
+
+In order to make sense of the code that you find there: read the book ;) 
+
+
+
+| ![cover image](https://images.springer.com/sgw/books/medium/9783319295367.jpg) | [Woldcat link](http://www.worldcat.org/oclc/933567741) | [online fulltext for FU students via Primo FU](https://primo.fu-berlin.de/FUB:FUB_ALMA_DS51960803280002883) |  [at Springer](http://www.springer.com/de/book/9783319295367) |
+|---|---|---|---|
