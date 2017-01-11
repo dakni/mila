@@ -1,9 +1,7 @@
 ---
 title: "Point patterns"
-author:
-  Modellieren in der Landschaftsarchäologie
-  Daniel Knitter
-date: WS 2016/17
+author: Freie Universität Berlin -- M.Sc. Landschaftsarchäologie <br> Modellieren in der Landschaftsarchäologie <br> Dr. Daniel Knitter (CAU Kiel) <br>
+date: WS 2016/2017
 bibliography: VS_Modellierung_Literature.bib
 csl: harvard1.csl
 output:
@@ -16,23 +14,23 @@ output:
 
 # Prerequisites
 
-## setwd, library, data, cleaning
+## setwd, library, data {.build}
 
-```{r message=FALSE}
-setwd("/media/daniel/homebay/Teachings/WS_2015-2016/VS_Modellieren_Landschaftsarchaeologie")
+```{r echo=FALSE}
+## this is here, so that knitr allows to change the working directory
+knitr::opts_knit$set(root.dir = "..")
+```
 
-raw.data <-  read.table(file = "./data/Fundstellen_UTM.csv",
-                        header = TRUE,
-                        sep = ";",
-                        dec = ".",
-                        quote = "",
-                        stringsAsFactors = FALSE
-                        )
+```{r eval=FALSE}
+setwd("YOUR-PATH")
+```	
 
-## check for issues/problems
-## str(raw.data)
-## apply(X=raw.data[,4:20], MARGIN = 2, FUN=function(x){x[x>1]})
-raw.data$settlement[raw.data$settlement > 1] <- 1
+```{r load-data}
+raw_data <- read.table(file = "data/FS_UTM.csv",
+                       header = TRUE,
+                       sep = ";",
+                       stringsAsFactors = FALSE,
+                       quote = "")
 ```
 
 # Create a spatial object #
@@ -45,8 +43,8 @@ Version 1
 library(sp)
 library(rgdal)
 
-sites <- SpatialPointsDataFrame(coords = cbind(raw.data$xUTM,raw.data$yUTM),
-                                data = data.frame(raw.data[,2]),
+sites <- SpatialPointsDataFrame(coords = cbind(raw_data$xUTM,raw_data$yUTM),
+                                data = data.frame(raw_data[,2]),
                                 proj4string = CRS("+init=epsg:32634")
                                 )
 class(sites)
@@ -57,7 +55,7 @@ class(sites)
 Version 2
 
 ```{r}
-sites <- raw.data
+sites <- raw_data
 coordinates(sites) <- ~xUTM+yUTM
 proj4string(sites) <- CRS("+init=epsg:32634")
 ```
@@ -94,7 +92,7 @@ m1
 ```{r}
 writeOGR(obj = sites,
          dsn = "./data",
-         layer = "Archaeological_Sites",
+         layer = "A_Sites",
          driver = "ESRI Shapefile",
          overwrite_layer = TRUE
          )
@@ -112,9 +110,9 @@ _THE_ references for this subject are:
 - [@baddeley2008]
 - [@diggle2013]
 
-And the best thing is: the authors are active developers of `R`. The package we will use in this topic very often is `spatstat`. A package that powerful that the manual alone has over 1589 pages (as of 2016-02-03).
+And the best thing is: the authors are active developers of `R`. The package we will use in this topic very often is `spatstat`. A package so full of functions that the manual alone has over 1589 pages (as of 2016-02-03).
 
-If you use the package in your research, do not forget to cite it (this holds true for every package used, including the base software `R`):
+If you use the package in your research, do not forget to cite it (this holds true for every package used, including the base software `R` !):
 
 ```{r}
 library(spatstat)
@@ -140,7 +138,7 @@ library(spatstat)
 
 ```{r}
 sites.window <- owin(xrange = c(min(sites@coords[,1]),max(sites@coords[,1])),
-               yrange = c(min(sites@coords[,2]),max(sites@coords[,2]))
+                     yrange = c(min(sites@coords[,2]),max(sites@coords[,2]))
                )
                                                     
 sites.pp <- ppp(x = sites@coords[,1],
@@ -174,7 +172,7 @@ stdist <- sqrt(sum((sites@coords[,1]-mean(sites@coords[,1]))^2 +
 
 ## Measures of Central tendency {.columns-2}
 
-```{r fig.height=5, fig.width=5}
+```{r fig.height=5, fig.width=5, message=FALSE}
 plot(sites)
 
 points(mc, col ="red")
@@ -498,7 +496,7 @@ sites.l.env <- envelope(sites.pp,
 plot(sites.l.env)
 ```
 
-# When ideas are integrated...
+# From global to local measure
 
 ## G and moving window {.build}
 
@@ -559,7 +557,6 @@ plot(raster(sgdf.g))
 points(sites, cex = .2, pch = 19)
 ```
 
-
 ## F and moving window {.build}
 
 **Where** are the points clustered/ordered/...
@@ -611,15 +608,14 @@ for (i in seq(along=sgdf.f@data$z))  {
 }
 ```
 
-## f and moving window {.columns-2}
+## F and moving window {.columns-2}
 
 ```{r fig.height=5, fig.width=5}
 library(raster)
 plot(raster(sgdf.f))
 points(sites, cex = .2, pch = 19)
 ```
-
-## g and f moving window {.columns-2}
+## G and F moving window {.columns-2}
 
 ```{r fig.height=5, fig.width=5, echo=FALSE}
 library(raster)
