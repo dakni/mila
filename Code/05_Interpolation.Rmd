@@ -1,9 +1,7 @@
 ---
 title: "Interpolation"
-author:
-  Modellieren in der Landschaftsarchäologie
-  Daniel Knitter
-date: WS 2016/17
+author: Freie Universität Berlin -- M.Sc. Landschaftsarchäologie <br> Modellieren in der Landschaftsarchäologie <br> Dr. Daniel Knitter (CAU Kiel) <br>
+date: WS 2016/2017
 bibliography: VS_Modellierung_Literature.bib
 csl: harvard1.csl
 output:
@@ -18,24 +16,29 @@ output:
 
 ## setwd, library, data, cleaning
 
-```{r message=FALSE}
-setwd("/media/daniel/homebay/Teachings/WS_2015-2016/VS_Modellieren_Landschaftsarchaeologie")
+```{r echo=FALSE}
+## this is here, so that knitr allows to change the working directory
+knitr::opts_knit$set(root.dir = "..")
+```
 
-raw.data <-  read.table(file = "./data/Fundstellen_UTM.csv",
-                        header = TRUE,
-                        sep = ";",
-                        dec = ".",
-                        quote = "",
-                        stringsAsFactors = FALSE
-                        )
+```{r eval=FALSE}
+setwd("YOUR-PATH")
+```	
+
+```{r load-data, message=FALSE}
+raw_data <- read.table(file = "data/FS_UTM.csv",
+                       header = TRUE,
+                       sep = ";",
+                       stringsAsFactors = FALSE,
+                       quote = "")
 
 ## check for issues/problems
-## str(raw.data)
-## apply(X=raw.data[,4:20], MARGIN = 2, FUN=function(x){x[x>1]})
-raw.data$settlement[raw.data$settlement > 1] <- 1
+## str(raw_data)
+## apply(X=raw_data[,4:20], MARGIN = 2, FUN=function(x){x[x>1]})
+raw_data$settlement[raw_data$settlement > 1] <- 1
 
 library(sp)
-sites <- raw.data[(raw.data$settlement == 1 & raw.data$iron.age == 1),]
+sites <- raw_data[(raw_data$settlement == 1 & raw_data$iron.age == 1),]
 coordinates(sites) <- ~xUTM+yUTM
 proj4string(sites) <- CRS("+init=epsg:32634")
 ```
@@ -45,7 +48,7 @@ proj4string(sites) <- CRS("+init=epsg:32634")
 ```{r message=FALSE}
 library(spatstat)
                                                     
-sites.pp <- ppp(x = sites@coords[,1],
+sites_pp <- ppp(x = sites@coords[,1],
                 y = sites@coords[,2],
                 window = owin(xrange = c(min(sites@coords[,1]),
                                          max(sites@coords[,1])
@@ -55,12 +58,12 @@ sites.pp <- ppp(x = sites@coords[,1],
                                          )
                               )
                 )
-unitname(sites.pp) <- c("meter", "meters")
+unitname(sites_pp) <- c("meter", "meters")
 
-anyDuplicated(sites.pp)
-sites.pp <- sites.pp[duplicated(sites.pp)==FALSE]
-anyDuplicated(sites.pp)
-#plot(sites.pp)
+anyDuplicated(sites_pp)
+sites_pp <- sites_pp[duplicated(sites_pp)==FALSE]
+anyDuplicated(sites_pp)
+#plot(sites_pp)
 ```
 
 ## Caluclate density using graph methods
@@ -72,12 +75,12 @@ Idea: calculate the centres of the largest empty circles -- corresponds to the e
 ```{r}
 library(tripack)
 
-sites.vor <- voronoi.mosaic(x = sites.pp$x,
-                      y = sites.pp$y,
-                      duplicate = "remove"
-                      ) 
-rad <- sites.vor$radius
-lec <- SpatialPointsDataFrame(coords = cbind(sites.vor$x, sites.vor$y),
+sites_vor <- voronoi.mosaic(x = sites_pp$x,
+                            y = sites_pp$y,
+                            duplicate = "remove"
+                            ) 
+rad <- sites_vor$radius
+lec <- SpatialPointsDataFrame(coords = cbind(sites_vor$x, sites_vor$y),
                               data = as.data.frame(rad), # length of edge
                               proj4string=CRS("+init=epsg:32634")
                               )
@@ -86,20 +89,22 @@ lec <- SpatialPointsDataFrame(coords = cbind(sites.vor$x, sites.vor$y),
 ## Caluclate density using graph methods
 
 ```{r}
-plot(sites.pp)
-plot(sites.vor, col = "red", add=TRUE)
+plot(sites_pp)
+plot(sites_vor, col = "red", add=TRUE)
 ```
 
 ## Caluclate density using graph methods {.columns-2}
 
+What's wrong here?!
+
 ```{r message=FALSE, fig.height=5, fig.width=5}
-plot(sites.pp, pch = 19)
+plot(sites_pp, pch = 19)
 points(lec, col="red")
 
 library(plotrix)
 draw.circle(x = lec@coords[,1],
             y = lec@coords[,2],
-            radius = sites.vor$radius,
+            radius = sites_vor$radius,
             border = "gray")
 ```
 
@@ -110,9 +115,10 @@ load SRTM scene, reproject, crop, change to SpatialGridDataFrame
 
 ```{r message=FALSE}
 library(raster)
-srtm <- raster("./data/srtm_41_03.tif")
+srtm <- raster("data/srtm_41_03.tif")
 srtm <- projectRaster(srtm, res=90, crs=CRS("+init=epsg:32634"))
 srtm <- crop(x = srtm, y = extent(sites)+20000)
+srtm <- aggregate(x = srtm, fact = 9)
 library(maptools)
 srtm <- as(object = srtm,
            Class = "SpatialGridDataFrame"
@@ -127,28 +133,28 @@ str(srtm)
 ```{r message=FALSE}
 library(gstat)
 
-lec.gstat.p2 <- gstat(formula = lec@data$rad ~ 1,
-                   locations = lec,
-                   set = list(idp = 2)
-                   )
-lec.gstat.p05 <- gstat(formula = lec@data$rad ~ 1,
-                   locations = lec,
-                   set = list(idp = .5)
-                   )
-lec.idw2 <- predict(object = lec.gstat.p2,
+lec_gstat_p2 <- gstat(formula = lec@data$rad ~ 1,
+                      locations = lec,
+                      set = list(idp = 2)
+                      )
+lec_gstat_p05 <- gstat(formula = lec@data$rad ~ 1,
+                       locations = lec,
+                       set = list(idp = .5)
+                       )
+lec_idw2 <- predict(object = lec_gstat_p2,
                     newdata = srtm)
-lec.idw05 <- predict(object = lec.gstat.p05,
-                    newdata = srtm)
+lec_idw05 <- predict(object = lec_gstat_p05,
+                     newdata = srtm)
 ```
 
 ## Interpolation - Inverse Distance Weighting {.columns-2}
 
 ```{r fig.height=5, fig.width=5, echo=FALSE}
-plot(raster(lec.idw05))
-points(sites.pp)
+plot(raster(lec_idw05))
+points(sites_pp)
 
-plot(raster(lec.idw2))
-points(sites.pp) 
+plot(raster(lec_idw2))
+points(sites_pp) 
 ```
 
 ## Interpolation - Kriging
@@ -197,7 +203,7 @@ show.vgms()
 
 ```{r}
 vt <- variogram(lec$rad ~ 1, lec)
-v.fit <- fit.variogram(vt,
+v_fit <- fit.variogram(vt,
                        vgm(nugget = 3e+07,
                            model = "Gau",
                            psill = 3e+08, #355572513
@@ -210,7 +216,7 @@ v.fit <- fit.variogram(vt,
 **very** superficial
 
 ```{r}
-plot(vt,v.fit)
+plot(vt,v_fit)
 ```
 
 ## Interpolation - Kriging
@@ -218,10 +224,10 @@ plot(vt,v.fit)
 **very** superficial
 
 ```{r}
-lec.kri <- krige(formula = lec$rad ~ 1,
+lec_kri <- krige(formula = lec$rad ~ 1,
                  location = lec,
                  newdata = srtm,
-                 model = v.fit
+                 model = v_fit
                  )
 ```
 
@@ -230,7 +236,7 @@ lec.kri <- krige(formula = lec$rad ~ 1,
 **very** superficial
 
 ```{r}
-plot(raster(lec.kri),
+plot(raster(lec_kri),
      main="Kriging using Gaussian fit"
      )
 points(sites,pch=20,cex=.4)
@@ -239,9 +245,9 @@ points(sites,pch=20,cex=.4)
 ## Interpolation - Inverse Distance Weighting vs. Kriging {.columns-2}
 
 ```{r fig.height=5, fig.width=5, echo=FALSE}
-plot(raster(lec.idw05))
-points(sites.pp)
+plot(raster(lec_idw05))
+points(sites_pp)
 
-plot(raster(lec.kri))
-points(sites.pp) 
+plot(raster(lec_kri))
+points(sites_pp) 
 ```

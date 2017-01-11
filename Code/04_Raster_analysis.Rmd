@@ -1,9 +1,7 @@
 ---
 title: "Raster analysis"
-author:
-  Modellieren in der Landschaftsarchäologie
-  Daniel Knitter
-date: WS 2016/17
+author: Freie Universität Berlin -- M.Sc. Landschaftsarchäologie <br> Modellieren in der Landschaftsarchäologie <br> Dr. Daniel Knitter (CAU Kiel) <br>
+date: WS 2016/2017
 bibliography: VS_Modellierung_Literature.bib
 csl: harvard1.csl
 output:
