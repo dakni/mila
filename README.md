@@ -20,7 +20,12 @@ For more detailed information about "Modeling in Landscape Archaeology" you can 
 
 In order to make sense of the code that you find there: read the book ;) 
 
+- [Woldcat link](http://www.worldcat.org/oclc/933567741)
+- [online fulltext for FU students via Primo FU](https://primo.fu-berlin.de/FUB:FUB_ALMA_DS51960803280002883)
+- [at Springer](http://www.springer.com/de/book/9783319295367)
+
+<p align="center">
+  <img src="https://images.springer.com/sgw/books/medium/9783319295367.jpg" width="150"/>
+</p>
 
 
-| ![cover image](https://images.springer.com/sgw/books/medium/9783319295367.jpg) | [Woldcat link](http://www.worldcat.org/oclc/933567741) | [online fulltext for FU students via Primo FU](https://primo.fu-berlin.de/FUB:FUB_ALMA_DS51960803280002883) |  [at Springer](http://www.springer.com/de/book/9783319295367) |
-|---|---|---|---|
