@@ -18,24 +18,29 @@ output:
 
 ## setwd, library, data, cleaning
 
-```{r message=FALSE}
-setwd("/media/daniel/homebay/Teachings/WS_2015-2016/VS_Modellieren_Landschaftsarchaeologie")
+```{r echo=FALSE}
+## this is here, so that knitr allows to change the working directory
+knitr::opts_knit$set(root.dir = "..")
+```
 
-raw.data <-  read.table(file = "./data/Fundstellen_UTM.csv",
-                        header = TRUE,
-                        sep = ";",
-                        dec = ".",
-                        quote = "",
-                        stringsAsFactors = FALSE
-                        )
+```{r eval=FALSE}
+setwd("YOUR-PATH")
+```	
+
+```{r load-data, message=FALSE}
+raw_data <- read.table(file = "data/FS_UTM.csv",
+                       header = TRUE,
+                       sep = ";",
+                       stringsAsFactors = FALSE,
+                       quote = "")
 
 ## check for issues/problems
-## str(raw.data)
-## apply(X=raw.data[,4:20], MARGIN = 2, FUN=function(x){x[x>1]})
-raw.data$settlement[raw.data$settlement > 1] <- 1
+## str(raw_data)
+## apply(X=raw_data[,4:20], MARGIN = 2, FUN=function(x){x[x>1]})
+raw_data$settlement[raw_data$settlement > 1] <- 1
 
 library(sp)
-sites <- raw.data
+sites <- raw_data
 coordinates(sites) <- ~xUTM+yUTM
 proj4string(sites) <- CRS("+init=epsg:32634")
 ```
@@ -50,7 +55,7 @@ Plot the sites onto the raster to see whether the srtm scene covers all the poin
 
 ```{r message=FALSE}
 library(rgdal)
-srtm <- readGDAL("./data/srtm_41_03.tif")
+srtm <- readGDAL("data/srtm_41_03.tif")
 ```
 
 ## SRTM scenes and rgdal
@@ -64,7 +69,7 @@ points(spTransform(sites, CRS("+init=epsg:4326")))
 
 ```{r}
 library(raster)
-srtm <- raster("./data/srtm_41_03.tif")
+srtm <- raster("data/srtm_41_03.tif")
 plot(srtm)
 points(spTransform(sites, CRS("+init=epsg:4326")))
 ```
