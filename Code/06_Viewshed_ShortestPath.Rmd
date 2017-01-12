@@ -3,7 +3,7 @@ title: "Viewsheds and 'Shortest' Path"
 author:
 - Freie Universität Berlin -- M.Sc. Landschaftsarchäologie
 - Modellieren in der Landschaftsarchäologie
-- Dr. Daniel Knitter
+- Dr. Daniel Knitter (CAU Kiel)
 date: WS 2016/17
 bibliography: VS_Modellierung_Literature.bib
 csl: harvard1.csl
@@ -19,42 +19,47 @@ output:
 
 ## setwd, library, data, cleaning
 
-```{r message=FALSE}
-setwd("/media/daniel/homebay/Teachings/WS_2015-2016/VS_Modellieren_Landschaftsarchaeologie")
+```{r echo=FALSE}
+## this is here, so that knitr allows to change the working directory
+knitr::opts_knit$set(root.dir = "..")
+```
 
-raw.data <-  read.table(file = "./data/Fundstellen_UTM.csv",
-                        header = TRUE,
-                        sep = ";",
-                        dec = ".",
-                        quote = "",
-                        stringsAsFactors = FALSE
-                        )
+```{r eval=FALSE}
+setwd("YOUR-PATH")
+```	
+
+```{r load-data, message=FALSE}
+raw_data <- read.table(file = "data/FS_UTM.csv",
+                       header = TRUE,
+                       sep = ";",
+                       stringsAsFactors = FALSE,
+                       quote = "")
 
 ## check for issues/problems
-## str(raw.data)
-## apply(X=raw.data[,4:20], MARGIN = 2, FUN=function(x){x[x>1]})
-raw.data$settlement[raw.data$settlement > 1] <- 1
+## str(raw_data)
+## apply(X=raw_data[,4:20], MARGIN = 2, FUN=function(x){x[x>1]})
+raw_data$settlement[raw_data$settlement > 1] <- 1
 
 library(sp)
-sites <- raw.data[(raw.data$settlement == 1 & raw.data$iron.age == 1),]
+sites <- raw_data[(raw_data$settlement == 1 & raw_data$iron.age == 1),]
 coordinates(sites) <- ~xUTM+yUTM
 proj4string(sites) <- CRS("+init=epsg:32634")
 ```
-
 
 ## Get data into R and than into GRASS
 
 Download SRTM, load SRTM into R, reproject to UTM, crop to sites, export as new file
 
 ```{r message=FALSE}
-## library(raster)
-## srtm <- raster("./data/srtm_41_03.tif")
-## srtm <- projectRaster(srtm, res=90, crs=CRS("+init=epsg:32634"))
-## srtm <- crop(x = srtm, y = extent(sites)+20000)
+library(raster)
+srtm <- raster("data/srtm_41_03.tif")
+srtm <- projectRaster(srtm, res=90, crs=CRS("+init=epsg:32634"))
+srtm <- crop(x = srtm, y = extent(sites)+20000)
 
-## writeRaster(x = srtm,
-##             filename = "./results/srtm.tif"
-##             )
+writeRaster(x = srtm,
+            filename = "results/srtm.tif",
+            overwrite = TRUE
+            )
 ```
 
 # Viewshed Analysis using R and GRASS GIS
@@ -66,8 +71,8 @@ Be aware, for the following to work you need to have GRASS GIS installed on your
 Load library, initialize the GRASS environment with default values (everything is stored as temporary files; you can change this if you want to come back to earlier stages of your work)
 
 ```{r init_grass, eval = TRUE, echo = TRUE}
-library(spgrass6)
-loc <-  initGRASS("/usr/local/grass-7.0.0svn/", home=tempdir() ,mapset = "PERMANENT", override = TRUE)
+library(rgrass7)
+loc <-  initGRASS(gisBase = "/opt/grass/", home=tempdir() ,mapset = "PERMANENT", override = TRUE)
 execGRASS("g.proj", flags = c("c"), parameters = list(proj4="+init=epsg:32634"))
 ```
 
@@ -75,11 +80,11 @@ execGRASS("g.proj", flags = c("c"), parameters = list(proj4="+init=epsg:32634"))
 
 ```{r message=FALSE}
 library(rgdal)
-srtm <- readGDAL("./results/srtm.tif")
+srtm <- readGDAL("results/srtm.tif")
 ```
 
 ```{r}
-writeRAST6(x = srtm,
+writeRAST(x = srtm,
            vname="dem",
            flags = c("overwrite")
            )
@@ -121,7 +126,7 @@ execGRASS("r.viewshed", flags = c("overwrite","b"),
           )
 )
 
-single.viewshed <- readRAST6("viewshed.single")
+single.viewshed <- readRAST("viewshed.single")
 ```
 
 ## Viewshed in GRASS - for one point {.columns-2}
@@ -146,7 +151,7 @@ execGRASS("r.viewshed", flags = c("overwrite","b"),
           )
 )
 
-single.viewshed <- readRAST6("viewshed.single")
+single.viewshed <- readRAST("viewshed.single")
 ```
 
 ## Viewshed in GRASS - for one point {.columns-2}
@@ -171,7 +176,7 @@ Procedure:
 ## Viewshed in GRASS - all points
 
 ```{r view_loop, eval=TRUE, warning = FALSE}
-cum.view.sites <- brick(raster(srtm))
+cum_view_sites <- brick(raster(srtm))
 
 for (i in seq(1, length(sites@coords[,1]))) {
     execGRASS("r.viewshed",
@@ -181,9 +186,9 @@ for (i in seq(1, length(sites@coords[,1]))) {
                                 coordinates = sites@coords[i,],
                                 max_distance=50000)
               )
-    viewshed <- readRAST6("view")
-    cum.view.sites[[i]] <- raster(viewshed)
-    names(cum.view.sites[[i]]) <- as.character(sites@data$Nr.[i])
+    viewshed <- readRAST("view")
+    cum_view_sites[[i]] <- raster(viewshed)
+    names(cum_view_sites[[i]]) <- as.character(sites@data$Nr.[i])
     cat("iteration ", i, " of ", length(sites@coords[,1]),"\n")
 }
 ```
@@ -193,19 +198,16 @@ for (i in seq(1, length(sites@coords[,1]))) {
 Plot a single viewshed from the brick object
 
 ```{r}
-plot(cum.view.sites[[1]])
+plot(cum_view_sites[[1]])
 ```
-
-view.sum.sites <- sum(cum.view.sites)
-plot(view.sum.sites)
 
 ## Viewshed in GRASS - all points
 
 Create a cumulative viewshed and plot it
 
 ```{r}
-view.sum.sites <- sum(cum.view.sites)
-plot(view.sum.sites)
+view_sum_sites <- sum(cum_view_sites)
+plot(view_sum_sites)
 ```
 
 ## Viewshed in GRASS - all points
@@ -213,16 +215,16 @@ plot(view.sum.sites)
 Reclassification might be interesting
 
 ```{r}
-quantile(view.sum.sites)
+quantile(view_sum_sites)
 
-rcl.sites <- c(-Inf, quantile(view.sum.sites)[2],1,
-               quantile(view.sum.sites)[2],quantile(view.sum.sites)[3],2,
-               quantile(view.sum.sites)[3],quantile(view.sum.sites)[4],3,
-               quantile(view.sum.sites)[4],quantile(view.sum.sites)[5],4,
-               quantile(view.sum.sites)[5],+Inf,5
+rcl_sites <- c(-Inf, quantile(view_sum_sites)[2],1,
+               quantile(view_sum_sites)[2],quantile(view_sum_sites)[3],2,
+               quantile(view_sum_sites)[3],quantile(view_sum_sites)[4],3,
+               quantile(view_sum_sites)[4],quantile(view_sum_sites)[5],4,
+               quantile(view_sum_sites)[5],+Inf,5
                )
-rcl.sites <- matrix(rcl.sites, ncol = 3, byrow = TRUE)
-view.sum.sites2 <- reclassify(x = view.sum.sites, rcl = rcl.sites)
+rcl_sites <- matrix(rcl_sites, ncol = 3, byrow = TRUE)
+view_sum_sites2 <- reclassify(x = view_sum_sites, rcl = rcl_sites)
 ```
 
 ## Viewshed in GRASS - all points
@@ -230,11 +232,11 @@ view.sum.sites2 <- reclassify(x = view.sum.sites, rcl = rcl.sites)
 Reclassification might be interesting
 
 ```{r}
-plot(view.sum.sites2)
+plot(view_sum_sites2)
 points(sites, pch=19, cex=.5)
 
 #library(rasterVis)
-#levelplot(view.sum.sites2)
+#levelplot(view_sum_sites2)
 ```
 
 # Shortest Path
@@ -287,16 +289,16 @@ $$
 With own function - for all connections:
 
 ```{r}
-x.comb <- combn(x = sites@coords[,1],
+x_comb <- combn(x = sites@coords[,1],
                 m = 2)
-y.comb <- combn(x = sites@coords[,2],
+y_comb <- combn(x = sites@coords[,2],
                 m = 2)
 
-ed.sites <- c()
-for (i in 1:length(x.comb)/2) {
-    ed.sites[i] <- e.d(cbind(x.comb[1,][i],y.comb[1,][i]), cbind(x.comb[2,][i],y.comb[2,][i]))
+ed_sites <- c()
+for (i in 1:length(x_comb)/2) {
+    ed_sites[i] <- e.d(cbind(x_comb[1,][i],y_comb[1,][i]), cbind(x_comb[2,][i],y_comb[2,][i]))
     }
-ed.sites[1]
+ed_sites[1]
 ```
 
 ## Euclidean Distance
@@ -313,14 +315,14 @@ Using packages:
 
 ```{r message=FALSE}
 library(fields)
-ed.sites2 <- rdist(x1 = sites@coords,
+ed_sites2 <- rdist(x1 = sites@coords,
                    x2 = sites@coords
                    )
-ed.sites2[2]
+ed_sites2[2]
 
 library(rgeos)
-ed.sites3 <- gDistance(sites, byid = TRUE)
-ed.sites3[2]
+ed_sites3 <- gDistance(sites, byid = TRUE)
+ed_sites3[2]
 ```
 
 ## Least Cost Distance
@@ -450,7 +452,7 @@ Let us have a look at the elevation profiles of the calculated paths and compare
 First, we need to create a spatial line between the 1st and 2nd point
 
 ```{r}
-tmp1.euc <- SpatialLines(
+tmp1_euc <- SpatialLines(
     list(
         Lines(
             Line(
@@ -472,14 +474,14 @@ Let us have a look at the elevation profiles of the calculated paths and compare
 Now, we can extract the raster values along the spatial lines
 
 ```{r}
-p.tmp1.euc <- extract(x=srtm,
-                      y=tmp1.euc, along=TRUE
+p_tmp1_euc <- extract(x=srtm,
+                      y=tmp1_euc, along=TRUE
                       )
 
-p.tmp1 <- extract(x=srtm,
+p_tmp1 <- extract(x=srtm,
                   y=tmp1, along=TRUE
                   )
-p.tmp2 <- extract(x=srtm,
+p_tmp2 <- extract(x=srtm,
                   y=tmp2, along=TRUE
                   )
 ```
@@ -492,13 +494,13 @@ And now the plot
 
 ```{r eval=FALSE}
 par(mfrow = c(3,1))
-plot(p.tmp1.euc[[1]], type="l",
+plot(p_tmp1_euc[[1]], type="l",
      main = "Elevation profile \nfrom 1st to 2nd site (euclidean)"
      )
-plot(p.tmp1[[1]], type="l",
+plot(p_tmp1[[1]], type="l",
      main = "Elevation profile \nfrom 1st to 2nd site (least cost)"
      )
-plot(p.tmp2[[1]], type="l",
+plot(p_tmp2[[1]], type="l",
      main = "Elevation profile \nfrom 2nd to 1st site (least cost)"
      )
 ```
@@ -511,13 +513,13 @@ And now the plot
 
 ```{r echo=FALSE}
 par(mfrow = c(3,1))
-plot(p.tmp1.euc[[1]], type="l",
+plot(p_tmp1_euc[[1]], type="l",
      main = "Elevation profile \nfrom 1st to 2nd site (euclidean)"
      )
-plot(p.tmp1[[1]], type="l",
+plot(p_tmp1[[1]], type="l",
      main = "Elevation profile \nfrom 1st to 2nd site (least cost)"
      )
-plot(p.tmp2[[1]], type="l",
+plot(p_tmp2[[1]], type="l",
      main = "Elevation profile \nfrom 2nd to 1st site (least cost)"
      )
 ```
@@ -530,10 +532,10 @@ First we need a combination object that calculates all the possible connections 
 x <- sites@coords[,1][1:10] # at the moment only for 10 objects
 y <- sites@coords[,2][1:10] # at the moment only for 10 objects
 
-x.comb <- combn(x,2)
-y.comb <- combn(y,2)
+x_comb <- combn(x,2)
+y_comb <- combn(y,2)
 
-x.name <- data.frame(sites@data$Nr.[match(x.comb,sites@coords[,1])])
+x_name <- data.frame(sites@data$Nr.[match(x_comb,sites@coords[,1])])
 
 ```
 
@@ -554,15 +556,15 @@ This will be a rather long loop...
 ## Least cost paths from all points to all points
 
 ```{r eval=TRUE}
-for(i in 1:(length(x.comb)/2)){
+for(i in 1:(length(x_comb)/2)){
     i1 <- i*2-1 # odd numbers
     i2 <- i*2 # even numbers
-    s <- c(x.comb[i1],y.comb[i1])
-    z <- c(x.comb[i2],y.comb[i2])
+    s <- c(x_comb[i1],y_comb[i1])
+    z <- c(x_comb[i2],y_comb[i2])
     sz <- shortestPath(conduct, s, z, output="SpatialLines") # calculate the shortest path
     zs <- shortestPath(conduct, z, s, output="SpatialLines") # calculate the shortest path
-    sz@lines[[1]]@ID <- as.character(paste(x.name[i1,1],x.name[i2,1]))
-    zs@lines[[1]]@ID <- as.character(paste(x.name[i2,1],x.name[i1,1]))
+    sz@lines[[1]]@ID <- as.character(paste(x_name[i1,1],x_name[i2,1]))
+    zs@lines[[1]]@ID <- as.character(paste(x_name[i2,1],x_name[i1,1]))
     
     if(i==1){sdf <-rbind(sz,zs)}
     if(i>1){sdf <- rbind(sdf,sz,zs,
@@ -570,13 +572,13 @@ for(i in 1:(length(x.comb)/2)){
     }
 
     if(i==1){df <- cbind(ID = c(1,2),
-                         FROM = c(paste(x.name[i1,1]),paste(x.name[i2,1])),
-                         TO = c(paste(x.name[i2,1]),paste(x.name[i1,1]))
+                         FROM = c(paste(x_name[i1,1]),paste(x_name[i2,1])),
+                         TO = c(paste(x_name[i2,1]),paste(x_name[i1,1]))
                          )
     }
     if(i>1){df <- cbind(ID = c(df[,1],i1,i2),
-                        FROM = c(df[,2],paste(x.name[i1,1]),paste(x.name[i2,1])),
-                        TO = c(df[,3],paste(x.name[i2,1]),paste(x.name[i1,1]))
+                        FROM = c(df[,2],paste(x_name[i1,1]),paste(x_name[i2,1])),
+                        TO = c(df[,3],paste(x_name[i2,1]),paste(x_name[i1,1]))
                         )
     }
 }
@@ -598,7 +600,7 @@ lcp_sldf <- SpatialLinesDataFrame(sdf,
 lcp_sldf@data$DIST <- SpatialLinesLengths(lcp_sldf)
 
 writeOGR(lcp_sldf,
-         "./results/",
+         "results/",
          "Least_cost_paths",
          driver = "ESRI Shapefile",
          overwrite_layer = TRUE
@@ -610,19 +612,19 @@ writeOGR(lcp_sldf,
 ```{r message=FALSE, fig.height=5, fig.width=5}
 library(magrittr); library(leaflet)
 
-sites.wgs84 <- spTransform(x = sites,
+sites_wgs84 <- spTransform(x = sites,
                            CRSobj = "+init=epsg:4326"
                            )
-lcp_sldf.wgs84 <- spTransform(x = lcp_sldf,
+lcp_sldf_wgs84 <- spTransform(x = lcp_sldf,
                               CRSobj = "+init=epsg:4326"
                               )
 
-m1 <- leaflet(lcp_sldf.wgs84) %>%
+m1 <- leaflet(lcp_sldf_wgs84) %>%
     addPolylines() %>%
     addProviderTiles("Thunderforest.Landscape") %>%
-        addMarkers(lng=sites.wgs84@coords[,1],
-                   lat=sites.wgs84@coords[,2],
-                   popup = sites@data$Site.Name.
+        addMarkers(lng=sites_wgs84@coords[,1],
+                   lat=sites_wgs84@coords[,2],
+                   popup = sites@data$Site.Name
                    )
 m1
 ```
