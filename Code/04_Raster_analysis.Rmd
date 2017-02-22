@@ -83,10 +83,23 @@ points(sites)
 
 ## Cropping
 
+Ask the manual: where is the difference between `crop` and `mask`?
+
 ```{r}
 srtm <- crop(x = srtm, y = extent(sites)+20000)
 plot(srtm)
 points(sites)
+```
+
+## Export Raster
+
+Since we do not want to reproject and crop in the subsequent analyses we just export the SRTM.
+
+```{r}
+writeRaster(x = srtm,
+            filename = "./results/srtm.tif",
+            overwrite = TRUE
+            )
 ```
 
 ## Terrain analyses
@@ -181,6 +194,8 @@ hist(tmp)
 ```
 
 ## another way to plot
+
+**Task:** please, make it nice, i.e. visually appealing and informative. 
 
 ```{r tpi-plot2, echo=TRUE, message=FALSE}
 library(rasterVis)
