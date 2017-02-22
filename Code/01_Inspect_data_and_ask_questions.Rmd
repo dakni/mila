@@ -10,7 +10,7 @@ output:
     toc: true
     highlight: pygments
     widescreen: true
-    smaller: true
+    smaller: true	
 ---
 
 # Inspect data and ask questions
@@ -27,8 +27,8 @@ knitr::opts_knit$set(root.dir = "..")
 ```{r eval=FALSE}
 setwd("YOUR-PATH")
 ```	
-The working directory should be at the top of your project directory structure. 
 
+The working directory should be at the top of your project directory structure. 
 
 ## Load data ## {.build}
 
@@ -49,7 +49,9 @@ A nice tutorial on loading table (including xls) data to `R` is [on datacamp](ht
 
 ## Load data ## {.build}
 
-A better way: use text files. **Question: Why?** 
+A better way: use text files. 
+
+**Question: Why?** 
 
 ```{r load-data}
 raw_data <- read.table(file = "data/FS_UTM.csv",
@@ -120,11 +122,10 @@ head(sapply(raw_data, class))
 
 ## Check data structure 2a ##
 
-Examples of more controlled queries:
+Examples of more controlled queries (`head`, `tail`, `sample`):
 
 ```{r}
 sample(raw_data$Epoch..site., 3)
-tail(raw_data$Site.type, 3)
 ```
 
 The structure of the "Epoch..site." column is a little complicated to
@@ -151,7 +152,7 @@ Clean the messed variables of the table yourself!
 grep(pattern = "Bronze Age", x = raw_data$Epoch..site.)
 ```
 
-## Further questions 1 ##
+## Further questions 1 ##  {.build}
 
 **What is the proportion of the different settlement types?**
 
@@ -246,11 +247,17 @@ raw_data %>%
 1. Find other ways to answer the question.
 2. Discuss the different advantages of your approach(es) and those presented above.
 
+## Further questions 4 ##
+
+What the heck...!? Why not using `table` and `prop.table` ?!
+
+**Excercise:** Why? :)
+
 ## Clean data continued ##
 
 Ok, let's continue. First, get rid of all the unnecessary variables. Again, there are many different possibilities to do this.
 
-Here is a "classic" way:
+Here is a "classic" way (approach: I want to have...):
 
 ```{r}
 selected_data <- raw_data[,c(2,4:20,22:31,35:36)]
@@ -263,7 +270,20 @@ names(selected_data)
 
 Ok, let's continue. First, get rid of all the unnecessary variables. Again, there are many different possibilities to do this.
 
-And here a more modern way:
+Here is a "classic" way (approach: I __do not__ want to have...):
+
+```{r}
+selected_data <- raw_data[,c(-1,-3,-21,-32:-34)]
+names(selected_data)
+#knitr::kable(head(selected_data))
+#str(selected_data)
+```
+
+## Clean data continued ##
+
+Ok, let's continue. First, get rid of all the unnecessary variables. Again, there are many different possibilities to do this.
+
+And here a more modern way (Question: Which approach is used?):
 
 ```{r}
 library(dplyr)
@@ -284,7 +304,12 @@ names(selected_data)
 Now, we will create site data sets for different chronological periods. Again there are different ways to achieve this:
 
 classic
-[1. select relevant data, 2. check whether everything is fine, 3. drop unnecessary columns]
+
+- 1. select relevant data
+- 2. check whether everything is fine
+- 3. drop unnecessary columns
+
+## Create chronologically separated dataset 1 ## 
 
 ```{r}
 prehist <- selected_data[selected_data$prehistoric==1,]
@@ -299,9 +324,7 @@ prehist <- prehist[,-c(19,25:28)]
 
 ## Create chronologically separated dataset 2 ##
 
-Now, we will create site data sets for different chronological periods. Again there are different ways to achieve this:
-
-modern
+a modern way
 
 ```{r}
 library(dplyr)
@@ -363,12 +386,11 @@ Let's first take care of the data structure. We want to investigate the amount o
 
 ```{r}
 types.per.period <- data.frame(palaeolithic = 0,
-                                     neolithic = 0,
-                                     copper.age = 0,
-                                     bronze.age = 0,
-                                     iron.age = 0
-                                     )
-
+                               neolithic = 0,
+                               copper.age = 0,
+                               bronze.age = 0,
+                               iron.age = 0
+                               )
 names(prehist)
 ```
 
@@ -403,7 +425,7 @@ This was again just data crunching/selection. Now, we change the data from wide 
 library(reshape2)
 types2 <- melt(types.per.period, id.vars = c("type"))
 str(types2)
-head(types2)
+head(types2, 3)
 ```
 
 **Question:** Do you see the difference? Describe the data new structure. 
@@ -430,11 +452,12 @@ ggplot(types2, aes(x=type,y=value, fill=variable)) +
 **Exercises**
 
 1. Check the help of ggplot and reference pages on the internet to:
-   - change the theme of the plot; Don't know what a "theme" is? Check help!
-   - reorder the x-axis.
-   - give a title
-   - change the direction of x-labels to make them readable
-   
+
+	- change the theme of the plot; Don't know what a "theme" is? Check help!
+	- reorder the x-axis.
+	- give a title
+	- change the direction of x-labels to make them readable
+	
 2. Create a facet plot differentiated by period.
 
 In the end it might look like this and this...
@@ -452,7 +475,8 @@ ggplot(types2, aes(x=type,y=value, fill=variable)) +
     theme(axis.text.x = element_text(angle = 90)) +
     labs(list(title = "Site types per period",
               x = "Type of archaeological site",
-              y = "Absolute number of finds")
+              y = "Absolute number of finds",
+              fill = "Period")
          )
 ```
 
@@ -465,7 +489,8 @@ ggplot(types2, aes(x=type,y=value/sum(value), fill=variable)) +
     theme(axis.text.x = element_text(angle = 90)) +
     labs(list(title = "Site types (relative amount) per period",
               x = "Type of archaeological site",
-              y = "Relative number of finds")
+              y = "Relative number of finds",
+              fill = "Period")
          )
 ```
 
