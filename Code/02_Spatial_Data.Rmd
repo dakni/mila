@@ -198,7 +198,7 @@ Another great package for interactive visualization: [mapview](http://environmen
 
 ```{r eval=TRUE}
 writeOGR(obj = sites,
-         dsn = "./data",
+         dsn = "data",
          layer = "Archaeological_Sites",
          driver = "ESRI Shapefile",
          overwrite_layer = TRUE
@@ -212,7 +212,7 @@ list.files("./data")
 not very useful; just to show how easy it is
 
 ```{r, eval=FALSE}
-png("./data/Archaeological_Sites.png")
+png("data/Archaeological_Sites.png")
 plot(sites)
 dev.off()
 
