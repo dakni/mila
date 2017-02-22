@@ -196,7 +196,7 @@ Another great package for interactive visualization: [mapview](http://environmen
 
 ## Export to Shapefile
 
-```{r eval=FALSE}
+```{r eval=TRUE}
 writeOGR(obj = sites,
          dsn = "./data",
          layer = "Archaeological_Sites",
@@ -221,4 +221,7 @@ dev.off()
 
 ?cairo
 ```
+
+# Play. 
+
 

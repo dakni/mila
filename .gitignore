@@ -36,4 +36,4 @@ vignettes/*.pdf
 *~
 
 # omit the data folder
-data/*
+# data/*

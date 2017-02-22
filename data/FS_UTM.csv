@@ -1,0 +1,509 @@
+Nr.;Site Name ;Site type ;settlement;open settlement;cave settlement;tell settlement;mound;fortification;court;depot;cult complex;mine;chruch;temple;villa rustica;monastery;cemetery;necropolis;tumulus;Epoch (site);prehistoric;palaeolithic;neolithic;copper age;bronze age;iron age;roman and daco-roman age;post roman age and migration period;medieval;modern;Code RAN;Code LMI;Code Fisenon;xUTM;yUTM
+1;Beba Veche - in the ditch;fortification made from soil;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;155733.01;;;443157.0;5105906.2
+2;Dudestii Vechi - Dragomirs' hill;settlement and necropole;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;Latène Period,post-Roman, Middle Ages;1;0;0;0;0;1;0;1;1;0;156721.01;;;459881.7;5095991.0
+3;Nerau - Hunca Mare;tumulus and necropole;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;1;Bronze Age;1;0;0;0;1;0;0;0;0;0;158877.11;TM-I-s-B-06073;;462115.2;5088414.7
+4;Nerau - Dogans' hill;tumulus ;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;Bronze Age;1;0;0;0;1;0;0;0;0;0;158877.10;TM-I-s-B-06073;;466750.8;5089684.8
+5;Cenad - Habitation Area;urban settlement fortified at the ecclesiastic center ;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Middle Ages, Romanian Age;1;0;0;0;1;0;1;0;1;0;156268.01;TM-I-s-A-06055;;467929.9;5109462.0
+6;Nerau - The south canal;tumulus;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;Bronze Age;1;0;0;0;1;0;0;0;0;0;158877.08;TM-I-s-B-06073;;468829.2;5092019.5
+7;Nerau - The east canal Gigosin;tumulus;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;Bronze Age;1;0;0;0;1;0;0;0;0;0;158877.01;TM-I-s-B-06073;;469793.3;5091181.4
+8;Vizejdia - La Hunca;tumulus;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;Prehistory Period,post-Roman, Middle Ages;1;0;0;0;0;0;0;1;1;0;157576.01;TM-I-s-B-06090;;470867.1;5086237.4
+9;Sannicolau Mare - Viile;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age,post-Roman;1;0;0;0;1;0;0;1;0;0;155537.04;TM-I-s-B-06083;;471022.6;5101052.2
+10;Archaeological site from  Sannicolaul Mare - Seliste;settlement and necropole;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;Middle Ages, Bronze Age, post-Roman;1;0;0;0;1;0;0;1;1;0;155537.03;TM-I-s-B-06085;;473367.1;5101627.2
+11;Early medieval cemetery from  Nadlac-Lutarie;cemetery;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;9636.01;;;479337.0;5113673.3
+12;Earthwall from Saravale-santul roman;mound;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;158760.01;;;479856.0;5101912.6
+13;Archaeological site from  Nadlac - Freeway Nadlac-Arad (Km 3+483-3+935 );settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages, Migration Period;0;0;0;0;0;0;0;1;1;0;9636.10;;;481950.3;5114126.2
+14;Archaeological site from  Nadlac - situated 3 M (Freeway Nadlac - Arad, lot 1, km. 2+020-2+200);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period, Migration Period;1;0;1;0;0;0;0;1;0;0;9636.05;;;481959.4;5117210.7
+15;Archaeological site from  Nadlac - situated 2 M (Freeway Nadlac - Arad, lot 1, km. 1+125 - 1+440);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Migration Period, Middle Ages;0;0;0;0;0;0;0;1;1;0;9636.04;;;482410.3;5117374.9
+16;Archaeological site from  Nadlac - Freeway Nadlac-Arad (Km 1+285-1+510 );settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Migration Period, Middle Ages;0;0;0;0;0;0;0;1;1;0;9636.11;;;483036.3;5117518.7
+17;Archaeological site from  Nadlac - situated 1 M (Freeway Nadlac - Arad, lot 1, km. 0+000 - 0+300);settlement and necropole;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;Middle Ages, Migration Period;0;0;0;0;0;0;0;1;1;0;9636.03;;;483092.6;5117207.5
+18;Tumulus VI-VII (Neolithic Epoch and Bronze Age) from Checea - In hotarul satului (village district);tumulus;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;Neolithic Period, Bronze Age;1;0;1;0;1;0;0;0;0;0;156302.07;TM-I-s-B-06056;;487879.4;5063065.6
+19;Archaeological site from  Periam - hill with ditch;open settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Middle Ages;1;0;0;0;1;0;0;0;1;0;158118.01;TM-I-s-B-06077;;488315.3;5099266.5
+20;Archaeological site from  Nadlac - Freeway Nadlac-Arad (Km 8+225-8+560);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Migration Period, Middle Ages;0;0;0;0;0;0;0;1;1;0;9636.08;;;489885.5;5117113.7
+21;Medieval settlement from Nadlac - Freeway Nadlac-Arad (Km 10+660-11+120);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;9636.09;;;492689.1;5117276.4
+22;Archaeological site from  Pecica - santul Mare (Big ditch);fortified settlement and necropole;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;1;0;Middle Ages, Latène Period, Bronze Age, Eneolithic;1;0;0;1;1;1;0;0;1;0;11593.01;AR-I-s-A-00448;;498782.8;5110923.4
+23;Archaeological site from  Pecica - Freeway Nadlac-Arad (Km 18+605-18+890);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages, Romanian Age;0;0;0;0;0;0;1;0;1;0;11593.13;;;501651.3;5117398.0
+24;Medieval fortress from Satchinez - Gradiste;fortress made from soil ;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;158537.01;TM-I-s-B-06082;;501729.1;5086910.7
+25;Archaeological site from  Becicherecu Mic - Satul vechi (Old village);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period, Middle Ages,post-Roman;1;0;1;0;0;0;0;1;1;0;155779.01;TM-I-s-B-06052;;502442.8;5079998.0
+26;Archaeological site from  Pecica - Freeway Nadlac-Arad (Km 21+390-21+820);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages, Romanian Age;0;0;0;0;0;0;1;0;1;0;11593.14;;;502934.3;5116918.5
+27;Archaeological site from  Pecica - Freeway Nadlac-Arad (Km 21+820-22+155);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age, Middle Ages;0;0;0;0;0;0;1;0;1;0;11593.15;;;503601.8;5116701.1
+28;Medieval settlement from Pecica - Freeway Nadlac-Arad (Km 23+290-23+880);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;11593.17;;;504029.9;5116753.6
+29;Medieval settlement from Pecica - Freeway Nadlac-Arad (Km 22+750-23+250);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;11593.16;;;505157.9;5116574.5
+30;Archaeological site from  Hodoni - Pusta;fortified settlement;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;post-Roman, Bronze Age;1;0;0;0;1;0;0;1;0;0;158555.02;TM-I-s-B-06064;;506425.5;5084537.4
+31;Archaeological site from  Hodoni - La Pocioroane;settlement and necropole;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;Middle Ages, Neolithic Period,post-Roman;1;0;1;0;0;0;0;1;1;0;158555.01;TM-I-s-B-06063;;507031.2;5082532.6
+32;Medieval settlement from Pecica - Freeway Nadlac-Arad (Km 26+820-27+235);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;11593.18;;;507027.1;5114749.7
+33;Archaeological site from  Pecica - Freeway Nadlac-Arad (Km 27+300-27+575);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;11593.19;;;507306.4;5114755.6
+34;Archaeological site from  Pecica - Freeway Nadlac-Arad (Km 28+575-28+900);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age, Middle Ages;0;0;0;0;0;0;1;0;1;0;11593.20;;;508651.7;5113550.7
+35;Medieval settlement from Pecica - Freeway Nadlac-Arad (Km 28+910-29+270);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;11593.21;;;508684.6;5113215.2
+36;Medieval settlement from Pecica - Freeway Nadlac-Arad (Km 29+560-29+840);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;11593.22;;;509496.4;5113380.9
+37;Archaeological site from  Felnac - Complexul porcine;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Romanian Age, Middle Ages;1;0;0;0;1;0;1;0;1;0;10836.01;AR-I-s-A-00437;;510563.8;5108184.8
+38;Medieval settlement from Pecica - Freeway Nadlac-Arad (Km 30+710-31+045);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;11593.23;;;510999.4;5113730.1
+39;Archaeological site from  Timisoara - Cioreni;settlement and necropole;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;Middle Ages, Romanian Age, Latène Period, Neolithic Period;1;0;1;0;0;1;1;0;1;0;155252.07;TM-I-s-B-06049;;512268.2;5071399.2
+40;Roman wall from Chisoda - Valu roman (roman rampart);mound;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;155332.02;TM-I-s-B-06058;;514776.3;5060942.0
+41;Neolithic settlement from  Chisoda - Livezile;tell;1;0;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period, Middle Ages;1;0;1;0;0;0;0;0;1;0;155332.01;TM-I-s-B-06057;;514907.2;5060572.4
+42;Archaeological site from  sag-Mlaca;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age,post-Roman, Middle Ages;1;0;0;0;1;0;0;1;1;0;158788.01;;;515507.1;5054154.4
+43;Brone Age tell from Voiteg - La Vii SV;tell;1;0;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;159348.01;TM-I-s-B-06091;;516423.1;5035146.4
+44;Fortress from Sanandrei La Cetatuie;frotress made from soil;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;158662.02;;;516848.7;5077984.1
+45;Fortifications from the Timisoara fortress -  Parcul Botanic (Botanic Garden);fortification;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;155252.06;TM-I-s-A-06050;;517397.0;5067184.0
+46;Public fountain from  Timisoara;well;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Modern Age ;0;0;0;0;0;0;0;0;0;1;155252.10;;;517526.5;5067028.8
+47;Archaeological site from  Giroc Saliste;fortified settlement;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Middle Ages;1;0;0;0;1;0;0;0;1;0;155323.03;;;518918.5;5056879.2
+48;Bronze Age settlement from Seceani Viile Vinganilor;open settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;158056.02;;;519179.3;5091384.9
+49;Archaeological site from  Pischia - Freeway Arad-Timisoara (Km.38+300 - 38+700);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Romanian Age, Middle Ages;1;0;0;0;1;0;1;0;1;0;158190.06;;;521048.5;5082596.9
+50;Archaeological site from  Padureni-Pusta Mica;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;post-Roman, Bronze Age;1;0;0;0;1;0;0;1;0;0;157442.02;;;521236.7;5049850.6
+51;Medieval fortification from  Opatita - Calasturi;fortification and settlement ;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Middle Ages, Prehistory Period;1;0;0;0;0;0;0;0;1;0;155476.01;TM-I-s-B-06075;;521567.3;5029298.3
+52;Archaeological site from  Timisoara - Padurea Verde (green wood);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages, Romanian Age, Bronze Age, Hallstatt;1;0;0;0;1;0;1;0;1;0;155252.04;;;521901.7;5069974.8
+53;Archaeological site from  Giroc - Mescal;tell and fortification made from soil;1;0;0;1;0;1;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Modern Age , Hallstatt;1;0;0;0;1;1;0;0;0;1;155323.01;TM-I-s-B-06061;;522035.9;5056489.5
+54;Archaeological site from  Unip - Dealu Cetatuica;fortified settlement;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Hallstatt, Middle Ages, Latène Period;1;0;0;0;1;1;0;0;1;0;158519.02;TM-I-s-B-06089;;523223.0;5057357.1
+55;Archaeological site from  Mosnita Veche - Satul batran (Old Village);tumulus;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;Prehistory Period, Middle Ages,post-Roman;1;0;0;0;0;0;0;1;1;0;157861.01;TM-I-s-B-06072;;523321.3;5065783.6
+56;Archaeological site from  Moravita - Islaz;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period, Middle Ages, Bronze Age;1;0;1;0;1;0;0;0;1;0;157790.01;TM-I-s-B-06071;;524203.7;5016408.4
+57;Archaeological site from  Arad- baypass beltway from Arad - km. 12+250-11+950 (Freeway);settlement and necropola;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;9271.18;;;523995.8;5108686.3
+58;Medieval fortress from Seceani - La cetate (To the fortress);fortress;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;158056.01;TM-I-s-B-06086;;524472.1;5091527.1
+59;Archaeological site from  Stanciova - Gradiste;fortification made from soil;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Prehistory Period, Middle Ages;1;0;0;0;0;0;0;0;1;0;158387.01;TM-I-s-B-06087;;524472.1;5091527.1
+61;Archaeological site from  Giarmata - Cetatuica;fortified urban settlement  and open settlement;4;1;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Middle Ages, Bronze Age, post-Roman;1;0;0;0;1;0;0;1;1;0;157255.01;TM-I-s-B-06060;;526388.6;5081227.5
+62;Archaeological site from  Unip - Ocoale;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;post-Roman, Middle Ages;0;0;0;0;0;0;0;1;1;0;158519.01;TM-I-s-B-06088;;526588.1;5054778.6
+64;Medieval monastery from Remetea Mare - fortress;monastery;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;0;0;Hallstatt, Middle Ages,post-Roman;1;0;0;0;0;1;0;1;1;0;158403.04;TM-I-s-B-06079;;528297.8;5068951.9
+65;Archaeological site from  Pischia-Padurea Pischia sud-est;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period, Latène Period,post-Roman;1;0;1;0;0;1;0;1;0;0;158190.01;;;529606.3;5084358.7
+66;Neolithic tell from the Bucovat period - Gruniul cu cremene;tell;1;0;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period;1;0;1;0;0;0;0;0;0;0;156785.01;TM-I-s-B-06054;;530035.9;5066953.6
+67;Archaeological site from  Vladimirescu - La cetate (To the fortress);settlement and necropole;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;9404.02;AR-I-s-A-00468;;530055.1;5111397.5
+68;Archaeological site from  Remetea Mare - Gomila lui Gabor;settlement and necropole;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;Hallstatt, Middle Ages;1;0;0;0;0;1;0;0;1;0;158403.01;TM-I-s-B-06078;;530477.9;5069271.2
+69;Medieval basilica from Vladimirescu - La Bisericuta (To the little church);basilica;0;0;0;0;0;0;0;0;0;0;1;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;9404.03;AR-I-s-A-00469;;530634.6;5111339.3
+70;Fortification made from soil from Dragsina-Sighed;fortification made from soil;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;156339.01;;;531255.2;5060817.7
+71;Medieval fortification from  Ianova - cetatea Turceasca (Turkish Fortress);fortification and settlement ;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;158430.01;TM-I-s-B-06065;;532201.1;5074279.7
+72;Medieval fortress from Masloc - Turkish ditch ;frotress made from soil;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;157692.01;TM-I-s-B-06069;;535651.3;5093279.5
+74;Archaeological site from  Izvin - Dupa Vii;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistory Period,post-Roman, Middle Ages;1;0;0;0;0;0;0;1;1;0;158350.01;TM-I-s-B-06066;;536828.6;5076249.9
+75;Medieval site from Frumuseni - manastirea Bizere (Bizere monastery);monastery;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;9315.03;;;536948.3;5106559.6
+76;Post- Roman settlement from Herneacova-Fantana rece (Cold fountain);open settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;post-Roman;0;0;0;0;0;0;0;1;0;0;158341.02;;;537251.7;5077702.4
+77;Earthwall from Alios drumul Nazdravenilor (Nazdravenilor way);mound;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;0;post-Roman;0;0;0;0;0;0;0;1;0;0;157709.03;;;537718.6;5100050.8
+78;Fortified settlement from Herneacova - fortress;fortified settlement;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Latène Period;1;0;0;0;0;1;0;0;0;0;158341.01;TM-I-s-A-06062;;538588.4;5081229.5
+79;Medieval fortress from  Alios : Turkish Fortress (cetate Turceasca);fortress;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Middle Ages, Bronze Age, Latène Period;1;0;0;0;1;1;0;0;1;0;157709.01;TM-I-s-B-06051;;538684.3;5096816.8
+80;Bronze Age fortification from Alios Valley Aliosu;fortification made from soil;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;157709.02;;;538935.3;5101294.0
+81;Medieval settlement from Duboz-nord-vest;open settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;157950.01;;;542003.2;5044678.5
+84;Archaeological site from  Zabrani - Dealul Pietrei (The stone hill);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Latène Period, Palaeolithic ;1;1;0;0;0;1;0;0;0;0;12787.01;AR-I-s-B-00470;;542641.6;5102768.7
+85;Post-Roman earthwall from Sambateni - La Iarcuri;mound;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;11575.02;AR-I-s-A-00451;;542680.0;5109682.6
+86;The fort belonging to the IV Legion of Flavia Felixand, the roman settlement from Berzovia;fort;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Eneolithic Period  , Romanian Age, Neolithic Period;1;0;1;1;0;0;1;0;0;0;51519.01;CS-I-s-A-10785;;548840.6;5032600.0
+87;Middle Ages fortress and settlement from Covasant - Tornea;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;10523.02;AR-I-s-A-00435;;548541.1;5130715.6
+88;Archaeological site from  Topolovatu Mare-Joamba;fortification made from soil;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period, Hallstatt, Bronze Age;1;0;1;0;1;1;0;0;0;0;158975.01;;;549310.0;5069268.0
+90;Archaeological site from  Cladova - Dealul Carierei;settlement and necropole;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;Middle Ages, Palaeolithic , Hallstatt, Latène Period;1;1;0;0;0;1;0;0;1;0;11566.01;AR-I-s-A-00432;;550263.2;5105974.4
+92;Archaeological site from  Pancota -  Turkish Fortress (cetate Turceasca);settlement and necropole;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;Eneolithic Period  , Middle Ages, Bronze Age;1;0;0;1;1;0;0;0;1;0;9663.01;AR-I-s-A-00447;;552966.3;5130844.7
+93;Archaeological site from  Lucaret-CIrjna;open settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages, Bronze Age;1;0;0;0;1;0;0;0;1;0;156197.01;;;553769.8;5075540.7
+97;Fortification made from soil from Targoviste-Targoviste Sud;fortification made from soil;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;155582.01;;;564068.9;5072737.4
+100;Tumului III and IV from an unknown epoch from Checea - In hotarul satului (village district);tumulus;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;;0;0;0;0;0;0;0;0;0;0;156302.05;TM-I-s-B-06056;;566211.0;5064178.5
+102;Medieval church from Resita - Ogasele (Cities);church and necropole;0;0;0;0;0;0;0;0;0;0;1;0;0;0;0;1;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;50807.01;CS-I-a-A-10770;;568197.6;5016576.5
+106;The medieval ensemble from  Manastiur - La manastire (The monastery);church and settlement ;1;0;0;0;0;0;0;0;0;0;1;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;157745.01;TM-I-s-B-06070;;582865.0;5076478.4
+107;The settlement, type  Balta Sarata , from Surducu Mic-ses;open settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;159115.01;;;584064.6;5069179.3
+108;Medieval fortification from Jdioara- fortress;fortress;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;156570.01;TM-I-s-A-06067;;587029.6;5053322.8
+109;Archaeological site from  Bulci - La cetate ( To the fortress);settlement and necropole;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;Middle Ages, Latène Period, Romanian Age;1;0;0;0;0;1;1;0;1;0;9912.01;AR-I-s-A-00428;;587613.2;5097627.0
+110;Archaeological site from  Berindia - La cetate (To the fortress);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Latène Period, Romanian Age;1;0;0;0;0;1;1;0;0;0;10319.01;AR-I-s-A-00427;;588655.3;5130983.2
+111;Medieval fortress from Faget - fortress;fortress;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;156810.01;TM-I-s-A-06059;;590993.8;5079803.0
+112;Roman city  Municipal Tibiscum - Iaz - Traianu;urban settlement  ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age, Bronze Age, Latène Period;1;0;0;0;1;1;1;0;0;0;53407.01;CS-I-s-A-10803;;592630.6;5036303.8
+113;Roman fort and vicus (municipal Tibiscum) from Jupa - cetate (Fortress);civil fort and settlement ;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;51038.01;CS-I-s-A-10805;;592883.1;5035349.7
+114;Roman temple from Caransebes - Sat Batran (Old village );temple;0;0;0;0;0;0;0;0;0;0;0;1;0;0;0;0;0;Romanian Age, Latène Period;1;0;0;0;0;1;1;0;0;0;51029.05;CS-I-s-A-10800;;595357.9;5035449.0
+115;Archaeological site from  Savarsin - Dealul Cetatuia (Cetatuia hill);settlement and necropole;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;Latène Period, Hallstatt, Bronze Age, Middle Ages;1;0;0;0;1;1;0;0;1;0;11851.01;AR-I-s-A-00450;;594973.6;5095822.5
+116;Roman building from Bucosnita - Saliste;building;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;51760.01;CS-I-s-B-10795;;598067.3;5012061.8
+117;The cave complex from Moneasa - Hoanca Coului;settlement  in the cave;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Palaeolithic , Neolithic Period;1;1;1;0;0;0;0;0;0;0;11487.01;AR-I-s-A-00444;;596125.4;5145451.7
+119;Medieval fortress from Margina -  Lanu Holdele Lungi;fortress;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;157594.01;TM-I-s-B-06068;;599330.0;5079066.6
+120;Medieval trade fair from Margina -  Lanu Holdele Lungi;trade fair ;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;157594.02;;;599698.4;5078949.2
+121;Palaeolithic settlement from Romanesti - Dumbravita;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Palaeolithic ;1;1;0;0;0;0;0;0;0;0;158957.01;TM-I-s-B-06080;;602574.5;5074643.0
+122;Palaeolithic habitation from Cosava-Dambu Ples;habitation;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Palaeolithic ;1;1;0;0;0;0;0;0;0;0;156605.02;;;602767.6;5078598.2
+123;Archaeological site from  Romanesti - Varful lui Filip (The top of Filip);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period, Bronze Age;1;0;1;0;1;0;0;0;0;0;158957.02;TM-I-s-B-06081;;604816.0;5072273.3
+124;Neolithic settlement from  Pojoga - Pestera Gaura Scroafei (Gaura Scroafeis´ cave);settlement  in the cave;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period;1;0;1;0;0;0;0;0;0;0;92275.01;;;604495.9;5092741.5
+126;Roman fortification from  Bucosnita - Lunca;fortification;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;51760.02;;;606087.8;5014816.1
+129;Prehistoric settlement from  Bradatel- Deal;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistory Period;1;0;0;0;0;0;0;0;0;0;89106.01;;;619883.9;5095415.7
+130;settlement  soimus from Brotuna- Coasta Cremenea;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;91839.02;;;623283.9;5118035.9
+131;Archaeological site from  Runcu Mare - Pestera from Runcu Mare;settlement  in the cave;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period, Hallstatt, Bronze Age, Latène Period;1;0;1;0;1;1;0;0;0;0;90093.01;;;627371.8;5067110.2
+132;Roman Age exploitation from  Caraci- valea steampurilor (steampuriloes' valley);Gold exploitation ;0;0;0;0;0;0;0;0;0;1;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;87772.02;;;629989.4;5112719.0
+133;Roman Age exploitation from Caraci- Adamul Nou;Gold exploitation ;0;0;0;0;0;0;0;0;0;1;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;87772.03;;;630038.9;5111770.7
+134;Archaeological site from  tebea - Dealul Magura (Magura hill);mine;0;0;0;0;0;0;0;0;0;1;0;0;0;0;0;0;0;Middle Ages, Romanian Age;0;0;0;0;0;0;1;0;1;0;87825.02;;;630308.7;5113507.2
+135;Cache of coins from Baia de Cris- Gura Voinii;treasure;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Greek- Roman Epoch;0;0;0;0;0;0;1;0;0;0;87754.04;;;631794.7;5114947.4
+136;Franciscan monastery ensemble from Baia de Cris;monastery;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;0;0;Modern Age , Middle Ages;0;0;0;0;0;0;0;0;1;1;87754.02;HD-II-a-A-03241;;632264.9;5114805.3
+137;Bronze Age settlement from  Baia de Cris- Fantana Borchii (Borchii fountain);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;87754.03;;;632372.4;5115261.1
+138;Dacian settlement from Bretea- Muresana-Magura Branisca;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;;0;0;0;0;0;0;0;0;0;0;89883.03;;;633246.7;5090129.1
+139;Prehistoric settlement from  tebea - Rusti;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;87825.01;;;632910.3;5113214.1
+140;Gold mine from  Baia de Cris- La Ptincuri;mine;0;0;0;0;0;0;0;0;0;1;0;0;0;0;0;0;0;Romanian Age, Latène Period, Middle Ages;1;0;0;0;0;1;1;0;1;0;87754.05;;;632889.6;5115020.0
+141;Roman settlement from Zeicani - Saivan;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;91107.01;;;634785.4;5039454.2
+142;Roman settlement from Zeicani - Ruini;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;91107.02;;;634767.3;5040444.2
+143;Roman settlement from Poieni - Parau;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;89400.01;;;634806.2;5045280.0
+144;Archaeological site from  Cerisor - Pestera Cauce (Cauce cave);habitation;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Neolithic Period, Eneolithic Period  ,Middle Ages;1;0;1;1;1;0;0;0;1;0;90084.03;;;635237.3;5068535.7
+145;Cotofeni settlement from Cave number 3 from  Cerisor;habitation in the cave;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;90084.04;;;636585.6;5069458.9
+146;Eneolithic Period settlement from  Branisca- Pe hotar;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period;1;0;1;0;0;0;0;0;0;0;88555.01;;;636527.1;5087889.8
+147;Settlement in the cave from Ribicioara - Avenul Cave with incision from Gaura Cizmii;settlement  in the cave;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Palaeolithic , Middle Ages;1;1;0;0;0;0;0;0;1;0;90850.02;;;635840.5;5121510.1
+148;Cotofeni settlement from  Cerisor- Cave numer 4;habitation in the cave;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;90084.05;;;637776.3;5065963.8
+149;Monastary complex Vaca from Crisan;monastery;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;90823.01;;;637248.1;5114508.1
+150;Archaeological site from  Cerisor- La Parloage;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;90084.06;;;638451.4;5067737.3
+151;Archaeological site from  Dumbrava- Pestera cu Apa (Cave with water);settlement  in the cave;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Hallstatt, Neolithic Period, Latène Period;1;0;0;0;1;1;0;0;0;0;90486.01;;;638360.6;5073973.4
+152;Colonia Ulpia Traiana Augusta Dacica Sarmizegetusa;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age, Bronze Age;1;0;0;0;1;0;1;0;0;0;91063.01;HD-I-s-A-03205;;639573.9;5041926.6
+153;Settlement  Cotofeni from Cherghes- Pestera Magura;settlement  in the cave;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;86776.02;;;638896.2;5078864.2
+154;Roman epoch brick construction from  Hobita-Gradiste - Dealul Sucionilor (Sucionilor hill);open settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;91081.02;;;640401.7;5039749.8
+155;Archaeological site from  Valioara - La Caramizi;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age, Middle Ages;0;0;0;0;0;0;1;0;1;0;90798.02;;;640724.5;5051039.2
+156;Settlement  from Nandru - Pestera Curata (Clean Cave);habitation in the cave;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Middle Ages, Neolithic Period, Palaeolithic;1;1;1;0;1;0;0;0;1;0;90510.01;HD-I-s-A-03201;;640742.9;5074061.5
+157;Archaeological site from  Vetel-Micia;habitation;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age, Bronze Age;1;0;0;0;1;0;1;0;0;0;91991.01;HD-I-s-A-03214;;640742.1;5086191.4
+158;Archaeological site from  Dealu Mare - Rusti;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;91955.01;;;640462.1;5099316.7
+159;Roman Epoch settlement from Minita-  Acetylene factory;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;92051.01;;;641944.8;5086021.0
+160;;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;90949.01;;;643036.4;5042405.9
+161;Neolithic settlement from  Mintia - Gerhat;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Eneolithic Period  , Neolithic Period;1;0;1;1;0;0;0;0;0;0;92051.02;;;642313.5;5086383.0
+162;Neolithic settlement from  Josani - Jumatati;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Hallstatt;1;0;0;0;0;1;0;0;0;0;90495.01;;;643192.2;5073472.8
+163;Neolithic settlement from  Livezi - Cetatuie;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period;1;0;1;0;0;0;0;0;0;0;91777.01;;;643658.3;5053691.5
+164;Fortified  settlement (Latène Period) from  Cozia - Varful Piatra Coziei;fortified settlement;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Latène Period;1;0;0;0;0;1;0;0;0;0;86785.01;HD-I-s-B-03183;;643354.2;5080952.3
+165;Roman settlement  from Josani - La Caramizi;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;90495.02;;;643628.4;5072801.5
+166;Archaeological site from  Almasu Sec;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Eneolithic Period  , Bronze Age;1;0;0;1;1;0;0;0;0;0;86767.01;HD-I-s-B-03150;;643487.8;5079007.8
+167;Medieval court Candestilor from Rau de Mori;court;0;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;Middle Ages, Romanian Age;0;0;0;0;0;0;1;0;1;0;90887.01;HD-II-a-A-03428;;644838.3;5039698.4
+168;Villa rustica from Carnesti- Mezeinita;villa rustica;0;0;0;0;0;0;0;0;0;0;0;0;1;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;91642.01;;;644863.1;5045385.8
+169;Medieval church from Carnesti;church;0;0;0;0;0;0;0;0;0;0;1;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;91642.02;;;645109.5;5045738.3
+170;Archaeological site from  Farcadin - Maieriste;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period, Romanian Age, Middle Ages, Bronze Age;1;0;1;0;1;0;0;1;1;0;91768.01;;;645436.5;5051788.5
+171;Villa rustica from Cincis-Cerna - La Popeasca;villa rustica;0;0;0;0;0;0;0;0;0;0;0;0;1;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;86954.01;HD-I-s-B-03173;;645499.2;5061035.2
+172;Archaeological site from  Cincis-Cerna- Motel;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Latène Period;1;0;0;0;1;1;0;0;0;0;86954.04;;;645672.5;5062019.7
+173;Villa rustica from Unirea - Dealul Mangop;villa rustica;0;0;0;0;0;0;0;0;0;0;0;0;1;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;91740.02;;;646213.9;5055538.3
+174;Archaeological site from  Totesti - Movile;settlement and tumulus;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;Middle Ages, Bronze Age;1;0;0;0;1;0;0;0;1;0;91633.01;;;646429.4;5048674.8
+175;Neolithic settlement from  Hunedoara- Pestera Nr. 2 (Hunedoara- cave number 2);settlement  in the cave;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;86829.15;;;646493.9;5067394.8
+176;Neolithic settlement from  Hunedoara- Pestera Nr. 1 ( Hunedoara- cave number 1);settlement  in the cave;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;86829.14;;;646503.9;5067365.0
+177;Archaeological site from  Hunedoara - Dealul Sanpetru (Sanpetru hill);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages, Hallstatt, Latène Period, Bronze Age;1;0;0;0;1;1;0;0;1;0;86829.03;HD-I-s-B-03198;;646579.5;5067524.6
+178;Archaeological site from  Hunedoara - Strada Toamnei (Toamnei street);settlement and necropole;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;Latène Period, Hallstatt, Middle Ages, Modern Age ;1;0;0;0;0;1;0;0;1;1;86829.08;;;646639.3;5067727.2
+179;Neolithic settlement from  Hunedoara- Pomilor street, number 4;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period;1;0;1;0;0;0;0;0;0;0;86829.11;;;646754.5;5067761.1
+180;Corvinestilor fort - Hunedoara;castle;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;86829.02;HD-II-m-A-03344;;646752.8;5067865.5
+181;Archaeological site from  Hunedoara - Gradina castleului (Castle garden);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Latène Period, Middle Ages, Hallstatt, Neolithic Period;1;0;1;0;0;1;0;0;1;0;86829.01;;;646834.1;5067818.6
+182;Prehistoric settlement from  Cincis-Cerna - Curtea scolii (School garden);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistory Period;1;0;0;0;0;0;0;0;0;0;86954.07;;;647024.3;5062601.7
+183;Archaeological site from  Hunedoara - Elisabeta Margineanu stree;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Hallstatt, Modern Age , Neolithic Period;1;0;1;0;0;1;0;0;0;1;86829.24;;;646913.2;5067466.9
+184;Archaeological site from  Hunedoara- Reformed cemetery;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Eneolithic Period  , Neolithic Period, Bronze Age, Latène Period, Hallstatt;1;0;1;1;1;1;0;0;0;0;86829.04;;;646969.8;5067771.7
+185;The church site  sfarsitul lui Nicolaie (Nicolaies' end) and the prehistoric settlements from Hunedoara;church;0;0;0;0;0;0;0;0;0;0;1;0;0;0;0;0;0;Middle Ages, Bronze Age, Hallstatt, Neolithic Period;1;0;1;0;1;1;0;0;1;0;86829.07;HD-II-m-A-03350;;647387.8;5067673.8
+186;Archaeological site from  Hunedoara - Chizid;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Hallstatt, Middle Ages;1;0;0;0;0;1;0;0;1;0;86829.23;;;647544.1;5067150.6
+187;Archaeological site from  Hunedoara- Piata Obor (Obor marked);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period, Eneolithic Period  ;1;0;1;1;0;0;0;0;0;0;86829.12;;;647739.3;5067517.6
+188;Settlement Cotofeni from Hunedoara - Gara CFR (CFR rail station);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;86829.25;;;647700.5;5069216.4
+189;Roman settlement from Hunedoara- Triaj;fortified settlement and necropole;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;1;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;86829.18;;;647771.8;5069556.1
+190; Neolithic habitation from Unirea - Obreje;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period;1;0;1;0;0;0;0;0;0;0;91740.01;;;648274.8;5052789.0
+191;Neolithic - Eneolithic settlement from soimus - Avicola;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period, Eneolithic Period  , Bronze Age;1;0;1;1;1;0;0;0;0;0;91349.01;;;647557.7;5086231.5
+192;Archaeological site from  Craguis- Holda lui Boldus;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Eneolithic Period  , Romanian Age, Middle Ages;1;0;0;1;0;0;1;0;1;0;91759.02;;;648332.6;5053701.9
+193;Archaeological site from  Sanpetru - Movila;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;91303.06;;;648701.8;5046179.5
+194;Archaeological site from  Craguis- Locul Uriasilor (Giants location);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Eneolithic Period  , Romanian Age, Neolithic Period;1;0;1;1;0;0;1;0;0;0;91759.01;;;648628.1;5053217.6
+195;Archaeological site from  Sanpetru - La Maru (The Apple);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Romanian Age;1;0;0;0;1;0;1;0;0;0;91303.03;;;649128.4;5045940.7
+196;Roman settlement from Sacel - Curtea Taur (Taur garden);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;91296.02;;;649477.9;5046581.5
+197;Tumulus necropole (Bronze Age) from  Silvasu de Jos - Dealul tapului (tapului  hill);tumulus;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;Bronze Age, Palaeolithic ;1;1;0;0;1;0;0;0;0;0;87601.01;;;649396.2;5058632.9
+198;The romanian church site Inaltarea Domnului from Nucsoara;church;0;0;0;0;0;0;0;0;0;0;1;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;91152.01;HD-II-m-B-03370;;649921.1;5038466.2
+199;Archaeological site from  Hunedoara- Buituri;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period, Bronze Age, Middle Ages;1;0;1;0;1;0;0;0;1;0;86829.17;;;649166.6;5070636.6
+200;Medieval church from Vadu - Biserica Veche (Old Church);church;0;0;0;0;0;0;0;0;0;0;1;0;0;0;0;0;0;;0;0;0;0;0;0;0;0;0;0;91321.02;;;651228.6;5049847.3
+201;Archaeological site from  Vadu - cimitirul (Vadu-cemetery);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period, Middle Ages, Romanian Age, Bronze Age;1;0;1;0;1;0;1;0;1;0;91321.01;;;651367.0;5049804.0
+202;Medieval fortress from Malaiesti- Sub Brazi;fortress;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;91143.01;HD-II-a-A-03363;;652066.9;5038428.9
+203;Archaeological site from  Salasu de Sus - sasa;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period, Romanian Age;1;0;1;0;0;0;0;1;0;0;91125.05;;;652711.4;5045027.7
+204;Orthodox church from Pestera (Cave);church and cemetery;0;0;0;0;0;0;0;0;0;0;1;0;0;0;1;0;0;Romanian Age, Middle Ages;0;0;0;0;0;0;1;0;1;0;91189.04;;;653363.1;5037418.9
+205;Archaeological site from  Buces-Vulcan- La Izvor sub Coliba Barnei;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;88804.01;;;651445.9;5122709.7
+206;Archaeological site from  Santamaria-Orlea - Gradinile Coliconilor (Coliconilors' gardens);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages, Bronze Age;1;0;0;0;1;0;0;0;1;0;91241.05;;;653544.3;5049823.7
+207;Romanian church site Pogorarea end of Duh from Paros;church;0;0;0;0;0;0;0;0;0;0;1;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;91170.01;HD-II-m-A-03401;;653794.9;5040189.7
+208;Medievale reformed church site from Santamaria-Orlea;church;0;0;0;0;0;0;0;0;0;0;1;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;91241.03;HD-II-m-A-03445;;653547.9;5050405.2
+209;Archaeological site from  Santamaria-Orlea - Terasa Grindanu;habitation;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age, Middle Ages, Bronze Age;1;0;0;0;1;0;1;0;1;0;91241.01;;;654121.1;5050930.7
+210;Archaeological site from  Santamaria-Orlea - Troian;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period;1;0;1;0;0;0;0;0;0;0;91241.04;;;654236.8;5049376.1
+211;Archaeological site from  SuADetate - Orlea tower;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Hallstatt, Middle Ages, Palaeolithic , Bronze Age;1;1;0;0;1;1;0;0;1;0;91312.04;;;654750.9;5051216.4
+212;Archaeological site from  Strei;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages, Romanian Age, Latène Period;1;0;0;0;0;1;1;0;1;0;87530.05;;;654629.1;5064514.7
+213;Archaeological site from  Strei;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages, Bronze Age, Hallstatt;1;0;0;0;1;1;0;0;1;0;87530.04;;;654642.9;5064429.4
+214;Roman way from Bucium-Orlea - Pod;way;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;91278.02;;;655135.7;5050271.0
+215;Hallstatt settlement from SuADetate - Vatra Satului;fortified settlement;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Hallstatt;1;0;0;0;0;1;0;0;0;0;91312.07;;;655311.7;5051793.9
+216;Archaeological site from  Strei - Canton CFR;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Middle Ages, Latène Period, Hallstatt;1;0;0;0;1;1;0;0;1;0;87530.06;;;655013.9;5065474.7
+217;Roman settlement from Rau Alb - Latura Cetatii;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;91198.03;;;655861.9;5041884.9
+218;Medieval church from Coroiesti;church;0;0;0;0;0;0;0;0;0;0;1;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;91134.01;;;656046.9;5038470.0
+219;Neolithic settlement from  Rau Alb - fortress;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period;1;0;1;0;0;0;0;0;0;0;91198.01;;;655993.3;5041788.1
+220;Settlement Cotofeni from Ciopeia- Purcaretu;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;91287.03;;;656321.4;5046859.9
+221;Archaeological site from  Baiesti- Ferma Baiesti;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Middle Ages;1;0;0;0;1;0;0;0;1;0;90556.01;;;656399.9;5044159.4
+222;Archaeological site (Romanian Age) from Calan - Aquae;habitation;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;87433.01;HD-I-s-A-03169;;655918.7;5068641.3
+223;Roman settlement  from Streisangeorgiu - Ferma;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;87442.05;;;656409.0;5064184.5
+224;Roman settlement  from Dupa Piatra - Gura Cheii;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;88813.01;;;655369.8;5116863.4
+225;Archaeological site from  Santamaria de Piatra - Gradiste;mine ;0;0;0;0;0;0;0;0;0;1;0;0;0;0;0;0;0;Latène Period, Neolithic Period, Bronze Age, Romanian Age;1;0;1;0;1;1;1;0;0;0;87521.05;;;656604.8;5071151.0
+226;Neolithic settlement from  Strei-Sacel - Pe sesuri;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period;1;0;1;0;0;0;0;0;0;0;87549.01;;;657021.0;5067952.0
+227;Medieval complex from Streisangeorgiu - Streisangeorgiu monastery;cult complex ;0;0;0;0;0;0;0;0;1;0;0;0;0;0;0;0;0;Romanian Age, Latène Period, Middle Ages;1;0;0;0;0;1;1;0;1;0;87442.06;;;657248.3;5065891.0
+228;Old romanian orthodox church from  Rusor;church;0;0;0;0;0;0;0;0;0;0;1;0;0;0;0;0;0;;0;0;0;0;0;0;0;0;0;0;90636.04;;;658161.6;5043512.2
+229;Settlement  Cotofeni from Santamaria de Piatra - Hotar;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;87521.02;;;658812.3;5069370.5
+230;Dacian observation point from Baiesti- Cetatuie;observation point;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Latène Period;1;0;0;0;0;1;0;0;0;0;90556.02;;;659512.6;5045602.0
+231;Fortified settlement from Rapoltu Mare - Magura Uroiului;fortified settlement;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Hallstatt, Latène Period, Bronze Age, Middle Ages;1;0;0;0;1;1;0;0;1;0;90672.01;HD-I-s-A-03204;;659040.3;5080312.7
+232;Archaeological site from  Rapoltu Mare - Sedi;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Neolithic Period, Hallstatt;1;0;1;1;1;0;0;0;0;0;90672.09;;;659503.1;5080168.9
+233;Archaeological site from  Stanija - Mina Stanija (Stanija mine);mine ;0;0;0;0;0;0;0;0;0;1;0;0;0;0;0;0;0;Romanian Age, Middle Ages;0;0;0;0;0;0;1;0;1;0;88840.02;;;658933.9;5110534.1
+234;Archaeological site from  Calan- Magura Calanului;settlement   (mine);1;0;0;0;0;0;0;0;0;1;0;0;0;0;0;0;0;Latène Period, Bronze Age;1;0;0;0;1;1;0;0;0;0;87433.03;;;660654.4;5070505.2
+235;Roman settlement  from Rapoltu Mare - La Vie;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;90672.02;;;660575.7;5081136.1
+236;Archaeological site from  Jeledinti - Magura;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Latène Period;1;0;0;0;1;1;0;0;0;0;90306.02;;;661097.3;5072566.7
+237;Tumulus from Galbina - Mogaita;tumulus;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;;0;0;0;0;0;0;0;0;0;0;87898.02;;;660427.4;5098826.5
+238;Bronze Age settlement from  Balsa- Piatra Baltii;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;87852.09;;;660566.4;5099377.1
+239;Roman necropole from Almasu Mic de Munte;necropole;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;87861.02;;;660968.1;5102434.0
+240;Settlement  Cotofeni from Bobalna- Avenul Cepturi;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;90681.04;;;661391.8;5091660.5
+241;Archaeological site from  Techereu - Dealul Fericeu (Fericeu hill);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages, Romanian Age;0;0;0;0;0;0;1;0;1;0;87969.02;;;661018.3;5106426.8
+242;Neolithic settlement from  Rapoltu Mare - Bagadau;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period;1;0;1;0;0;0;0;0;0;0;90672.07;;;661728.9;5082213.4
+243;Bronze Age settlement from  Balsa- Dealul Ceratului;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;87852.08;;;661605.7;5100850.8
+244;Medieval orthodox church from Pui;church;0;0;0;0;0;0;0;0;0;0;1;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;90547.07;;;663331.5;5042219.7
+245;Archaeological site from  Rau Barbat - fortress;fortified settlement;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Middle Ages, Romanian Age, Prehistory Period, Latène Period;1;0;0;0;0;1;1;0;1;0;90627.01;;;663505.8;5040003.0
+246;Archaeological site from  Deva - Dealul Cetatii (Cetatii hill);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Hallstatt, Eneolithic Period  , Latène Period;1;0;1;1;1;1;0;0;0;0;86696.01;HD-I-s-B-03149;;662469.8;5100206.5
+247;Settlement (Eneolithic Period) from Balsa - Deasupra Bisericii (Over the church);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Eneolithic Period  ;1;0;0;1;0;0;0;0;0;0;87852.04;;;662602.6;5099489.5
+248;Neolithic settlement from  Rapoltu Mare - Plese;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period;1;0;1;0;0;0;0;0;0;0;90672.06;;;663174.8;5082363.7
+249;Villa rustica from Bobalna- Fantana lui Parau ;villa rustica;0;0;0;0;0;0;0;0;0;0;0;0;1;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;90681.05;;;663480.5;5081993.7
+250;Bronze Age tumulus from Balsa - Dumbraita;tumulus;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;Bronze Age;1;0;0;0;1;0;0;0;0;0;87852.03;;;663095.1;5098376.3
+251;Roman wall from Pui - Magura;wall;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;90547.06;;;664582.1;5044303.5
+252;Bronze Age settlement from  Balsa- Piatra Vacarului;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;87852.07;;;663084.8;5101221.2
+253;Cave from  Balsa - Dosul Dobarlesei;settlement  in the cave;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages, Neolithic Period, Bronze Age;1;0;1;0;1;0;0;0;1;0;87852.02;;;663114.3;5100223.6
+254;Roman settlement  from DIncu Mare;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;90280.01;;;663946.4;5070000.8
+255;Bronze Age settlement from  Balsa- Varful Muncelului;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;87852.12;;;663414.5;5100963.1
+256;Archaeological site from  Balsa- Piatra and ncuiusului;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Hallstatt, Bronze Age;1;0;0;0;1;1;0;0;0;0;87852.05;;;663532.2;5098107.7
+257;Prehistoric settlement from  Turdas - La Lunca;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Eneolithic Period  , Neolithic Period, Bronze Age;1;0;1;1;1;0;0;0;0;0;91697.01;HD-I-s-A-03211;;664145.3;5078011.1
+258;Dacian fortification from Bosorod - valea Stupariei (Stupariei valley);fortified settlement;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Latène Period;1;0;0;0;0;1;0;0;0;0;88458.02;;;664999.4;5058101.5
+259;Villa rustica from valea Lupului (Wolf valley) - La Ruine;villa rustica;0;0;0;0;0;0;0;0;0;0;0;0;1;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;88038.01;HD-I-s-B-03212;;666051.2;5037834.1
+260;Settlement  from Mada - Pestera Zidita;habitation in the cave;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Middle Ages;1;0;0;0;1;0;0;0;1;0;87905.01;;;664540.6;5096951.6
+261;Tumulus necropole from Mada - Chiciorele;Tumulus necropole;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;1;Bronze Age;1;0;0;0;1;0;0;0;0;0;87905.02;;;664583.7;5096529.1
+262;Hill from Mada - Pleasa Mica;mound ;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;0;;0;0;0;0;0;0;0;0;0;0;87905.03;;;664703.6;5096595.7
+263;Roman settlement  from Livadia - Livezea;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;88010.01;;;666440.3;5038616.0
+264;Archaeological site from  Pricaz- Sitesului valley;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages, Bronze Age;1;0;0;0;1;0;0;0;1;0;91704.01;;;666272.4;5080321.5
+265;Archaeological site from  Ardeu - Cetateaua;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Eneolithic Period  , Middle Ages, Bronze Age, Latène Period;1;0;0;1;1;1;0;0;1;0;87870.01;HD-I-s-A-03151;;665942.4;5098151.1
+266;The cave complex from Ardeu- Cave number 4,  Pestera de Jos (The cave from below), Pestera Surpata Raiu and Pestera cetate (Fortress cave);settlement  in the cave;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;87870.02;;;666130.7;5100732.3
+267;Settlement  in the cave from Ohaba Ponor - sura Mare;settlement  in the cave;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Latène Period;1;0;0;0;0;1;0;0;0;0;90609.02;;;667671.9;5044058.7
+268;Bronze Age settlement from  Boiu - La Magulicea;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;90690.01;HD-I-s-B-03161;;666558.4;5085539.2
+269;Eneolithic settlement  from Ponor - Pestera lui Cocolbea;settlement  in the cave;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Eneolithic Period  ;1;0;0;1;0;0;0;0;0;0;90618.01;;;667803.4;5042066.6
+270;Dacian supervision tower from Costesti- Ciocuta;tower;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Latène Period;1;0;0;0;0;1;0;0;0;0;90379.24;;;667614.8;5060636.1
+271;Settlement in the cave from Ohaba Ponor - Bordu Mare;habitation in the cave;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period, Latène Period, Bronze Age, Palaeolithic ;1;1;1;0;1;1;0;0;0;0;90609.01;HD-I-s-A-03202;;668111.7;5042284.9
+272;Archaeological site (Latène) from Costesti - Cetatuia Inalta;habitation;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Latène Period;1;0;0;0;0;1;0;0;0;0;90379.02;HD-I-s-A-03178;;667712.3;5060254.1
+273;Fort from Costesti - Gradiste;fort;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;90379.03;HD-I-s-A-03179;;668097.1;5061275.1
+274;Tower from Costesti - Poiana Pertii;tower;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Latène Period;1;0;0;0;0;1;0;0;0;0;90379.06;HD-I-s-A-03182;;668223.0;5059554.0
+275;The mound complex (unknown epoch) from Orastie - tatele Gorganului;tumulus;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;;0;0;0;0;0;0;0;0;0;0;87647.24;;;667882.6;5074249.8
+276;Dacian fortress from Costesti - Blidaru;fortress;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Latène Period;1;0;0;0;0;1;0;0;0;0;90379.05;HD-I-s-A-03181;;668346.7;5059360.6
+277;Dacian settlement from Costesti- La Curti;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Latène Period;1;0;0;0;0;1;0;0;0;0;90379.13;;;668325.9;5060849.9
+278;Settlement Cotofeni from Baru- Blidaru;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;88001.08;;;669002.0;5036364.2
+279;Dacian settlement  from Ohaba-Ponor;exploitation mine;0;0;0;0;0;0;0;0;0;1;0;0;0;0;0;0;0;Latène Period;1;0;0;0;0;1;0;0;0;0;90609.05;;;668918.1;5042760.2
+280;Dacian settlement from Costesti- church;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Latène Period;1;0;0;0;0;1;0;0;0;0;90379.12;;;668469.8;5063310.9
+281;Church site sfarsitul lui Ilie din Baru (The end of Ilie from Baru);church;0;0;0;0;0;0;0;0;0;0;1;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;88001.06;HD-II-m-A-03242;;669421.9;5035187.1
+282;Settlement  Cotofeni from Baru- church;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;88001.07;;;669849.7;5037798.0
+283;Roman settlement  from Orastioara de Sus - Piatra Gradistii;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;90351.01;;;669406.6;5067699.1
+284;Latène settlement  from Bucium - Carpenis;fortified settlement;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Latène Period;1;0;0;0;0;1;0;0;0;0;90360.01;HD-I-s-A-03166;;669747.0;5069142.7
+285;Roman necropole from Bucium- Botes, Corabia;necropole;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;90360.05;;;669939.8;5067929.4
+286;Archaeological site from  Ocolisu Mic - Apa Gradistii;archaeolgical site;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Latène Period;1;0;0;0;0;1;0;0;0;0;90422.01;;;670352.4;5058106.5
+287;Archaeological site (Romanain Age) from Cigmau - cetatea Uriasului (Giants' fortress);fort;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;89614.01;HD-I-s-A-03172;;669834.1;5084862.3
+288;Medieval fortress from Orastie;fortress;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;87647.01;HD-II-a-A-03376;;670405.8;5078247.9
+289;Fort from Costesti - Prisaca;fort;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;90379.04;HD-I-s-A-03180;;671968.0;5061690.9
+290;Prehistoric settlement from Orastie - Dealul Pemilor X3 ;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period;1;0;1;0;0;0;0;0;0;0;87647.18;;;671749.4;5077610.1
+291;Settlement  Turdas from Orastie - Dealul Pemilor X1;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic Period;1;0;1;0;0;0;0;0;0;0;87647.28;;;671767.3;5077804.1
+292;Archaeological site from  Orastie - Dealul Pemilor X2;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Eneolithic Period  , Neolithic Period, Middle Ages;1;0;1;1;1;0;0;0;1;0;87647.02;;;672144.2;5080910.0
+293;Archaeological site from  Gradistea de Munte - Pestera 1 din Culmea Vartoapelor (The first cave in  Culmea Vartoapelor);settlement  in the cave;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Romanian Age, Latène Period;1;0;0;0;0;1;1;0;0;0;90397.39;;;672905.1;5057319.5
+294;Roman fortification from  Baru - La fantana (To the well) ;fortification;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;88001.03;HD-I-s-B-03155;;674534.4;5046329.8
+295;Dacian settlement from Gradistea de Munte- Dealul Muncelului (Muncelului hill);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Latène Period;1;0;0;0;0;1;0;0;0;0;90397.32;;;676584.6;5055135.5
+296;Latène fortification from Gradistea de Munte - Varful lui Hulpe;fortification;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Latène Period;1;0;0;0;0;1;0;0;0;0;90397.04;HD-I-s-A-03193;;676991.3;5059245.4
+297;Latène settlement  from Gradistea de Munte - Fetele Albe (White faces);settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Latène Period;1;0;0;0;0;1;0;0;0;0;90397.07;HD-I-s-A-03196;;679624.8;5054918.7
+298;Archaeological site from  Gradistea de Munte - Sarmizegetusa Regia;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Latène Period, Romanian Age;1;0;0;0;0;1;1;0;0;0;90397.01;HD-I-s-A-03190;;680003.3;5054614.9
+299;Dacian atelier from Gradistea de Munte- Caprareata;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Latène Period;1;0;0;0;0;1;0;0;0;0;90397.27;;;680527.1;5055979.9
+300;Archaeological site from  Gradistea de Munte - Tampu;settlement and tumulus;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;Latène Period,;1;0;0;0;0;1;0;0;0;0;90397.38;;;681575.2;5053096.0
+301;Dacian settlement from Romosel - Cioaca Gradistii;settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Latène Period;1;0;0;0;0;1;0;0;0;0;91036.01;;;683412.1;5071542.6
+302;Archaeological site from  Baru - La Comarnicel;fort;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Romanian Age;0;0;0;0;0;0;1;0;0;0;88001.02;HD-I-s-B-03154;;696379.8;5045240.2
+305;Bazosu Nou 1;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric  (unspecified period);1;0;0;0;0;0;0;0;0;0;;;001;531719.3;5066382.4
+306;Bazosu Nou 2;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric  (unspecified period);1;0;0;0;0;0;0;0;0;0;;;002;531740.8;5066413.5
+307;Becicherecu Mic 1;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Daco-Roman;0;0;0;0;0;0;1;0;0;0;;;003;503829.5;5080271.5
+308;Becicherecu Mic 2;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (especially bronze age), Daco-Roman, Celtic (?);1;0;0;0;1;0;1;0;0;0;;;004;502922.1;5080011.8
+309;Berecuta 1;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric, (possibly) Roman, Daco-Roman, Middle Ages;1;0;0;0;0;0;1;0;1;0;;;005;527723.6;5027901.1
+310;Berecuta 2;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Daco-Roman, Middle ages (developed and late);1;0;0;0;0;0;1;0;1;0;;;006;527958.0;5028034.9
+311;Berecuta 3;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric, Daco-Roman, Middle Ages (early and developed);1;0;0;0;0;0;1;0;1;0;;;007;527916.8;5028137.9
+312;Berecuta 4;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Daco-Roman, developed Middle Ages ;1;0;0;0;0;0;1;0;1;0;;;008;527631.5;5027941.5
+313;Berini ;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;late Middle Ages ;0;0;0;0;0;0;0;0;1;0;;;009;534363.3;5045287.5
+316;Bucovat 1;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Daco-Roman (or just Dacian?);1;0;0;0;0;0;1;0;0;0;;;013;527935.9;5066920.1
+317;Bucovat 2;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;late Middle Ages;0;0;0;0;0;0;0;0;1;0;;;014;531970.8;5065199.2
+318;Bucovat 3;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Daco-Roman, developed and late Middle Ages ;1;0;0;0;0;0;1;0;1;0;;;015;530530.6;5066499.9
+319;Bucovat 4;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Daco-Roman, developed Middle Ages;0;0;0;0;0;0;1;0;1;0;;;016;531641.3;5064684.4
+320;Bucovat 5;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Daco-Roman, developed Middle Ages;0;0;0;0;0;0;1;0;1;0;;;017;531641.3;5064684.4
+321;Bucovat 6;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Dacian oder Daco-Roman (?);1;0;0;0;0;0;1;0;0;0;;;018;530794.9;5065359.4
+322;Cadar ;fortified settlement (?);1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Prehistoric or Middle Ages;1;0;0;0;0;0;0;0;1;0;;;019;541989.5;5042741.4
+323;Carani 1;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Daco-Roman, developed Middle Ages;0;0;0;0;0;0;1;0;1;0;;;020;512763.4;5081048.3
+324;Carani 3;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;possibly Celtic, early and developed Middle Ages;0;0;0;0;0;0;0;0;1;0;;;022;513024.7;5085228.8
+325;Carani 4;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoiric (unspecified period), Dacian or Daco-Roman, early Middle Ages;1;0;0;0;0;0;1;0;1;0;;;023;512940.2;5084880.4
+326;Carani 6;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), early Middle Ages;1;0;0;0;0;0;0;0;1;0;;;025;513271.3;5085141.1
+327;Cerneteaz;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Daco-Roman, developed Middle Ages;1;0;0;0;1;0;1;0;1;0;;;028;518962.2;5076638.9
+328;Ciacova;urban settlement ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;;;029;509635.1;5040231.5
+329;Ciresu 1;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;developed and late Middle Ages;0;0;0;0;0;0;0;0;1;0;;;030;579543.2;5055759.7
+330;Ciresu 2;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), late Middle Ages ;1;0;0;0;0;0;0;0;1;0;;;031;580502.1;5054537.6
+331;Cornesti 2_1;circular fortification (made from soil);0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;bronze age;1;0;0;0;1;0;0;0;0;0;;;033;518455.1;5087592.8
+332;Cornesti 3;open settlement in the second enclosureof the fortification Cornesti ,,Iarcuri``;1;1;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;copper age, bronze age;1;0;0;1;1;0;0;0;0;0;;;034;518373.2;5085956.8
+333;Cornesti 2_4;circular fortification (made from soil);0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;copper age;1;0;0;1;0;0;0;0;0;0;;;036;518500.4;5086790.6
+334;Cornesti 2_5;open multilayer settlement from the fortification Cornesti- ,, Iarcuri`` (3. enclosure);1;1;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;bronze age, daco-roman, medieval;1;0;0;0;1;0;1;0;1;0;;;037;521583.9;5036765.3
+335;Cornesti 7;open settlement from the fortification Cornesti- ,, Iarcuri`` (3. enclosure);1;1;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (Neolithic or Bronze Age);1;0;1;0;1;0;0;0;0;0;;;038;518951.8;5087008.4
+336;Cornesti 8;open settlement, 250 m west from the 3. wall of the fortification from Cornesti- ,, Iarcuri``;1;1;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Bronze Age ;1;0;0;0;1;0;0;0;0;0;;;039;517339.8;5085892.8
+337;Cornesti 9;open settlement on the outside of the 3. enclosure from Cornesti- ,,Iarcuri``;1;1;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, early Middle Ages;1;0;0;0;1;0;0;0;1;0;;;040;517319.2;5085645.7
+338;Cornesti 10;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Daco-Roman;1;0;0;0;1;0;1;0;0;0;;;041;519357.9;5081053.3
+339;Cornesti 11;open settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;;;042;516874.5;5082866.7
+340;Cruceni;open settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;;;044;524067.3;5100513.5
+341;Dejan 1;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Daco-Roman, early Middle Ages ;0;0;0;0;0;0;1;0;1;0;;;045;524034.1;5016415.4
+342;Dejan 2;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Daco-Roman;1;0;0;0;0;0;1;0;0;0;;;046;523759.9;5015794.3
+343;Dejan 3;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), early and developed Middle Ages ;1;0;0;0;0;0;0;0;1;0;;;047;523457.3;5015925.3
+344;Dejan 4;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric, Roman Age, Romanian Age, Daco-Roman, early and developed Middle Ages ;1;0;0;0;1;0;0;0;1;0;;;048;523509.9;5015751.8
+345;Dejan 5;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric, Daco-Roman, developed Middle Ages ;1;0;0;0;0;0;1;0;1;0;;;049;523370.2;5015565.7
+346;Dejan 6;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric, Daco-Roman, developed Middle Ages ;1;0;0;0;0;0;1;0;1;0;;;050;522818.2;5015819.3
+347;Dejan 7;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric, Roman Age, Romanian Age, Daco-Roman, early and developed Middle Ages ;1;0;0;0;0;0;1;0;1;0;;;051;523873.8;5016059.2
+348;Dejan 8;open settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;;;052;523999.3;5017033.0
+349;Dragsina 1;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Daco-Roman, early and developed Middle Ages ;1;0;0;0;0;0;1;0;1;0;;;053;531574.4;5060888.7
+350;Dragsina 2;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;developed Middle Ages ;0;0;0;0;0;0;0;0;1;0;;;054;531724.8;5061043.3
+351;Duboz;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric, Daco-Roman, early and developed Middle Ages ;1;0;0;0;0;0;1;0;1;0;;;058;542127.8;5044717.6
+352;Ersig 1;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Latène Period;1;0;0;0;0;1;0;0;0;0;;;059;547183.4;5087418.1
+353;Ersig 2;open multilayer setlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), early- developed - and late Middle Ages ;1;0;0;0;0;0;0;0;1;0;;;060;548655.9;5038962.2
+354;Ersig 3;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;developed Middle Ages ;0;0;0;0;0;0;0;0;1;0;;;061;549330.6;5038658.7
+355;Firiteaz 1;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Daco-Roman, early and developed Middle Ages ;1;0;0;0;0;0;1;0;1;0;;;062;526045.5;5095181.7
+356;Firiteaz 2;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;early and developed Middle Ages ;0;0;0;0;0;0;0;0;1;0;;;063;526022.6;5095397.6
+357;Firiteaz 3;fortification made from soil;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Prehistoric, Daco-Roman ;1;0;0;0;0;0;1;0;0;0;;;064;528007.7;5094048.5
+358;Firiteaz 4;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;early Middle Ages ;0;0;0;0;0;0;0;0;1;0;;;065;526979.3;5093087.3
+359;Firiteaz 5;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Daco-Roman ;1;0;0;0;1;0;1;0;0;0;;;066;527725.8;5094540.7
+360;Foeni 1;grave tumulus, open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;develped Middle Ages ;0;0;0;0;0;0;0;0;1;0;;;067;487417.6;5039311.2
+361;Foeni 2;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, early and developed Middle Ages ;1;0;0;0;1;0;0;0;1;0;;;068;487590.9;5039465.0
+362;Frumuseni 1;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;early and developed Middle Ages ;0;0;0;0;0;0;0;0;1;0;;;069;536540.1;5106068.2
+363;Frumuseni 2;fortified settlement (?);1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;early and developed Middle Ages ;0;0;0;0;0;0;0;0;1;0;;;070;536345.7;5106252.5
+364;Ghiroda;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), developed Middle Ages ;1;0;0;0;0;0;0;0;1;0;;;072;522120.0;5068007.2
+365;Giroc 2;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Roman, Romanian Age (?), early and developed Middle Ages ;1;0;0;0;0;0;1;0;1;0;;;074;519043.8;5056918.6
+366;Hunedoara Timisana 1;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Brnze Age, Daco-Roman, early and developed Middle Ages ;1;0;0;0;1;0;1;0;1;0;;;077;525132.9;5097431.2
+367;Hunedoara Timisana 2;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Dacian or Daco-Roman (?), developed Middle Ages ;1;0;0;0;1;0;1;0;1;0;;;078;525001.9;5097986.0
+368;Hunedoara Timisana 3;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Dacian or Daco-Roman (?);1;0;0;0;0;0;1;0;0;0;;;079;524900.4;5096503.9
+369;Icloda 1;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;developed Middle Ages, Daco-Roman, Bronze Age ;1;0;0;0;1;0;1;0;1;0;;;080;529127.3;5054414.1
+370;Icloda 2;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric, Daco-Roman, Middle Ages ;1;0;0;0;0;0;1;0;1;0;;;081;529297.2;5053038.8
+371;Icloda 3;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric ( unspecified period), Daco-Roman, developed Middle Ages;1;0;0;0;0;0;1;0;1;0;;;082;529230.2;5053377.6
+372;Maguri ;area of tumuli and open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;Bronze Age, developed Middle Ages ;1;0;0;0;1;0;0;0;1;0;;;083;578214.4;5056391.7
+373;Mailat 2;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;;;085;507266.8;5099297.4
+374;Mailat 3;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age;1;0;0;0;1;0;0;0;0;0;;;086;506022.5;5096981.6
+375;Manastur;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Daco-Roman ;1;0;0;0;0;0;1;0;0;0;;;087;510407.6;5096986.9
+377;Mosnita Veche 1;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (Neolithic ?), developed and late Middle Ages ;1;0;1;0;0;0;0;0;1;0;;;089;525605.6;5066199.8
+378;Mosnita Veche 2;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Daco-Roman, developed Middle Ages ;1;0;0;0;0;0;1;0;1;0;;;090;526143.6;5066727.1
+379;Munar ;circular fortification (made from soil);0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, developed Middle Ages ;1;0;0;0;1;0;0;0;1;0;;;091;502794.0;5105589.9
+380;Murani 1;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric, Daco-Roman, late Middle Ages ;1;0;0;0;0;0;1;0;1;0;;;092;523905.0;5088875.3
+381;Murani 2;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Daco-Roman (?), developed Middle Ages ;1;0;0;0;0;0;1;0;1;0;;;093;522487.7;5085816.3
+382;Murani 3;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;early and developed Middle Ages, Daco-Roman;0;0;0;0;0;0;1;0;1;0;;;094;522457.8;5088223.2
+383;Murani 5;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Daco-Roman, developed Middle Ages;1;0;0;0;1;0;1;0;1;0;;;096;522779.4;5088533.5
+384;Murani 6;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Daco-Roman ;1;0;0;0;1;0;1;0;0;0;;;097;522152.9;5083098.8
+385;Murani 7;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Daco-Roman, early and developed Middle Ages ;0;0;0;0;0;0;1;0;1;0;;;098;522195.9;5083099.0
+386;Murani 8;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Daco-Roman, developed Middle Ages;0;0;0;0;0;0;1;0;1;0;;;099;522904.9;5083626.9
+387;Opatita 1;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Daco-Roman, developed and late Middle Ages ;1;0;0;0;0;0;1;0;1;0;;;101;522082.5;5029678.2
+388;Opatita 2;tell;1;0;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Hallstatt, Daco-Roman, early and developed Middle Ages ;1;0;0;0;1;1;0;0;1;0;;;102;522495.4;5029525.8
+389;Opatita 3;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;early and developed Middle Ages ;0;0;0;0;0;0;0;0;1;0;;;103;521866.3;5029399.3
+390;Opatita 4;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;early and developed Middle Ages ;0;0;0;0;0;0;0;0;1;0;;;104;523516.2;5029961.0
+391;Opatita 5;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Daco-Roman, developed Middle Ages;0;0;0;0;0;0;1;0;1;0;;;105;522216.6;5028598.3
+392;Opatita 6;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric, Bronze Age, Hallstatt, developed Middle Ages ;1;0;0;0;1;1;0;0;1;0;;;106;522409.5;5029401.4
+393;Opatita 7;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;developed Middle Ages ;0;0;0;0;0;0;0;0;1;0;;;107;522065.6;5028196.6
+394;Opatita 8;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Daco-Roman, developed and late Middle Ages ;0;0;0;0;0;0;1;0;1;0;;;108;522477.5;5028723.4
+395;Opatita 9;grave of cremation (?);0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period);1;0;0;0;0;0;0;0;0;0;;;109;522197.3;5028043.1
+396;Ortisoara 1;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Dacian or Daco-Roman (?), early Middle Ages ;1;0;0;0;0;0;1;0;1;0;;;110;513840.8;5091409.3
+397;Ortisoara 3;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period);1;0;0;0;0;0;0;0;0;0;;;112;513861.1;5090945.0
+398;Ortisoara 4;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Daco-Roman, late Middle Ages ;0;0;0;0;0;0;1;0;1;0;;;113;513301.6;5090789.9
+399;Ortisoara 5;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Dacian or Daco-Roman, early Middle Ages;1;0;0;0;0;0;1;0;1;0;;;114;513537.3;5091376.0
+400;Ortisoara 6;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), developed and late Middle Ages ;1;0;0;0;0;0;0;0;1;0;;;115;513497.2;5090203.3
+401;Ortisoara 7;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, early Middle Ages;1;0;0;0;1;0;0;0;1;0;;;116;513968.8;5091130.6
+402;Ortisoara 8;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (Bronze Age (?)), Daco-Roman, early Middle Ages ;1;0;0;0;1;0;1;0;1;0;;;117;514333.0;5091471.0
+403;Ortisoara 9;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, late Middle Ages;1;0;0;0;1;0;0;0;1;0;;;118;513409.3;5091036.4
+404;Ortisoara 10;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Daco-Roman, late Middle Ages;1;0;0;0;1;0;1;0;1;0;;;119;513257.6;5091407.0
+405;Ortisoara 11;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Dako Roman ;1;0;0;0;1;0;1;0;0;0;;;120;517801.9;5089998.4
+406;Padureni 1;fortified tell;1;0;0;1;0;1;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Daco-Roman;1;0;0;0;1;0;1;0;0;0;;;121;521361.2;5049889.6
+407;Padureni 2;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;developed and late Middle Ages;0;0;0;0;0;0;0;0;1;0;;;122;517161.6;5047735.2
+408;Padureni 3;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;developed and late Middle Ages, Roman (?);0;0;0;0;0;0;1;0;1;0;;;123;516991.8;5047530.5
+409;Padureni 4;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;developed Middle Ages;0;0;0;0;0;0;0;0;1;0;;;124;517275.6;5047037.5
+410;Padureni 5;open multilayer settlement;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Dacian, Daco-Roman, developed and late Middle Ages;0;0;0;0;0;0;1;0;1;0;;;125;517683.5;5048242.6
+411;Parta 1;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age ;1;0;0;0;1;0;0;0;0;0;;;127;509547.5;5055384.1
+412;Pecica 1;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Dacian, early and developed Middle Ages ;1;0;0;0;1;0;1;0;1;0;;;130;498908.5;5111145.3
+413;Pecica 2;circular fortification (made from soil);0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unsprecified period), early Middle Ages;1;0;0;0;0;0;0;0;1;0;;;131;509476.7;5115010.2
+414;Peciu Nou 1;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Daco-Roman, late Middle Ages;1;0;0;0;0;0;1;0;1;0;;;132;500177.5;5050436.2
+415;Peciu Nou 2;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period);1;0;0;0;0;0;0;0;0;0;;;133;499894.6;5051149.4
+416;Peciu Nou 3;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Daco-Roman, late Middle Ages;1;0;0;0;0;0;1;0;1;0;;;134;500262.3;5050840.7
+417;Peciu Nou 4;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Daco-Roman;0;0;0;0;0;0;1;0;0;0;;;135;500348.7;5050253.7
+418;Peciu Nou 5;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (Bronze Age ?), Sarmatian (?), developed Middle Ages ;1;0;0;0;1;0;0;0;1;0;;;136;498876.0;5050933.3
+419;Peciu Nou 6;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age (?), developed Middle Ages ;1;0;0;0;1;0;0;0;1;0;;;137;499916.0;5051241.5
+420;Peciu Nou 7;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), developed Middle Ages ;1;0;0;0;0;0;0;0;1;0;;;138;499807.7;5051087.0
+421;Remetea Mare 1;open settlement (?);1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;;;139;530487.4;5069397.5
+422;Remetea Mare 2;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Hallstatt, Dacian, late Middle Ages ;1;0;0;0;1;1;1;0;1;0;;;140;531430.8;5070538.5
+423;Remetea Mare 3;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Hallstatt, Dacian, Daco-Roman;1;0;0;0;0;1;1;0;0;0;;;141;531258.9;5070334.8
+424;Sacosu Turcesc ;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric, Dacian or Dako Roman, late Middle Ages ;1;0;0;0;0;0;1;0;1;0;;;142;533829.4;5054030.3
+425;Sag 1;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Roman Age (?);0;0;0;0;0;1;0;0;0;0;;;143;515658.3;5054095.4
+426;Sag 2;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;early and developed Middle Ages;0;0;0;0;0;0;0;0;1;0;;;144;514805.9;5055672.6
+427;Sagu;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age ;1;0;0;0;1;0;0;0;0;0;;;146;520540.8;5101456.8
+428;Sanandrei 1;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;early and developed Middle Ages, Daco-Roman,;0;0;0;0;0;0;1;0;1;0;;;147;517332.9;5078559.2
+429;Sanandrei 2;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;early and developed Middle Ages ;0;0;0;0;0;0;0;0;1;0;;;148;517514.7;5077528.8
+430;Sanandrei 3;Middle Ages fortification and civil settlement ;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Middle Ages;0;0;0;0;0;0;0;0;1;0;;;149;517059.7;5078083.3
+431;Sanandrei 4;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (Neolithic ?);1;0;1;0;0;0;0;0;0;0;;;150;509750.1;5077913.4
+432;Sanandrei 5;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (Neolithic ?);1;0;1;0;0;0;0;0;0;0;;;151;517074.9;5080429.4
+433;Sanandrei 6;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Daco-Roman;1;0;0;0;0;0;1;0;0;0;;;152;518884.0;5080866.4
+434;Sanmartinu Sarbesc 2;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;late Middle Ages ;0;0;0;0;0;0;0;0;1;0;;;155;497879.9;5050285.1
+435;Sanmartinu Sarbesc 3;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Daco-Roman, early and developed Middle Ages ;0;0;0;0;0;0;1;0;1;0;;;156;498161.9;5050748.4
+436;Sanmartinu Sarbesc 4;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (Neolithic ?), Daco-Roman, early Middle Ages ;1;0;1;0;0;0;1;0;1;0;;;157;495691.1;5049422.0
+437;Sanmartinu Sarbesc 5;tell;1;0;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), developed Middle Ages ;1;0;0;0;0;0;0;0;1;0;;;158;495908.2;5049421.9
+438;Sanmartinu Sarbesc 6;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), developed Middle Ages ;1;0;0;0;0;0;0;0;1;0;;;159;495604.7;5049668.8
+439;Sanmartinu Sarbesc 7;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Dacian or Daco-Roman, late Middle Ages ;1;0;0;0;0;0;1;0;1;0;;;160;495063.8;5049761.8
+440;Sanmartinu Sarbesc 8;fortification made by soil and settlement ;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (Neolithic ?), Daco-Roman, early and developed Middle Ages ;1;0;1;0;0;0;1;0;1;0;;;161;495344.5;5049391.7
+441;Sannicolau Mare 1;grave tumulus (tumulus ,,Odaia Lupului``), open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;Bronze Age, early-middle-late Middle Ages;1;0;0;0;1;0;0;0;1;0;;;162;471035.0;5099763.2
+442;Sannicolau Mare 2;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (Bronze Age?), Daco-Roman;1;0;0;0;1;0;1;0;0;0;;;163;470563.9;5099980.7
+443;Sannicolau Mare 3;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Daco-Roman, developed Middle Ages;1;0;0;0;1;0;1;0;1;0;;;164;469961.7;5099860.3
+444;Sannicolau Mare 4;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (Bronze Age ?), Daco-Roman, early and developed Middle Ages ;1;0;0;0;1;0;1;0;1;0;;;165;470135.1;5100292.2
+445;Sannicolau Mare 5;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric ;1;0;0;0;0;0;0;0;0;0;;;166;471166.7;5100348.1
+446;Sannicolau Mare 6;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric ;1;0;0;0;0;0;0;0;0;0;;;167;470929.6;5100010.0
+447;Sannicolau Mare 7;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (Bronze Age), Daco-Roman, late Middle Ages ;1;0;0;0;1;0;1;0;1;0;;;168;471233.4;5100811.7
+448;Sannicolau Mare 8;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Daco-Roman ;1;0;0;0;1;0;1;0;0;0;;;169;471212.3;5100872.6
+449;Sannicolau Mare 9;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), early Middle Ages ;1;0;0;0;0;0;0;0;1;0;;;170;473302.5;5102160.2
+450;Sannicolau Mare 10;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Daco-Roman ;0;0;0;0;0;0;1;0;0;0;;;171;471536.1;5101118.0
+451;Seceani 1;settlement;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age ;1;0;0;0;1;0;0;0;0;0;;;174;519197.2;5091144.2
+452;Seceani 3;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified peiod), Dacian or Daco-Roman (?), early Middle Ages ;1;0;0;0;0;0;1;0;1;0;;;176;524950.3;5094714.3
+453;Seceani 4;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric, late Middle Ages ;1;0;0;0;0;0;0;0;1;0;;;177;525732.8;5092744.4
+454;Siria ;circular fortification (made from soil);0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Bronze Age ;1;0;0;0;1;0;0;0;0;0;;;178;546316.8;5124746.0
+456;Stamora Romana ;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;early and late Middle Ages ;0;0;0;0;0;0;0;0;1;0;;;180;529645.7;5052674.0
+457;Tapia ;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;developed and late Middle Ages ;0;0;0;0;0;0;0;0;1;0;;;182;574899.1;5058542.5
+458;Teremia Mare;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (Hallstatt ?), Daco-Roman, early and developed Middle Ages ;1;0;0;0;0;1;1;0;1;0;;;183;465634.3;5088413.3
+459;Tisa Noua 1;fortified settlement or fortification made by soil (?);1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (Neolithic ?);1;0;1;0;0;0;0;0;0;0;;;184;529372.3;5100999.5
+460;Tisa Noua 2;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Daco- Roman (?);1;0;0;0;0;0;1;0;0;0;;;185;529413.1;5101400.8
+461;Turnu;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, late Middle Ages;1;0;0;0;1;0;0;0;1;0;;;186;515438.3;5122614.6
+462;Unip 2;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (Bronze Age ?) ;1;0;0;0;1;0;0;0;0;0;;;188;526875.6;5054978.7
+463;Unip 3;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Dacian, developed Middle Ages ;1;0;0;0;0;0;1;0;1;0;;;189;522548.7;5057022.2
+464;Unip 4;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period), Dacian or Daco-Roman, late Middle Ages ;1;0;0;0;0;0;1;0;1;0;;;190;526802.6;5054138.5
+465;Urseni 2;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (unspecified period);1;0;0;0;0;0;0;0;0;0;;;192;525482.0;5059286.5
+466;Valeapi;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;developed Middle Ages ;0;0;0;0;0;0;0;0;1;0;;;193;556207.6;5038932.7
+467;Vermes 1;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Daco-Roman, developed Middle Ages ;0;0;0;0;0;0;1;0;1;0;;;194;550840.6;5042458.8
+468;Vermes 2;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;developed Middle Ages ;0;0;0;0;0;0;0;0;1;0;;;195;549031.5;5040795.2
+469;Vermes 3;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;late Middle Ages ;0;0;0;0;0;0;0;0;1;0;;;196;550382.8;5040388.5
+470;Vermes 5;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;early Middle Ages ;0;0;0;0;0;0;0;0;1;0;;;198;553386.4;5041277.3
+471;Vermes 6;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;late Middle Ages ;0;0;0;0;0;0;0;0;1;0;;;199;553364.1;5039062.6
+472;Vermes 7;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Latène Period ;1;0;0;0;0;1;0;0;0;0;;;200;553712.4;5041503.7
+473;Vermes 8;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Dacian (?);0;0;0;0;0;0;1;0;0;0;;;201;549813.4;5040669.2
+474;Vermes 9;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Dacian or Daco-Roman (?);0;0;0;0;0;0;1;0;0;0;;;202;554383.9;5041602.4
+475;Vermes 10;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;developed Middle Ages ;0;0;0;0;0;0;0;0;1;0;;;203;550095.8;5040805.4
+476;Vermes 11;tumulus (?);0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;Prehistoric (?), early Middle Ages ;1;0;0;0;0;0;0;0;1;0;;;204;548816.1;5040661.4
+477;Vinga 1;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, early Middle Ages ;1;0;0;0;1;0;0;0;1;0;;;205;515944.4;5094327.6
+478;Vinga 2;fortification made by soil and open settlement ;1;1;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Prehistoric, Middle Ages ;1;0;0;0;0;0;0;0;1;0;;;206;516143.4;5093712.3
+479;Zabrani ;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Dacian or Daco-Roman (?);0;0;0;0;0;0;1;0;0;0;;;208;539972.8;5106398.0
+480;Timisoara ''Cioreni'';open settlement and necropole  ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;Dacian, Post-Roman, early Middle Ages ;0;0;0;0;0;0;1;1;1;0;;TM-I-s-B-06049;;512393.4;5071437.4
+481;Fortificatile cetatii Timisoara ;fortification;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;late Middle Ages ;0;0;0;0;0;0;0;0;1;0;;TM-I-s-A-06050;;517521.7;5067221.2
+482;Alios- ''Cetatea turceasca'';fortification made by soil and open settlement ;1;1;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Latène, pre-feudal, early Middle Ages, developped Middle Ages;1;0;0;0;1;1;0;0;1;0;;TM-I-s-B-06051;;538687.4;5096838.9
+483;Becicherecu Mic - ''Dealul Crucii'';open settlement  ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic, Post-Roman, pre-feudal, early Middle Ages ;1;0;1;0;0;0;0;1;1;0;;TM-I-s-B-06052;;502444.2;5080005.8
+484;Tell-ul de la Bucovat;tell;1;0;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic ;1;0;1;0;0;0;0;0;0;0;;TM-I-s-B-06054;;530147.3;5067261.1
+485;Cetatea Morisena din Cenad ;fortified urban settlement and ecclesiastical center  ;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Roman (?), early - middle- late Middle-Ages;1;0;0;0;1;0;1;0;1;0;;TM-I-s-A-06055;;468147.9;5106443.8
+486;Camp de tumului din Checea (1);tumulus 1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;Bronze Age (till Modern Age);1;0;0;0;1;0;0;0;0;0;;TM-I-s-B-06056.01;;488896.2;5065879.2
+487;Camp de tumului din Checea (2);tumulus (cemetery ?) 2;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;1;Bronze Age (till Modern Age);1;0;0;0;1;0;0;0;0;0;;TM-I-s-B-06056.02;;488159.6;5064368.6
+488;Camp de tumului din Checea (3);tumulus (cemetery ?) 3;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;1;Bronze Age (till Modern Age);1;0;0;0;1;0;0;0;0;0;;TM-I-s-B-06056.03;;566335.1;5064217.3
+489;Camp de tumului din Checea (4);tumulus (cemetery ?) 4;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;1;Bronze Age (till Modern Age);1;0;0;0;1;0;0;0;0;0;;TM-I-s-B-06056.04;;488697.0;5063009.9
+490;Camp de tumului din Checea (5);tumulus (cemetery ?) 5;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;1;Bronze Age (till Modern Age);1;0;0;0;1;0;0;0;0;0;;TM-I-s-B-06056.05;;488565.8;5063471.6
+491;Camp de tumului din Checea (6);tumulus (cemetery ? ) 6 and open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;1;0;1;Neolithic, late Bronze Age ;1;0;1;0;1;0;0;0;0;0;;TM-I-s-B-06056.06;;488005.0;5063103.3
+492;Camp de tumului din Checea (7);tumulus (cemetery ? ) 7 and open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;1;0;1;Neolithic, late Bronze Age ;1;0;1;0;1;0;0;0;0;0;;TM-I-s-B-06056.07;;488070.1;5063041.5
+493;Tell-ul de la Chisoda;tell;1;0;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;late Neolithic, developed Middle Ages ;1;0;1;0;0;0;0;0;1;0;;TM-I-s-B-06057;;515031.6;5060610.7
+494;'Val roman'' din Chisoda 2 A;linear fortification made by soil;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Roman;0;0;0;0;0;0;1;0;0;0;;TM-I-s-B-06058.01;;514901.0;5060980.3
+495;'Val roman'' din Chisoda 2 B;linear fortification made by soil;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Roman;0;0;0;0;0;0;1;0;0;0;;TM-I-s-B-06058.02;;514924.8;5060147.0
+496;'Val roman'' din Chisoda 2 C;linear fortification made by soil;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Roman;0;0;0;0;0;0;1;0;0;0;;TM-I-s-B-06058.03;;515394.0;5054099.2
+497;Cetatea din Faget;fortress made by stones and fortification made by soil;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Middle Ages ;0;0;0;0;0;0;0;0;1;0;;TM-I-s-A-06059;;591123.1;5079938.8
+498;Cetatuica din Giarmata;fortified urban settlement and open settlement ;1;1;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Post-Roman, early and developed Middle Ages ;1;0;0;0;1;0;0;1;1;0;;TM-I-s-B-06060;;526475.3;5081192.6
+499;Cetate din Giroc ;tell and fortification made by soil;1;0;0;1;0;1;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Hallstatt, late Middle Ages, Modern Age;1;0;0;0;1;1;0;0;1;1;;TM-I-s-B-06061;;513178.7;5056077.3
+500;Asezare de la Herneacova;fortified settlement ;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;late Hallsatt, Latène;1;0;0;0;0;1;0;0;0;0;;TM-I-s-A-06062;;538713.4;5081266.8
+501;Situl archaeologic de la Hodoni;open settlement and inhumation grave (necropole);1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;Neolithic, Post-Roman, early Middle Ages ;1;0;1;0;0;0;0;1;1;0;;TM-I-s-B-06063;;507157.0;5082569.8
+502;Asezare de la Hodoni;fortified settlement, open settlement and liniar fortification made by soil ;1;1;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Bronze- Age, Post-Roman;1;0;0;0;1;0;0;1;0;0;;TM-I-s-B-06064;;506550.9;5084575.4
+503;'Cetate turceasca''de la Ianova;fortification made by soil and open settlement ;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;developed Middle Ages ;0;0;0;0;0;0;0;0;1;0;;TM-I-s-B-06065;;532222.1;5074289.6
+504;Asezare din Izvin;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric, Post-Roman- early Middel Ages ;1;0;0;0;0;0;0;1;1;0;;TM-I-s-B-06066;;536832.1;5076263.1
+505;Cetatea Jdioarei;fortress made by stones ;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;developed Middle Ages ;0;0;0;0;0;0;0;0;1;0;;TM-I-s-A-06067;;587152.7;5053361.3
+506;Cetatea Masloc ;circular fortification made by soil and open settlement ;1;1;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;developed Middle Ages ;0;0;0;0;0;0;0;0;1;0;;TM-I-s-B-06069;;535776.4;5093317.3
+507;Asezare de la Manastiur ;fortified church and open settlement ;1;1;0;0;0;1;0;0;0;0;1;0;0;0;0;0;0;early ande developed Middle Ages ;0;0;0;0;0;0;0;0;1;0;;TM-I-s-B-06070;;582988.5;5076515.9
+508;Asezare de la Dejan;open settlement (tell?);1;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;Neolithic, Bronze Age, Post-Roman, early and developed Middle Ages ;1;0;1;0;1;0;0;1;1;0;;TM-I-s-B-06071;;524328.6;5016448.1
+509;Tumuli din Mosnita Veche;open multilayer settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (Bronze Age ?), Post-Roman, developed and late Middle Ages ;1;0;0;0;1;0;0;1;1;0;;TM-I-s-B-06072;;523446.2;5065883.4
+510;Camp de tumuli din Nerau (1);tumulus (cemetery ?) 1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;1;Bronze Age (till the beginning of Modern Age);1;0;0;0;1;0;0;0;0;0;;TM-I-s-B-06073.01;;469919.0;5091218.7
+511;Camp de tumuli din Nerau (2);tumulus (cemetery ?) 2;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;1;Bronze Age (till the beginning of Modern Age);1;0;0;0;1;0;0;0;0;0;;TM-I-s-B-06073.02;;468955.5;5092056.6
+512;Camp de tumuli din Nerau (3);tumulus (cemetery ?) 3;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;1;Bronze Age (till the beginning of Modern Age);1;0;0;0;1;0;0;0;0;0;;TM-I-s-B-06073.03;;469063.1;5092087.0
+513;Camp de tumuli din Nerau (4);tumulus (cemetery ?) 4;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;1;Bronze Age (till the beginning of  Modern Age);1;0;0;0;1;0;0;0;0;0;;TM-I-s-B-06073.04;;466877.0;5089722.2
+514;Camp de tumuli din Nerau (5);tumulus (cemetery ?) and inhumation grave (necropole) 5;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;1;1;Bronze Age;1;0;0;0;1;0;0;0;0;0;;TM-I-s-B-06073.05;;466016.8;5088425.5
+515;Camp de tumuli din Nerau (6);tumulus (cemetery ?) and inhumation grave (necropole) 6;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;1;1;Bronze Age ;1;0;0;0;1;0;0;0;0;0;;TM-I-s-B-06073.06;;466202.3;5088336.8
+516;Tumuli din Ofsenita;tumuli (?);0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;Bronze Age ;1;0;0;0;1;0;0;0;0;0;;TM-I-s-B-06074;;515521.7;5028763.8
+517;Fortificatia din Opatita;fortification made by soil (fortified church ?), prehistoric settlement and Middle Ages necropole ;1;0;0;0;0;1;0;0;0;0;1;0;0;0;0;1;0;Prehistoric, early and developed Middle Ages ;1;0;0;0;0;0;0;0;1;0;;TM-I-s-B-06075;;521692.3;5029337.5
+518;Necropola din Periam;fortified settlement;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Sarmatian Age (?), Hallstatt, Latène, early and developed Middle Ages ;1;0;0;0;1;1;0;0;1;0;;TM-I-s-B-06077;;488440.8;5099304.1
+519;'Gomila lui Gabor'' - Remetea Mare ;open settlement and necropole ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;early Middle Ages, Hallstatt, Latène ;1;0;0;0;0;1;0;0;1;0;;TM- I-m-B-06078;;530477.6;5069272.9
+520;Manastire din Remetea Mare;open settlement (?), fortification (?), monastery (?);1;1;0;0;0;1;0;0;0;0;0;0;0;1;0;0;0;Hallstatt, Post-Roman, early and developed Middle Ages ;1;0;0;0;0;1;0;1;1;0;;TM-I-s-B-06079;;528318.2;5068975.5
+521;Asezare din Romanesti;Palaeolithic site ;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;upper Palaeolithic,;1;1;0;0;0;0;0;0;0;0;;TM-I-s-B-06080;;602657.9;5074652.1
+522;'Pesterea cu Apa''- Romanesti;settlement in the cave and inhumation necropole ;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0;1;0;Neolithic, transition to Bronze Age ;1;0;1;0;1;0;0;0;0;0;;TM-I-s-B-06081;;604939.4;5072311.2
+523;Cetate din Satchinez;fortification made by soil and open settlement ;1;1;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;developed and late Middle Ages ;0;0;0;0;0;0;0;0;1;0;;TM-I-s-B-06082;;501854.3;5086948.8
+524;Asezare din Sannicolau Mare;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Post- Roman ;1;0;0;0;1;0;0;1;0;0;;TM-I-s-B-06083;;471122.5;5101088.2
+525;Asezare din Sannicolau Mare;open settlement and necropole;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;Bronze Age, Post-Roman, Prefeudal Period, early-developed and late Middle Ages ;1;0;0;0;1;0;0;1;1;0;;TM-I-s-B-06085;;473493.4;5101665.6
+526;Cetate din Seceani;circular fortification made by soil ;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;developed and late Middle Ages ;0;0;0;0;0;0;0;0;1;0;;TM-I-s-B-06086;;524475.4;5091542.5
+527;Asezare din Stanciova;fortification made by soil and open settlement ;1;1;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Prehistoric (Palaeolithic), early and developed Middle Ages ;1;1;0;0;0;0;0;0;1;0;;TM-I-s-B-06087;;545155.7;5081527.2
+528;Asezare din Unip;open settlement ;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Palaeolithic, Post-Roman, early and developed Middle Ages ;1;1;0;0;0;0;0;1;1;0;;TM-I-s-B-06088;;526712.6;5054816.4
+529;'Dealul Cetatuica'' din Unip;fortified settlement ;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;Palaeolithic, Bronze Age, early - middle and late Hallstatt, Latène, developed Middle Ages ;1;1;0;0;1;1;0;0;1;0;;TM-I-s-B-06089;;523348.5;5057395.5
+530;Vizejdia - Tumul (1);prehistoric grave (tumulus ?), open settlement and necropole (?) (1);1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;1;1;Prehistoric, Post-Roman, early and developed Middle Ages ;1;0;0;0;0;0;0;1;1;0;;TM-I-s-B-06090 .01;;470993.8;5086275.6
+531;Vizejdia - Tumul (2);boundary mound or grave (tumulus ?) (2);1;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;1;Bronze Age till the beginning of Modern Age;1;0;0;0;1;0;0;0;0;0;;TM-I-s-B-06090 .02;;475279.8;5086411.0
+532;Vizejdia - Tumul (3);grave (tumulus ?) (3);0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;Bronze Age till the beginning of Modern Age;1;0;0;0;1;0;0;0;0;0;;TM-I-s-B-06090 .03;;471890.4;5089295.9
+533;Asezare de la Voiteg;fortified tell;1;0;0;1;0;1;0;0;0;0;0;0;0;0;0;0;0;Bronze Age, Middle Ages ;1;0;0;0;0;0;0;0;1;0;;TM-I-s-B-06091;;516548.2;5035185.6
+534;Sit de la Voiteg;open settlement and necropole;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;Bronze Age, early Middle Ages ;1;0;0;0;0;0;0;0;1;0;;TM-I-s-B-06092;;515762.7;5036726.1
