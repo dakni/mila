@@ -5,7 +5,7 @@ Repository to host lecture slides and code examples of master course "Modeling i
 What is covered in the course aka what will you find here? 
 
 - [an intro to R](html/00_Intro_R.html)
-- [a first at the data we are using](html/01_Inspect_data_and_ask_questions.html)
+- [a first look at the data we are using](html/01_Inspect_data_and_ask_questions.html)
 - [handling spatial data](html/02_Spatial_Data.html)
 - [intro to point pattern](html/03_PointPattern.html)
 - [raster analyses](html/04_Raster_analysis.html)
