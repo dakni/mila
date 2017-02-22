@@ -11,6 +11,7 @@ csl: harvard1.csl
 output:
   html_document:
     toc: true
+    toc_float: true
     theme: united
     pandoc_args: [
       "+RTS", "-K64m",
@@ -33,7 +34,7 @@ highlight: pygments
 
 We are going to use the open-source software `R` (https://www.r-project.org/ and http://cran.r-project.org/). The reason: You do not need to learn many different software tools. If you are able to use `R` you can do *every* GIS and geostatistic related task.
 
-Here is a not exhaustive list of useful literature about spatial data analyses, (geo-)statistics, and machine learing. 
+Here is a not exhaustive list of useful literature about spatial data analyses, (geo-)statistics, and machine learning. 
 
 - @diggle2013
 - @fortin2005
@@ -64,6 +65,7 @@ A rising number of research institutes, companies, and universities have migrate
 
 - @baddeley2005
 - @baddeley2008
+- @baddeley2016
 - @bivand2008
 - @borcard2011
 - @crawley2012
@@ -90,6 +92,15 @@ Interactive, online "Introduction to R": https://www.datacamp.com/courses/free-i
 Another good introduction to `R`: https://ramnathv.github.io/pycon2014-r/
 
 Stay updated: http://www.r-bloggers.com/
+
+## R and archaeology
+
+_a very unfinished list_
+
+Martin Hinz provides different [screencasts](http://martinhinz.info/screencasts/) on `R` and statistical analyses in archaeology. 
+
+Besides there is the Initiative for Statistical Analysis in Archaeology Kiel ([ISAAKiel](https://isaakiel.github.io/)). It is an open group of active young and senior scientists that develops archaeology related packages for `R` and that also provides lecture material (as resulting from workshops and seminars organized by the group).
+
 
 ## R as a calculator ##
 
@@ -142,7 +153,7 @@ swirl()
 
 This is a great feature since while writing a script you automatically have a documentation of your work, hence it is possible for you (and others) to reconstruct how you produced your results. Besides, you can share your script with other researchers in order to debug it, enhance it, get feedback on it, help others with it, ...
 
-Think of a script like a publication and follow some basic rules to get the most of it. Give a title, mention the purpose, give references, set the license,...:
+Think of a script like a publication and follow some basic rules to get the most of it. Give a title, mention the purpose, give references, set the license, ...:
 
 ```{r echo=TRUE}
 ################################################################################ 
@@ -164,13 +175,13 @@ Think of a script like a publication and follow some basic rules to get the most
 ################################################################################ 
 ```
 
-Please recognise the `#` symbol. It defines the rest of the line as a comment and is not interpreted by `R`. Hence, everywhere in your script where you want to make a remark you can just do it using a comment.
+Please recognize the `#` symbol. It defines the rest of the line as a comment and is not interpreted by `R`. Hence, everywhere in your script where you want to make a remark you can just do it using a comment.
 
 ```{r echo=TRUE}
 sqrt(12) # sqrt() means square root of something in the brackets
 ```
 
-Before we you will fill your script with commands we have to define a style guide. There are some
+Before you will fill your script with commands we have to define a style guide. There are some
 style guides available, for instance:
 
 - http://google-styleguide.googlecode.com/svn/trunk/google-r-style.html
@@ -192,9 +203,7 @@ It does not matter which style guide you use, but be consistent. Here are some e
 
 # Spatial Data - some necessary basics #
 
-[The following is to a large extent taken from Knitter & Nakoinz (submitted): "Point Pattern Analysis as Tool for Digital Geoarchaeology -- A Case Study of Megalithic Graves in Schleswig-Holstein, Germany"]
-
-Statistics is a very large, sometimes overwhelmingly large, subject. Nevertheless, there are good news: in focusing on "Geostatistics and GIS" we already defined the focus of our statistical analyses: everything we are investigating is concerned with *space* and hence *spatial data*. 
+[The following is to a large extent taken from Knitter & Nakoinz (in press): "Point Pattern Analysis as Tool for Digital Geoarchaeology -- A Case Study of Megalithic Graves in Schleswig-Holstein, Germany"]
 
 ## Spatial Data are Special ##
 
