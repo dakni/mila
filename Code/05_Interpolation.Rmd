@@ -102,22 +102,21 @@ plot(sites_pp, pch = 19)
 points(lec, col="red")
 
 library(plotrix)
-draw.circle(x = lec@coords[,1],
-            y = lec@coords[,2],
-            radius = sites_vor$radius,
-            border = "gray")
+for (i in 1:length(lec@coords[,1])) {
+    draw.circle(x = lec@coords[i,1],
+                y = lec@coords[i,2],
+                radius = lec@data$rad[i],
+                border = "gray")
+    }
 ```
 
 ## Interpolation
 
 We're lazy...instead of creating a raster we use one that is "already there":
-load SRTM scene, reproject, crop, change to SpatialGridDataFrame
 
 ```{r message=FALSE}
 library(raster)
-srtm <- raster("data/srtm_41_03.tif")
-srtm <- projectRaster(srtm, res=90, crs=CRS("+init=epsg:32634"))
-srtm <- crop(x = srtm, y = extent(sites)+20000)
+srtm <- raster("results/srtm.tif")
 srtm <- aggregate(x = srtm, fact = 9)
 library(maptools)
 srtm <- as(object = srtm,
@@ -132,6 +131,7 @@ str(srtm)
 
 ```{r message=FALSE}
 library(gstat)
+crs(srtm) <- lec@proj4string ## BE CAREFUL!
 
 lec_gstat_p2 <- gstat(formula = lec@data$rad ~ 1,
                       locations = lec,
@@ -151,15 +151,15 @@ lec_idw05 <- predict(object = lec_gstat_p05,
 
 ```{r fig.height=5, fig.width=5, echo=FALSE}
 plot(raster(lec_idw05))
-points(sites_pp)
+points(sites_pp, col = rgb(0,0,0,.3)) 
 
 plot(raster(lec_idw2))
-points(sites_pp) 
+points(sites_pp, col = rgb(0,0,0,.3)) 
 ```
 
 ## Interpolation - Kriging
 
-**very** superficial
+**very** superficial and I hope you can do better 
 
 ```{r}
 library(gstat)
@@ -169,7 +169,7 @@ plot(variogram(lec$rad ~ 1, lec, cloud = TRUE))
 
 ## Interpolation - Kriging
 
-**very** superficial
+**very** superficial and I hope you can do better 
 
 ```{r}
 library(gstat)
@@ -179,49 +179,71 @@ plot(variogram(lec$rad ~ 1, lec))
 
 ## Interpolation - Kriging
 
-**very** superficial
+**very** superficial and I hope you can do better 
 
 ```{r}
 library(gstat)
 
-plot(variogram(lec$rad ~ 1, lec, alpha = c(0,45,90,135)))
+plot(variogram(lec$rad ~ 1, lec, cutoff = 60000))
+```
+
+## Interpolation - Kriging
+
+**very** superficial and I hope you can do better 
+
+```{r}
+library(gstat)
+
+plot(variogram(lec$rad ~ 1, lec, cutoff = 60000, alpha = c(0,45,90,135)))
 ```
 
 ## Interpolation - Kriging {.columns-2}
 
-**very** superficial
+**very** superficial and I hope you can do better 
 
 ```{r fig.height=5, fig.width=5, echo=FALSE}
 #vt <- variogram(lec$rad ~ 1, lec)
-plot(variogram(lec$rad ~ 1, lec))
+plot(variogram(lec$rad ~ 1, lec, cutoff = 60000))
 show.vgms()
 ```
 
-## Interpolation - Kriging
+## Interpolation - Kriging {.columns-2}
 
-**very** superficial
-
-```{r}
-vt <- variogram(lec$rad ~ 1, lec)
-v_fit <- fit.variogram(vt,
-                       vgm(nugget = 3e+07,
-                           model = "Gau",
-                           psill = 3e+08, #355572513
-                           range = 180000)
-                       )
+```{r, fig.height=4, fig.width=4}
+plot(variogram(object = lec$rad ~ 1,
+               locations = lec,
+               width = 1000,
+               cutoff = 50000)
+     )
 ```
 
-## Interpolation - Kriging
+```{r, fig.height=4, fig.width=4}
+plot(variogram(object = lec$rad ~ 1,
+               locations = lec,
+               width = 1000,
+               cutoff = 10000)
+     )
+```
 
-**very** superficial
 
-```{r}
+## Interpolation - Kriging  {.columns-2}
+
+```{r, fig.height=5, fig.width=5}
+vt <- variogram(object = lec$rad ~ 1,
+                locations = lec,
+                width = 2000,
+               cutoff = 10000)
+vt_vgm <- vgm(nugget = 0,
+              model = "Gau",
+              psill = 1.5e+07,
+              range = 8000)
+v_fit <- fit.variogram(vt,vt_vgm)
 plot(vt,v_fit)
 ```
 
 ## Interpolation - Kriging
 
-**very** superficial
+**very** superficial and I hope you can do better 
 
 ```{r}
 lec_kri <- krige(formula = lec$rad ~ 1,
@@ -233,7 +255,7 @@ lec_kri <- krige(formula = lec$rad ~ 1,
 
 ## Interpolation - Kriging
 
-**very** superficial
+**very** superficial and I hope you can do better 
 
 ```{r}
 plot(raster(lec_kri),
@@ -242,12 +264,26 @@ plot(raster(lec_kri),
 points(sites,pch=20,cex=.4)
 ```
 
-## Interpolation - Inverse Distance Weighting vs. Kriging {.columns-2}
+## Inverse Distance Weighting vs. Kriging {.columns-2}
 
 ```{r fig.height=5, fig.width=5, echo=FALSE}
-plot(raster(lec_idw05))
-points(sites_pp)
-
-plot(raster(lec_kri))
-points(sites_pp) 
+plot(raster(lec_idw2), legend = FALSE)
+points(sites_pp, cex = .5)
+points(lec, pch = 19, cex = .4)
 ```
+
+```{r fig.height=5, fig.width=5, echo=FALSE}
+plot(raster(lec_kri), legend = FALSE)
+points(sites_pp, cex = .5)
+points(lec, pch = 19, cex = .4)
+```
+
+## Interpolation
+
+So, did any of the things calculated so far make any sense?
+
+Let's assume there is some value in it, what does it mean (landscape) archaeologically?
+
+Why is the analysis at the current stage problematic?
+
+What might be the reasons for the failure?
