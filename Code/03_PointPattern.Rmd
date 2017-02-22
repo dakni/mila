@@ -104,17 +104,13 @@ list.files("./data")
 
 ## Infos
 
-_THE_ references for this subject are:
-
-- [@bivand2008]
-- [@baddeley2008]
-- [@diggle2013]
+_THE_ references for this subject are: @baddeley2016, @baddeley2008, @bivand2008, @diggle2013
 
 And the best thing is: the authors are active developers of `R`. The package we will use in this topic very often is `spatstat`. A package so full of functions that the manual alone has over 1589 pages (as of 2016-02-03).
 
 If you use the package in your research, do not forget to cite it (this holds true for every package used, including the base software `R` !):
 
-```{r}
+```{r, message=FALSE}
 library(spatstat)
 citation(package = "spatstat")
 ```
@@ -214,7 +210,9 @@ points(sites.pp, pch = 20, cex = .5, col = rgb(.2,.2,.2,.5))
 
 ## Local intensity
 
-The question is: does the quadratcount indicates CSR? To check we use a $\chi^2$ test approach (remember: Relation between observed (i.e. empirical) and expected (i.e. theoretical, here CSR) amounts of points in quadrants)
+The question is: do the quadratcounts indicate CSR? To check we use a $\chi^2$ test approach 
+
+(relation between observed (i.e. empirical) and expected (i.e. theoretical, here CSR) amounts of points in quadrants)
 
 ```{r}
 qt.sites <- quadrat.test(X = sites.pp)
@@ -244,7 +242,8 @@ xmin <- sites.pp$window$xrange[1] - cs/2
 xmax <- sites.pp$window$xrange[2] + cs/2
 ymin <- sites.pp$window$yrange[1] - cs/2
 ymax <- sites.pp$window$yrange[2] + cs/2
-## calculate the number of rows/columns (add 1 just because a pixl might get lost through the rounding operation)
+## calculate the number of rows/columns
+## (add 1 just because a pixel might get "lost" through the rounding operation)
 rows  <- round((ymax-ymin)/cs, 0) + 1 
 columns <- round((xmax-xmin)/cs, 0) + 1
 
@@ -258,10 +257,10 @@ Step 2 - create grid topology
 
 ```{r density1a}
 # create a topological description of a grid
-gt <- GridTopology(c(sites.pp$window$xrange[1] - cs/2,
-                     sites.pp$window$yrange[1] - cs/2),
-                   c(cs,cs),
-                   c(columns,rows)) 
+gt <- GridTopology(cellcentre.offset = c(sites.pp$window$xrange[1] - cs/2,
+                                         sites.pp$window$yrange[1] - cs/2),
+                   cellsize = c(cs,cs),
+                   cells.dim = c(columns,rows)) 
 gt
 ```
 
@@ -274,6 +273,7 @@ sgdf <- SpatialGridDataFrame(grid = gt,
                              data = df,
                              proj4string = CRS("+init=epsg:32634")
                              )
+plot(sgdf)
 ```
 
 ## Density calculation - 1st approach {.columns-2}
@@ -289,8 +289,10 @@ for (i in seq(along=coordinates(gt)[,1])){
     y <- coordinates(gt)[i,2] - cs/2
 
     ## which events lie within the x/y direction?
-    xi <- which(sites.pp$x>x & sites.pp$x<x+cs)
-    yi <- which(sites.pp$y>y & sites.pp$y<y+cs)
+    xi <- which(sites.pp$x > x &
+                sites.pp$x < x + cs)
+    yi <- which(sites.pp$y > y &
+                sites.pp$y < y + cs)
 
     ## how many objects in x and y direction intersect?
     pz <- length(intersect(xi,yi))
@@ -299,8 +301,7 @@ for (i in seq(along=coordinates(gt)[,1])){
     sgdf@data$z[i]<- pz / (cs/1000)^2 
 }
 
-library(raster)
-plot(raster(sgdf))
+plot(raster::raster(sgdf))
 points(sites.pp$x, sites.pp$y, pch=16, cex=0.4)  
 ```
 
@@ -336,6 +337,7 @@ for (i in seq(along=coordinates(gt)[,1])){
     }
     sgdf_kde@data$z[i]<- g2     
 }
+
 library(raster)
 plot(raster(sgdf_kde))
 points(sites.pp$x, sites.pp$y, pch=16, cex=0.4)
@@ -416,7 +418,7 @@ R.sites
 
 First approach based on theoretical assumptions, i.e. CSR
 
-```{r fig.height=5, fig.width=5}
+```{r gfct, warning=FALSE, fig.height=5, fig.width=5}
 sites.g <- Gest(sites.pp)
 plot(sites.g)
 ```
@@ -425,7 +427,7 @@ plot(sites.g)
 
 Second approach based on simulations of a theortical process, i.e. CSR
 
-```{r fig.height=5, fig.width=5}
+```{r gfct2, warning=FALSE, fig.height=5, fig.width=5}
 sites.g.env <- envelope(sites.pp,
                         fun = Gest,
                         nsim = 10)
@@ -615,13 +617,14 @@ library(raster)
 plot(raster(sgdf.f))
 points(sites, cex = .2, pch = 19)
 ```
+
 ## G and F moving window {.columns-2}
 
 ```{r fig.height=5, fig.width=5, echo=FALSE}
 library(raster)
-plot(raster(sgdf.g))
+plot(raster(sgdf.g), main = "G")
 points(sites, cex = .2, pch = 19)
-plot(raster(sgdf.f))
+plot(raster(sgdf.f), main = "F")
 points(sites, cex = .2, pch = 19)
 ```
 
