@@ -84,6 +84,9 @@ lec <- SpatialPointsDataFrame(coords = cbind(sites_vor$x, sites_vor$y),
                               data = as.data.frame(rad), # length of edge
                               proj4string=CRS("+init=epsg:32634")
                               )
+plot(lec)
+## remove outlier
+lec <- lec[lec@coords[,2]>min(lec@coords[,2]),]
 ```
 
 ## Caluclate density using graph methods
@@ -137,20 +140,74 @@ lec_gstat_p2 <- gstat(formula = lec@data$rad ~ 1,
                       locations = lec,
                       set = list(idp = 2)
                       )
-lec_gstat_p05 <- gstat(formula = lec@data$rad ~ 1,
+lec_gstat_p25 <- gstat(formula = lec@data$rad ~ 1,
                        locations = lec,
-                       set = list(idp = .5)
+                       set = list(idp = 2.5)
                        )
 lec_idw2 <- predict(object = lec_gstat_p2,
                     newdata = srtm)
-lec_idw05 <- predict(object = lec_gstat_p05,
+head(as.data.frame(lec_idw2))
+lec_idw25 <- predict(object = lec_gstat_p25,
                      newdata = srtm)
 ```
+
+## Interpolation - Trend surfaces
+
+```{r trendsurf}
+lecp2 <- lm(lec@data$rad ~ poly(x = lec@coords[,1],
+                              y = lec@coords[,2],
+                              degree = 2)
+            )
+lecp3 <- lm(lec@data$rad ~ poly(x = lec@coords[,1],
+                              y = lec@coords[,2],
+                              degree = 3)
+          )
+plot(lec@data$rad ~ 1)
+lines(lecp2$fitted.values, col = "red")
+lines(lecp3$fitted.values, col = "blue")
+
+lec_poly <- krige(formula = lec@data$rad ~ 1,
+                  locations = lec,
+                  newdata = srtm,
+                  degree = 3)
+plot(raster(lec_poly))
+```
+
+```{r int2}
+hscat(formula = lec@data$rad ~ 1,
+      data = lec,
+      breaks = seq(0, 10, 1)*1000
+      )
+
+hscat(formula = lec@data$rad ~ 1,
+      data = lec,
+      breaks = seq(0, 5, 1)*1000
+      )
+
+plot(variogram(object = lec@data$rad ~ 1,
+               locations = lec,
+               cloud = TRUE
+          )
+     )
+
+plot(variogram(object = lec@data$rad ~ 1,
+               locations = lec,
+               cloud = TRUE,
+               boundaries = c(seq(0, 1e+3, 1e+2),
+                              seq(2e+3, 1e+4, 1e+3)
+                              )
+          )
+     )
+
+show.vgms(model = "Mat", kappa.range = c(0.1, 0.2, 0.5,1, 2, 5, 10), max = 10)
+
+```
+
 
 ## Interpolation - Inverse Distance Weighting {.columns-2}
 
 ```{r fig.height=5, fig.width=5, echo=FALSE}
-plot(raster(lec_idw05))
+plot(raster(lec_idw25))
 points(sites_pp, col = rgb(0,0,0,.3)) 
 
 plot(raster(lec_idw2))
