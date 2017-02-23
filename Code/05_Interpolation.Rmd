@@ -98,8 +98,6 @@ plot(sites_vor, col = "red", add=TRUE)
 
 ## Caluclate density using graph methods {.columns-2}
 
-What's wrong here?!
-
 ```{r message=FALSE, fig.height=5, fig.width=5}
 plot(sites_pp, pch = 19)
 points(lec, col="red")
@@ -151,45 +149,140 @@ lec_idw25 <- predict(object = lec_gstat_p25,
                      newdata = srtm)
 ```
 
+## Interpolation - Inverse Distance Weighting {.columns-2}
+
+```{r fig.height=5, fig.width=5, echo=FALSE}
+plot(raster(lec_idw25))
+points(sites_pp, col = rgb(0,0,0,.3)) 
+
+plot(raster(lec_idw2))
+points(sites_pp, col = rgb(0,0,0,.3)) 
+```
+ 
 ## Interpolation - Trend surfaces
 
-```{r trendsurf}
+```{r trendsurf, fig.show="hide"}
 lecp2 <- lm(lec@data$rad ~ poly(x = lec@coords[,1],
-                              y = lec@coords[,2],
-                              degree = 2)
+                                y = lec@coords[,2],
+                                degree = 2
+                                )
             )
 lecp3 <- lm(lec@data$rad ~ poly(x = lec@coords[,1],
-                              y = lec@coords[,2],
-                              degree = 3)
+                                y = lec@coords[,2],
+                                degree = 3
+                                )
+            )
+plot(lec@data$rad ~ 1)
+lines(lecp2$fitted.values, col = "red")
+lines(lecp3$fitted.values, col = "blue")
+legend("top",
+       lty = c(1,1,1),
+       col = c("red","blue","green"),
+       legend = c("2nd degree polynom",
+                  "3rd degree polynom"
+                  )
+       )
+```
+
+## Interpolation - Trend surfaces
+
+```{r trendsurf_plot, echo=FALSE}
+lecp2 <- lm(lec@data$rad ~ poly(x = lec@coords[,1],
+                                y = lec@coords[,2],
+                                degree = 2
+                                )
+            )
+lecp3 <- lm(lec@data$rad ~ poly(x = lec@coords[,1],
+                                y = lec@coords[,2],
+                                degree = 3
+                                )
+            )
+lecp4 <- lm(lec@data$rad ~ poly(x = lec@coords[,1],
+                                y = lec@coords[,2],
+                                degree = 4
+                                )
           )
 plot(lec@data$rad ~ 1)
 lines(lecp2$fitted.values, col = "red")
 lines(lecp3$fitted.values, col = "blue")
+lines(lecp4$fitted.values, col = "green")
+legend("top",
+       lty = c(1,1,1),
+       col = c("red","blue","green"),
+       legend = c("2nd degree polynom",
+                  "3rd degree polynom",
+                  "4th degree polynom"
+                  )
+       )
+```
 
-lec_poly <- krige(formula = lec@data$rad ~ 1,
-                  locations = lec,
-                  newdata = srtm,
-                  degree = 3)
+## Interpolation - Trend surfaces {.columns-2}
+
+```{r trendsurf2, fig.width = 5, fig.height = 5}
+lec_poly <- krige(
+    formula = lec@data$rad ~ 1,
+    locations = lec,
+    newdata = srtm,
+    degree = 3
+)
 plot(raster(lec_poly))
 ```
 
-```{r int2}
+## Interpolation 
+
+```{r hscat}
 hscat(formula = lec@data$rad ~ 1,
       data = lec,
       breaks = seq(0, 10, 1)*1000
       )
 
-hscat(formula = lec@data$rad ~ 1,
-      data = lec,
-      breaks = seq(0, 5, 1)*1000
-      )
+## hscat(formula = lec@data$rad ~ 1,
+##       data = lec,
+##       breaks = seq(0, 5, 1)*1000
+##       )
+```
 
+## Interpolation -- Variogram
+
+```{r vario1}
 plot(variogram(object = lec@data$rad ~ 1,
                locations = lec,
                cloud = TRUE
           )
      )
 
+```
+
+## Interpolation -- Variogram {.columns-2}
+
+```{r vario_rand, fig.height=5, fig.width=5}
+library(lattice)
+
+v <- variogram(lec@data$rad ~ 1, lec)
+xyplot(x = gamma/1e8 ~ dist,
+       data = v,
+       pch = 3,
+       type = 'b',
+       lwd = 2,
+       panel = function(x, y, ...) {
+           for (i in 1:500) {
+               lec$random = sample(lec$rad)
+               v = variogram(random ~ 1, lec)
+               llines(x = v$dist,
+                      y = v$gamma/1e8,
+                      col = rgb(.5,.5,.5,.2)
+                      )
+           }
+           panel.xyplot(x, y, ...)
+       },
+       xlab = 'distance',
+       ylab = 'semivariance/1e8'
+       )
+```
+
+## Interpolation 
+
+```{r vario2}
 plot(variogram(object = lec@data$rad ~ 1,
                locations = lec,
                cloud = TRUE,
@@ -201,17 +294,6 @@ plot(variogram(object = lec@data$rad ~ 1,
 
 show.vgms(model = "Mat", kappa.range = c(0.1, 0.2, 0.5,1, 2, 5, 10), max = 10)
 
-```
-
-
-## Interpolation - Inverse Distance Weighting {.columns-2}
-
-```{r fig.height=5, fig.width=5, echo=FALSE}
-plot(raster(lec_idw25))
-points(sites_pp, col = rgb(0,0,0,.3)) 
-
-plot(raster(lec_idw2))
-points(sites_pp, col = rgb(0,0,0,.3)) 
 ```
 
 ## Interpolation - Kriging
