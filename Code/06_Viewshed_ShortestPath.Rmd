@@ -46,22 +46,6 @@ coordinates(sites) <- ~xUTM+yUTM
 proj4string(sites) <- CRS("+init=epsg:32634")
 ```
 
-## Get data into R and than into GRASS
-
-Download SRTM, load SRTM into R, reproject to UTM, crop to sites, export as new file
-
-```{r message=FALSE}
-library(raster)
-srtm <- raster("data/srtm_41_03.tif")
-srtm <- projectRaster(srtm, res=90, crs=CRS("+init=epsg:32634"))
-srtm <- crop(x = srtm, y = extent(sites)+20000)
-
-writeRaster(x = srtm,
-            filename = "results/srtm.tif",
-            overwrite = TRUE
-            )
-```
-
 # Viewshed Analysis using R and GRASS GIS
 
 ## Initialize GRASS
@@ -72,7 +56,7 @@ Load library, initialize the GRASS environment with default values (everything i
 
 ```{r init_grass, eval = TRUE, echo = TRUE}
 library(rgrass7)
-loc <-  initGRASS(gisBase = "/opt/grass/", home=tempdir() ,mapset = "PERMANENT", override = TRUE)
+loc <-  initGRASS(gisBase = "/usr/lib/grass72/", home=tempdir() ,mapset = "PERMANENT", override = TRUE)
 execGRASS("g.proj", flags = c("c"), parameters = list(proj4="+init=epsg:32634"))
 ```
 
@@ -81,13 +65,17 @@ execGRASS("g.proj", flags = c("c"), parameters = list(proj4="+init=epsg:32634"))
 ```{r message=FALSE}
 library(rgdal)
 srtm <- readGDAL("results/srtm.tif")
+library(raster)
+srtm <- aggregate(raster(srtm), fact = 10)
+library(maptools)
+srtm <- as(object = srtm, Class = "SpatialGridDataFrame")
 ```
 
 ```{r}
 writeRAST(x = srtm,
-           vname="dem",
-           flags = c("overwrite")
-           )
+          vname="dem",
+          flags = c("overwrite")
+          )
 ```
 
 ## Load SRTM into GRASS
@@ -176,67 +164,39 @@ Procedure:
 ## Viewshed in GRASS - all points
 
 ```{r view_loop, eval=TRUE, warning = FALSE}
-cum_view_sites <- brick(raster(srtm))
+view <- srtm
+view@data$band1 <- 0
+
+writeRAST(x = view,
+          vname="view",
+          flags = c("overwrite")
+          )
 
 for (i in seq(1, length(sites@coords[,1]))) {
     execGRASS("r.viewshed",
-              flags = c("overwrite","b"),
+              flags = c("overwrite","b", "quiet"),
               parameters = list(input = "dem",
-                                output = "view",
+                                output = "view_tmp",
                                 coordinates = sites@coords[i,],
-                                max_distance=50000)
+                                max_distance = 40000,
+                                memory = 1000)
               )
-    viewshed <- readRAST("view")
-    cum_view_sites[[i]] <- raster(viewshed)
-    names(cum_view_sites[[i]]) <- as.character(sites@data$Nr.[i])
-    cat("iteration ", i, " of ", length(sites@coords[,1]),"\n")
+    execGRASS("r.mapcalc",
+              parameters = list(expression = paste0("'view' = 'view' + view_tmp")
+                                ),
+              flags = c("overwrite", "quiet")
+              )
+    #cat("iteration ", i, " of ", length(sites@coords[,1]),"\n")
 }
+
+view <- readRAST("view")
 ```
 
 ## Viewshed in GRASS - all points
 
-Plot a single viewshed from the brick object
-
 ```{r}
-plot(cum_view_sites[[1]])
-```
-
-## Viewshed in GRASS - all points
-
-Create a cumulative viewshed and plot it
-
-```{r}
-view_sum_sites <- sum(cum_view_sites)
-plot(view_sum_sites)
-```
-
-## Viewshed in GRASS - all points
-
-Reclassification might be interesting
-
-```{r}
-quantile(view_sum_sites)
-
-rcl_sites <- c(-Inf, quantile(view_sum_sites)[2],1,
-               quantile(view_sum_sites)[2],quantile(view_sum_sites)[3],2,
-               quantile(view_sum_sites)[3],quantile(view_sum_sites)[4],3,
-               quantile(view_sum_sites)[4],quantile(view_sum_sites)[5],4,
-               quantile(view_sum_sites)[5],+Inf,5
-               )
-rcl_sites <- matrix(rcl_sites, ncol = 3, byrow = TRUE)
-view_sum_sites2 <- reclassify(x = view_sum_sites, rcl = rcl_sites)
-```
-
-## Viewshed in GRASS - all points
-
-Reclassification might be interesting
-
-```{r}
-plot(view_sum_sites2)
-points(sites, pch=19, cex=.5)
-
-#library(rasterVis)
-#levelplot(view_sum_sites2)
+plot(raster(view))
+points(sites)
 ```
 
 # Shortest Path
@@ -369,7 +329,8 @@ check this: transform cost to conductivity; conductivity=cost/dist; time=1/condu
 
 ```{r message=FALSE}
 library(raster)
-srtm <- raster(x = "./results/srtm.tif")
+srtm <- raster(x = "results/srtm.tif")
+srtm <- aggregate(srtm, fact = 10)
 
 library(gdistance) # 
 hdiff <- function(x){(x[2]-x[1])}
@@ -529,8 +490,8 @@ plot(p_tmp2[[1]], type="l",
 First we need a combination object that calculates all the possible connections (and optionally a name object in order to identify the paths afterwards)
 
 ```{r}
-x <- sites@coords[,1][1:10] # at the moment only for 10 objects
-y <- sites@coords[,2][1:10] # at the moment only for 10 objects
+x <- sites@coords[,1][1:20] # at the moment only for 20 objects
+y <- sites@coords[,2][1:20] # at the moment only for 20 objects
 
 x_comb <- combn(x,2)
 y_comb <- combn(y,2)
