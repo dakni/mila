@@ -9,8 +9,9 @@ What is covered in the course aka what will you find here?
 - [handling spatial data](html/02_Spatial_Data.html)
 - [intro to point pattern](html/03_PointPattern.html)
 - [raster analyses](html/04_Raster_analysis.html)
-- a very short intro to interpolation (soon)
+- [a very short intro to interpolation](html/05_Interpolation.html)
 - [an application of viewsheds and least-cost paths](html/06_Viewshed_ShortestPath.html)
+- [and something more or different regarind least-cost paths](html/06_Distance_analyses.html)
 
 For more detailed information about "Modeling in Landscape Archaeology" you can also have a look at the github repository of the book from Oliver Nakoinz and me: 
 
