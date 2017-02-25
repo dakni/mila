@@ -1,0 +1,487 @@
+---
+title: "Distance analyses"
+author:
+- Freie Universität Berlin -- M.Sc. Landschaftsarchäologie
+- Modellieren in der Landschaftsarchäologie
+- Dr. Daniel Knitter (CAU Kiel)
+date: WS 2016/17
+bibliography: VS_Modellierung_Literature.bib
+csl: harvard1.csl
+output:
+  ioslides_presentation:
+    toc: true
+    highlight: pygments
+    widescreen: true
+    smaller: true
+---
+
+# Prerequisites
+
+## setwd, library, data, cleaning
+
+```{r echo=FALSE}
+## this is here, so that knitr allows to change the working directory
+knitr::opts_knit$set(root.dir = "..")
+```
+
+```{r eval=FALSE}
+setwd("YOUR-PATH")
+```	
+
+```{r load-data, message=FALSE}
+raw_data <- read.table(file = "data/FS_UTM.csv",
+                       header = TRUE,
+                       sep = ";",
+                       stringsAsFactors = FALSE,
+                       quote = "")
+
+## check for issues/problems
+## str(raw_data)
+## apply(X=raw_data[,4:20], MARGIN = 2, FUN=function(x){x[x>1]})
+raw_data$settlement[raw_data$settlement > 1] <- 1
+
+library(sp)
+sites <- raw_data[(raw_data$settlement == 1 & raw_data$iron.age == 1),]
+coordinates(sites) <- ~xUTM+yUTM
+proj4string(sites) <- CRS("+init=epsg:32634")
+```
+
+## Distance analyses in geographic space {.columns-2}
+
+- abstract concept: can be measured in meters, time, money, strangeness, ...
+- influence interactions
+
+```{r fig.width=5, echo=FALSE}
+library(png)
+library(grid)
+img <- readPNG("assets/img/pic_daniel_Harris_Ullman_1945_p8.png")
+grid.raster(img)
+```
+
+## Distance analyses in geographic space
+
+1. straight/ direct
+
+	- Euclidean distance
+	- "As the crow flies"
+	- "In a beeline"
+	- geodesic distance
+	- great-circle distance
+
+2. not direct/ random
+		
+	- random walk
+	- "Drunkard's Walk"
+
+
+## Distance analyses in geographic space
+
+$$d(i,j) = \sqrt{(x_i-x_j)^2 + (y_i-y_j)^2}$$
+
+## Distance analyses in geographic space
+
+Distance between points using Euclidean distance using package `rgeos`
+
+```{r, message=FALSE}
+library(rgeos)
+ed <- gDistance(spgeom1 = sites,
+                byid = TRUE)
+str(ed)
+dim(ed)
+head(ed[1,])
+```
+
+Can you imagine the structure if the `ed` object?
+
+## Distance analyses in geographic space
+
+```{r}
+min(ed)
+```
+
+```{r}
+round(data.frame(min = min(ed[ed>0]),
+                 max = max(ed[ed>0]),
+                 mean = mean(ed[ed>0]),
+                 median = median(ed[ed>0])
+                 ),
+      2)
+```
+
+## Distance analyses in geographic space
+
+```{r}
+hist(ed)
+abline(v = mean(ed[ed>0]), col = "red")
+abline(v = median(ed[ed>0]), col = "blue")
+```
+
+## Distance analyses in geographic space
+
+Some further questions that might be interesting
+
+```{r}
+mp <- apply(X = ed,
+            MARGIN = 2,
+            FUN = mean)
+
+tmp <- ed
+tmp[tmp==0] <- 9999
+
+cp <- apply(X = tmp,
+            MARGIN = 2,
+            FUN = min)
+
+sites$mp <- mp
+sites@data$cp <- cp
+```
+
+What is the mean euclidean distance from a point to its surrounding points (mp)?
+
+What is the closest euclidean distance from a point to its surrounding points (cp)?
+
+**Question:** Why changing 0 to 9999?
+
+## Distance analyses in geographic space
+
+```{r fig.show="hide"}
+spplot(sites, "cp")
+spplot(sites, "mp")
+```
+
+Examples how to use `spplot`: http://rspatial.r-forge.r-project.org/gallery/
+
+## Distance analyses in geographic space
+
+Leaflet in `R`: https://rstudio.github.io/leaflet/
+
+```{r eval=FALSE}
+library(leaflet)
+tmp <- spTransform(sites, CRSobj = CRS("+init=epsg:4326"))
+leaflet(data=tmp$cp) %>%
+    addTiles() %>%
+    addCircleMarkers(lng = tmp@coords[,1],
+                     lat = tmp@coords[,2],
+                     radius = tmp$mp/1000,
+                     )
+```
+
+## Distance analyses in geographic space
+
+`Mapview` [as alternative to `leaflet`]: http://environmentalinformatics-marburg.github.io/mapview/introduction.html
+
+```{r, message = FALSE}
+library(mapview)
+mapview(sites, zcol = "mp", legend = TRUE)
+```
+
+## Distance analyses in geographic space {.build}
+
+**Least-cost distances**
+
+- Cost is --- like distance --- an abstract concept; hence, YOU decide what your costs are (time, energy, ugliness, ...)
+- Least-cost distance analyses allow to integrate prior knowledge and more complexity into your model.
+
+**There was a discourse at the LAC about least-cost paths (LCP):**
+
+- Opinion 1: LCP follow a **capitalistic** ideology since their aim is
+  the best optimization. They are blind for post-processual ideas
+- Opinion 2: LCP do optimize a certain path. But the rules, how they
+  do it, is defined by **parameters** chosen for the model. Hence,
+  they are able to grasp post-processual ideas
+
+## Distance analyses in geographic space
+
+Basic work about least-cost distances and path analyses (usefulness, applicability, problems,...) was/is conducted quite excessively by Irmela Herzog (https://bodendenkmalpflege-lvr.academia.edu/IrmelaHerzog)
+
+## Distance analyses in geographic space {.columns-2}
+
+What does it mean?
+
+```{r}
+## km/h
+tobler1993a <- function(s){
+    6 * exp(-3.5 * abs(s + 0.05))
+}
+## m/min
+tobler1993b <- function(s){
+    0.36 * exp(-3.5 * abs(s + 0.05))
+}   
+```
+
+```{r echo=FALSE, fig.width = 5}
+plot(tobler1993a,
+     xlim = c(-1,1),
+     main = "Slope-dependent cost function (Tobler)",
+     xaxt="n",yaxt="n",
+     xlab = "",ylab = "")
+
+mtext(side = 1, text = "slope", line = 2)
+mtext(side = 2, text = "speed (km/h)", line = 2)
+
+axis(2, mgp=c(3, .5, 0))
+axis(1, mgp=c(3, .5, 0))
+
+abline(v = 0, lty = 2)
+```
+
+## Distance analyses in geographic space
+
+Technically speaking, there are two different ways how least-cost paths are created
+
+1. create a cost raster
+2. accumulate the costs from one of your points of interest
+3. "walk" from a target point along the accumulated raster to your starting point (like water flows into a sink)
+
+In `GrassGIS`:
+
+- cost raster
+- `r.cost`/`r.walk`
+- `r.drain`
+
+## Distance analyses in geographic space
+
+Technically speaking, there are two different ways how least-cost paths are created
+
+In `R`:
+
+1. create cost raster
+2. create matrix of cell connections
+3. find "cheapest" path between points along cell connections
+
+`gdistance` in `R` a package by Jacob van Etten (https://cran.r-project.org/web/packages/gdistance)
+
+## Distance analyses in geographic space
+
+What are the necessary steps?
+
+1. Create cost surface
+
+```{r fig.width=5, echo=FALSE}
+library(png)
+library(grid)
+img <- readPNG('assets/img/pic_daniel_transition_raster.png')
+grid.raster(img)
+```
+
+(https://cran.r-project.org/web/packages/gdistance/vignettes/gdistance1.pdf)
+
+## Distance analyses in geographic space
+
+What are the necessary steps?
+
+1. Create cost surface
+2. Create transition matrix, i.e. matrix recording connections between cells
+
+```{r fig.width=5, echo=FALSE}
+library(png)
+library(grid)
+img <- readPNG('assets/img/pic_daniel_transition.png')
+grid.raster(img)
+```
+
+(https://cran.r-project.org/web/packages/gdistance/vignettes/gdistance1.pdf)
+
+
+## Distance analyses in geographic space
+
+What are the necessary steps?
+
+1. Create cost surface
+2. Create transition matrix, i.e. matrix recording connections between cells
+3. Transition matrix is filled with conductance, rather than resistance values; hence unconnected cells have value 0 (= no conductance); memory efficient
+
+## Distance analyses in geographic space
+
+What are the necessary steps?
+
+1. Create cost surface
+2. Create transition matrix, i.e. matrix recording connections between cells
+3. Transition matrix is filled with conductance, rather than resistance values; hence unconnected cells have value 0 (= no conductance); memory efficient
+4. Geocorrection of values
+
+## Distance analyses in geographic space
+
+What are the necessary steps?
+
+1. Create cost surface
+2. Create transition matrix, i.e. matrix recording connections between cells
+3. Transition matrix is filled with conductance, rather than resistance values; hence unconnected cells have value 0 (= no conductance); memory efficient
+4. Geocorrection of values
+5. Identify adjacent cells
+
+## Distance analyses in geographic space
+
+What are the necessary steps?
+
+1. Create cost surface
+2. Create transition matrix, i.e. matrix recording connections between cells
+3. Transition matrix is filled with conductance, rather than resistance values; hence unconnected cells have value 0 (= no conductance); memory efficient
+4. Geocorrection of values
+5. Identify adjacent cells
+6. Calculate walking speed for adjacent cells
+
+## Distance analyses in geographic space
+
+What are the necessary steps?
+
+1. Create cost surface
+2. Create transition matrix, i.e. matrix recording connections between cells
+3. Transition matrix is filled with conductance, rather than resistance values; hence unconnected cells have value 0 (= no conductance); memory efficient
+4. Geocorrection of values
+5. Identify adjacent cells
+6. Calculate walking speed for adjacent cells
+7. Geocorrect speed values
+
+## Distance analyses in geographic space
+
+What are the necessary steps?
+
+1. Create cost surface
+2. Create transition matrix, i.e. matrix recording connections between cells
+3. Transition matrix is filled with conductance, rather than resistance values; hence unconnected cells have value 0 (= no conductance); memory efficient
+4. Geocorrection of values
+5. Identify adjacent cells
+6. Calculate walking speed for adjacent cells
+7. Geocorrect speed values
+8. Find path using least-cost ("as the wolf runs") or random walk ("drunkard's walk") algorithm
+
+## Distance analyses in geographic space {.columns-2}
+
+First we calculate the slope, as this is used as cost
+
+```{r message=FALSE}
+library(raster)
+dem <- raster("results/srtm.tif")
+dem <- aggregate(x = dem, fact = 10)
+slope <- terrain(x = dem,
+                 opt = "slope",
+                 neighbors = 8,
+                 unit = "degrees")
+slope <- crop(x = slope,
+              y = extent(slope)-1000
+              )
+```
+
+```{r echo=FALSE, fig.width = 5}
+plot(slope)
+```
+
+## Distance analyses in geographic space
+
+Now we create the transition object and geocorrect it
+
+```{r message=FALSE}
+library(gdistance)
+slope.tran <- transition(x = slope,
+                         transitionFunction = mean,
+                         directions = 8,
+                         symm = TRUE
+                         )
+slope.geo <- geoCorrection(x = slope.tran, scl = TRUE)
+```
+
+To see how the results look like we create a raster stack for easy plotting
+
+```{r message=FALSE}
+slopes <- stack(slope,
+                raster(slope.tran),
+                raster(slope.geo))
+names(slopes) <- c("Slope","Transition","Geocorrection")
+```
+
+## Distance analyses in geographic space
+
+To see how the results look like we create a raster stack for easy plotting
+
+```{r message=FALSE, fig.width = 10}
+plot(slopes, nr = 1)
+```
+
+## Distance analyses in geographic space
+
+Now, the final step. Calculate Tobler's hiking speed, geocorrect again and calculate a shortest path
+
+```{r message=FALSE}
+adj <- adjacent(x = slope,
+                cells=1:ncell(slope),
+                pairs=TRUE,
+                directions=8)
+speed <- slope.geo
+speed[adj] <-  6 * exp(-3.5 * abs(slope.geo[adj] + 0.05))
+
+speed.geo <- geoCorrection(x = speed, scl=TRUE)
+
+sp1 <- shortestPath(x = speed.geo,
+                    origin = sites@coords[4,],
+                    goal = sites@coords[50,],
+                    output = "SpatialLines")
+```
+
+## Distance analyses in geographic space
+
+Now, the final step. Calculate Tobler's hiking speed, geocorrect again and calculate a shortest path
+
+```{r, fig.width=10}
+plot(raster(speed.geo))
+lines(sp1)
+```
+
+## Distance analyses in geographic space {.columns-2}
+
+What about the "drunkard's walk"? 
+
+```{r message=FALSE, fig.width = 5}
+p1 <- passage(x = speed.geo,
+              origin = sites@coords[4,],
+              goal = sites@coords[50,]#,
+              ##theta = .005
+              )              
+              
+hs <-  hillShade(
+    slope = terrain(x = dem*10, opt = "slope"),
+    aspect = terrain(x = dem, opt = "aspect"),
+    angle = 40, direction = 270
+)
+
+plot(hs, col=grey(0:100/100), legend=FALSE)
+plot(p1, alpha = .5, add=TRUE)#; lines(sp1)
+```
+
+## Distance analyses in geographic space
+
+What about the idea of a **prehistoric autobahn**? Run the code and get some coffee (most probably)
+
+```{r message=FALSE}
+xy <- data.frame(X = sites@coords[,1],
+                 Y = sites@coords[,2])
+
+rows.xy <- row.names(xy)
+sa.rows.xy <- sample(row.names(xy), length(xy$X)/2)
+starts <- subset(xy, rows.xy %in% sa.rows.xy)
+goals <- subset(xy, !(rows.xy %in% sa.rows.xy))
+sg.passages <- brick(slope)
+
+for(i in 1:length(starts$X)) {
+    s <- c(starts$X[i],starts$Y[i])
+    z <- c(goals$X[i],goals$Y[i])
+    sg.passages[[i]] <- passage(x = speed.geo, origin = s, goal = z)
+    cat("iteration ", i, " of ", length(starts$X),"\n")
+}
+
+sg.passages.sum <- sum(sg.passages)
+```
+
+## Distance analyses in geographic space
+
+```{r echo=FALSE, fig.width=10}
+plot(hs, col=grey(0:100/100), legend=FALSE)
+plot(sg.passages.sum,
+     col = colorRampPalette(colors = c("white","red"))(50),
+     alpha = .8,
+     add=TRUE)
+points(sites,
+       pch = 19,
+       col = rgb(red = 0, green = 0, blue = 0, alpha = .2))
+```
+
