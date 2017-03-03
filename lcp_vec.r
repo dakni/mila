@@ -1,3 +1,19 @@
+#####
+tmp1.euc <- SpatialLines(
+    list(
+        Lines(
+            Line(
+                coords = (rbind(sites@coords[1,],
+                                sites@coords[2,]
+                                )
+                )
+            ),
+            ID="1")
+    ),
+    proj4string = srtm@crs
+)
+
+########
 LCP und SpatialLines
 
 x <- sites@coords[,1][1:10] # at the moment only for 10 objects
